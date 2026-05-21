@@ -27,6 +27,8 @@
     }
     body { font-family: 'Inter', sans-serif; background: var(--soft); color: var(--text); overflow-x: hidden; padding-bottom: 90px; }
     .container { width: min(1180px, 92%); margin: auto; }
+    
+    /* ===== NAVBAR ===== */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(10,25,47,0.96); backdrop-filter: blur(12px);
@@ -48,23 +50,17 @@
     .btn-outline { border: 1px solid var(--green); color: white; background: transparent; transition: all 0.3s ease; }
     .btn-outline:hover { background: rgba(46,204,113,0.2); transform: translateY(-2px); box-shadow: 0 0 15px var(--green); }
     .btn-large { padding: 14px 36px; font-size: 16px; }
-    
     .navbar-spacer { height: 95px; }
     
+    /* ===== HERO SECTION ===== */
     .hero-section { 
-      position: relative; 
-      width: 100%; 
-      height: 85vh;
-      min-height: 600px;
-      margin-top: 0;
-      overflow: hidden; 
-      background: #000;
+      position: relative; width: 100%; height: 85vh; min-height: 600px;
+      overflow: hidden; background: #000;
     }
     .video-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     .video-carousel video { 
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-      object-fit: cover;
-      transition: opacity 0.8s ease; 
+      object-fit: cover; transition: opacity 0.8s ease; 
     }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,25,47,0.6), rgba(5,16,34,0.85)); z-index: 2; }
     .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; width: 100%; max-width: 800px; padding: 0 20px; text-align: center; }
@@ -77,6 +73,7 @@
     .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: 0.2s; }
     .dot.active { background: var(--green); width: 24px; border-radius: 20px; box-shadow: 0 0 10px var(--green); }
     
+    /* ===== GENERAL SECTIONS ===== */
     .section { padding: 70px 0; position: relative; }
     .section-light { background: white; }
     .section-soft { background: var(--soft); }
@@ -93,6 +90,32 @@
     .module-table th, .module-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--gray-mid); }
     .module-table th { background: var(--navy); color: white; font-weight: 600; }
     
+    /* ===== WHAT WE DO SECTION ===== */
+    .whatwedo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin: 40px 0; }
+    .whatwedo-card { background: white; border-radius: 24px; padding: 28px; text-align: center; transition: all 0.3s ease; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .whatwedo-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 0 20px rgba(46,204,113,0.2); }
+    .whatwedo-icon { font-size: 48px; color: var(--green); margin-bottom: 20px; }
+    .whatwedo-card h3 { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .whatwedo-card p { font-size: 0.9rem; line-height: 1.6; color: var(--text); margin-bottom: 16px; }
+    .whatwedo-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
+    .whatwedo-tags span { background: var(--green-10); color: var(--green-dark); font-size: 0.7rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+    .whatwedo-mission { background: linear-gradient(135deg, var(--navy), var(--navy-light)); border-radius: 28px; padding: 40px; margin: 40px 0; text-align: center; position: relative; overflow: hidden; }
+    .mission-content { position: relative; z-index: 2; }
+    .mission-content p { font-size: 1.2rem; line-height: 1.7; color: white; max-width: 800px; margin: 0 auto; }
+    .mission-content p strong { color: var(--green); }
+    .mission-platforms { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 28px; }
+    .mission-platforms span { color: rgba(255,255,255,0.8); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; }
+    .mission-platforms span i { color: var(--green); font-size: 1rem; }
+    .who-we-serve { text-align: center; margin-top: 30px; }
+    .who-we-serve h4 { color: var(--green); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; margin-bottom: 20px; }
+    .serve-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; }
+    .serve-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .serve-item i { font-size: 28px; color: var(--green); background: var(--green-10); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease; }
+    .serve-item span { font-size: 0.8rem; font-weight: 500; color: var(--navy); }
+    .serve-item small { font-size: 10px; color: var(--muted); }
+    .serve-item:hover i { transform: translateY(-3px); background: rgba(46,204,113,0.2); box-shadow: 0 0 15px rgba(46,204,113,0.3); }
+    
+    /* ===== PRODUCT PAGE STYLES ===== */
     .product-hero { background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white; padding: 80px 0; text-align: center; position: relative; overflow: hidden; }
     .product-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 20px; }
     .product-hero .highlight { color: var(--green); }
@@ -100,7 +123,6 @@
     .module-card { background: white; border-radius: 20px; padding: 28px; border-left: 4px solid var(--green); box-shadow: var(--shadow); transition: all 0.3s ease; }
     .module-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(46,204,113,0.3); }
     .module-card i { font-size: 40px; color: var(--green); margin-bottom: 16px; }
-    .module-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: var(--navy); }
     .phase-timeline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 15px; margin: 40px 0; }
     .phase { flex: 1; min-width: 100px; background: var(--green-10); border-radius: 12px; padding: 15px; text-align: center; transition: all 0.3s ease; }
     .phase:hover { transform: translateY(-3px); background: rgba(46,204,113,0.2); }
@@ -109,181 +131,54 @@
     .user-card { background: var(--green-10); border-radius: 16px; padding: 20px; text-align: center; transition: all 0.3s ease; }
     .user-card:hover { transform: translateY(-3px); background: rgba(46,204,113,0.2); }
     .user-card i { font-size: 36px; color: var(--green); margin-bottom: 12px; }
-    .user-card h4 { margin-bottom: 8px; color: var(--navy); }
     .principle-box { background: var(--navy); color: white; border-radius: 24px; padding: 40px; text-align: center; margin: 30px 0; position: relative; overflow: hidden; }
-    
     .academy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
     .academy-card { background: white; border-radius: 20px; padding: 28px; text-align: center; box-shadow: var(--shadow); transition: all 0.3s ease; }
     .academy-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(46,204,113,0.3); }
     .academy-card i { font-size: 48px; color: var(--green); margin-bottom: 16px; }
-    .academy-card h3 { margin-bottom: 12px; color: var(--navy); }
     .course-badge { display: inline-block; background: var(--green-10); color: var(--green-dark); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 16px; }
     
-    /* ORIGINAL FLOATING FOOTER BUTTONS - RESTORED */
+    /* ===== FLOATING FOOTER NAVIGATION ===== */
     .floating-bottom-nav {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--navy);
-      backdrop-filter: blur(12px);
-      border-radius: 60px;
-      padding: 10px 24px;
-      display: flex;
-      gap: 32px;
-      z-index: 1000;
-      border: 1px solid rgba(46,204,113,0.3);
-      flex-wrap: wrap;
-      justify-content: center;
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: var(--navy); backdrop-filter: blur(12px); border-radius: 60px;
+      padding: 10px 24px; display: flex; gap: 32px; z-index: 1000;
+      border: 1px solid rgba(46,204,113,0.3); flex-wrap: wrap; justify-content: center;
     }
     .nav-item { display: flex; flex-direction: column; align-items: center; color: #cbd5e1; font-size: 0.65rem; gap: 3px; cursor: pointer; text-decoration: none; transition: all 0.3s ease; }
     .nav-item i { font-size: 1.2rem; }
     .nav-item.active, .nav-item:hover { color: var(--green); transform: translateY(-2px); text-shadow: 0 0 5px var(--green); }
     
-    /* FOOTER - FIX: Added bottom padding to prevent overlap with floating nav */
-    footer { 
-      background: var(--navy-dark); 
-      color: #94a3b8; 
-      padding: 40px 20px 210px 20px; 
-      text-align: center; 
-      font-size: 12px; 
-    }
+    /* ===== FOOTER ===== */
+    footer { background: var(--navy-dark); color: #94a3b8; padding: 40px 20px 210px 20px; text-align: center; font-size: 12px; }
     
+    /* ===== PAGE SWITCHING ===== */
     .page { display: none; }
     .page.active { display: block; }
     
     /* ===== MAGICAL EFFECTS ===== */
-    .stars-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .star {
-      position: absolute;
-      background: radial-gradient(circle, #2ecc71 0%, rgba(46,204,113,0) 80%);
-      border-radius: 50%;
-      opacity: 0;
-      animation: starFloat 4s ease-in-out infinite;
-    }
-    @keyframes starFloat {
-      0%, 100% { opacity: 0; transform: scale(0.3) translateY(0px); }
-      50% { opacity: 0.8; transform: scale(1) translateY(-20px); }
-    }
+    .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+    .star { position: absolute; background: radial-gradient(circle, #2ecc71 0%, rgba(46,204,113,0) 80%); border-radius: 50%; opacity: 0; animation: starFloat 4s ease-in-out infinite; }
+    @keyframes starFloat { 0%, 100% { opacity: 0; transform: scale(0.3) translateY(0px); } 50% { opacity: 0.8; transform: scale(1) translateY(-20px); } }
+    .scroll-reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
+    .glowing-orb { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(46,204,113,0.15) 0%, rgba(46,204,113,0) 70%); pointer-events: none; z-index: 0; animation: orbPulse 6s ease-in-out infinite; }
+    @keyframes orbPulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.3); opacity: 0.6; } }
+    .ripple-text { display: inline-block; transition: text-shadow 0.3s ease; }
+    .ripple-text:hover { text-shadow: 0 0 10px #2ecc71, 0 0 20px rgba(46,204,113,0.5); animation: textRipple 0.5s ease; }
+    @keyframes textRipple { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .cosmic-bg { position: relative; background: linear-gradient(135deg, #0a192f 0%, #0d1f3a 100%); overflow: hidden; }
+    .cosmic-bg::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 40%, rgba(46,204,113,0.08) 0%, transparent 40%), radial-gradient(circle at 70% 80%, rgba(46,204,113,0.05) 0%, transparent 40%); animation: cosmicDrift 20s linear infinite; pointer-events: none; }
+    @keyframes cosmicDrift { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .pulse-ring { position: relative; display: inline-block; }
+    .pulse-ring::after { content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(46,204,113,0.4) 0%, transparent 70%); border-radius: 50%; opacity: 0; animation: iconPulse 2s ease-out infinite; pointer-events: none; }
+    @keyframes iconPulse { 0% { opacity: 0.6; width: 100%; height: 100%; } 100% { opacity: 0; width: 200%; height: 200%; } }
+    .magnetic-card { position: relative; overflow: hidden; cursor: pointer; }
+    .card-glow { position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(46,204,113,0.5) 0%, rgba(46,204,113,0) 70%); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.2s; z-index: 1; }
+    .magnetic-card:hover .card-glow { opacity: 1; }
+    .glow-gradient:hover { box-shadow: 0 0 30px rgba(46,204,113,0.4), var(--shadow); border-color: rgba(46,204,113,0.3); }
     
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .scroll-reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .glowing-orb {
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(46,204,113,0.15) 0%, rgba(46,204,113,0) 70%);
-      pointer-events: none;
-      z-index: 0;
-      animation: orbPulse 6s ease-in-out infinite;
-    }
-    @keyframes orbPulse {
-      0%, 100% { transform: scale(1); opacity: 0.3; }
-      50% { transform: scale(1.3); opacity: 0.6; }
-    }
-    
-    .ripple-text {
-      display: inline-block;
-      transition: text-shadow 0.3s ease;
-    }
-    .ripple-text:hover {
-      text-shadow: 0 0 10px #2ecc71, 0 0 20px rgba(46,204,113,0.5);
-      animation: textRipple 0.5s ease;
-    }
-    @keyframes textRipple {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    
-    .cosmic-bg {
-      position: relative;
-      background: linear-gradient(135deg, #0a192f 0%, #0d1f3a 100%);
-      overflow: hidden;
-    }
-    .cosmic-bg::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 40%, rgba(46,204,113,0.08) 0%, transparent 40%),
-                  radial-gradient(circle at 70% 80%, rgba(46,204,113,0.05) 0%, transparent 40%);
-      animation: cosmicDrift 20s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes cosmicDrift {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .pulse-ring {
-      position: relative;
-      display: inline-block;
-    }
-    .pulse-ring::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(46,204,113,0.4) 0%, transparent 70%);
-      border-radius: 50%;
-      opacity: 0;
-      animation: iconPulse 2s ease-out infinite;
-      pointer-events: none;
-    }
-    @keyframes iconPulse {
-      0% { opacity: 0.6; width: 100%; height: 100%; }
-      100% { opacity: 0; width: 200%; height: 200%; }
-    }
-    
-    .magnetic-card {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .card-glow {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(46,204,113,0.5) 0%, rgba(46,204,113,0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.2s;
-      z-index: 1;
-    }
-    .magnetic-card:hover .card-glow {
-      opacity: 1;
-    }
-    
-    .glow-gradient:hover {
-      box-shadow: 0 0 30px rgba(46,204,113,0.4), var(--shadow);
-      border-color: rgba(46,204,113,0.3);
-    }
-    
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .floating-bottom-nav { gap: 16px; padding: 8px 16px; }
@@ -293,193 +188,13 @@
       .navbar-spacer { height: 80px; }
       .glowing-orb { width: 200px; height: 200px; }
       footer { padding: 40px 20px 120px 20px; }
+      .whatwedo-grid { grid-template-columns: 1fr; }
+      .mission-content p { font-size: 1rem; }
+      .mission-platforms { gap: 16px; flex-direction: column; align-items: center; }
+      .serve-grid { gap: 20px; }
+      .serve-item i { width: 50px; height: 50px; font-size: 24px; }
+      .grid-2col { grid-template-columns: 1fr; }
     }
-/* ===== WHAT WE DO SECTION STYLES ===== */
-.whatwedo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  margin: 40px 0;
-}
-
-.whatwedo-card {
-  background: white;
-  border-radius: 24px;
-  padding: 28px;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
-}
-
-.whatwedo-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 0 20px rgba(46,204,113,0.2);
-}
-
-.whatwedo-icon {
-  font-size: 48px;
-  color: var(--green);
-  margin-bottom: 20px;
-}
-
-.whatwedo-card h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 12px;
-}
-
-.whatwedo-card p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--text);
-  margin-bottom: 16px;
-}
-
-.whatwedo-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 12px;
-}
-
-.whatwedo-tags span {
-  background: var(--green-10);
-  color: var(--green-dark);
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 0.5px;
-}
-
-/* Mission Statement Box */
-.whatwedo-mission {
-  background: linear-gradient(135deg, var(--navy), var(--navy-light));
-  border-radius: 28px;
-  padding: 40px;
-  margin: 40px 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.mission-content {
-  position: relative;
-  z-index: 2;
-}
-
-.mission-content p {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: white;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.mission-content p strong {
-  color: var(--green);
-}
-
-.mission-platforms {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 28px;
-}
-
-.mission-platforms span {
-  color: rgba(255,255,255,0.8);
-  font-size: 0.85rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.mission-platforms span i {
-  color: var(--green);
-  font-size: 1rem;
-}
-
-/* Who We Serve */
-.who-we-serve {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.who-we-serve h4 {
-  color: var(--green);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.serve-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
-}
-
-.serve-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.serve-item i {
-  font-size: 28px;
-  color: var(--green);
-  background: var(--green-10);
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.serve-item span {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--navy);
-}
-
-.serve-item:hover i {
-  transform: translateY(-3px);
-  background: rgba(46,204,113,0.2);
-  box-shadow: 0 0 15px rgba(46,204,113,0.3);
-}
-
-@media (max-width: 768px) {
-  .whatwedo-grid {
-    grid-template-columns: 1fr;
-  }
-  .mission-content p {
-    font-size: 1rem;
-  }
-  .mission-platforms {
-    gap: 16px;
-    flex-direction: column;
-    align-items: center;
-  }
-  .serve-grid {
-    gap: 20px;
-  }
-  .serve-item i {
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-  }
-}
   </style>
 </head>
 <body>
@@ -504,13 +219,14 @@
     </div>
     <div class="cta-buttons">
       <a class="btn btn-outline" data-page="coreplatforms">🤖 MaZida AI</a>
-      <a class="btn btn-primary" data-page="learning"> Start Learning</a>
+      <a class="btn btn-primary" data-page="learning">📚 Start Learning</a>
     </div>
   </div>
 </nav>
 
 <div class="page-container">
   
+  <!-- ==================== HOME PAGE ==================== -->
   <div id="home-page" class="page active">
     <div class="navbar-spacer"></div>
     <div class="hero-section">
@@ -535,6 +251,7 @@
       <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
+    <!-- Core Purpose + Vision -->
     <div class="section section-light scroll-reveal" style="position: relative; overflow: hidden;">
       <div class="glowing-orb" style="top: -100px; left: -100px;"></div>
       <div class="glowing-orb" style="bottom: -100px; right: -100px; width: 300px; height: 300px;"></div>
@@ -544,197 +261,42 @@
       </div></div>
     </div>
 
+    <!-- Core Problem -->
     <div class="section section-soft scroll-reveal"><div class="container"><div class="card glow-gradient" style="text-align: center; background: var(--navy); color: white;"><i class="fas fa-exclamation-triangle pulse-ring" style="font-size: 48px; color: var(--green); margin-bottom: 20px;"></i><h3 style="color: white;">Core Problem We're Solving</h3><p style="font-size: 1.2rem; max-width: 700px; margin: 20px auto 0;">"African SMEs and startups struggle with business planning, operations, execution, and investor readiness."</p></div></div></div>
 
-    <!-- ==================== WHAT WE DO SECTION ==================== -->
-<div class="section section-light scroll-reveal" style="position: relative; overflow: hidden;">
-  <div class="glowing-orb" style="top: -50px; right: -50px; width: 300px; height: 300px;"></div>
-  <div class="container">
-    <div class="section-title">
-      <span>✦ What We Do ✦</span>
-      <h2>Building Africa's AI-Powered Growth Infrastructure</h2>
-      <p style="max-width: 700px; margin: 16px auto 0; color: var(--muted);">We provide digital skills, productivity technology, economic empowerment, and innovation ecosystems for African enterprises and young populations/professionals.</p>
-    </div>
-
-    <!-- Main Pillars Grid -->
-    <div class="whatwedo-grid">
-      
-      <!-- Pillar 1: Education / EdTech -->
-      <div class="whatwedo-card magnetic-card glow-gradient">
-        <div class="card-glow"></div>
-        <div class="whatwedo-icon"><i class="fas fa-graduation-cap pulse-ring"></i></div>
-        <h3>Education / EdTech</h3>
-        <p>We provide digital skills in <strong>AI, coding, and more</strong> to young African populations — from students and job seekers to working professionals — through our <strong>Digital Skills & AI Learning</strong> platform.</p>
-        <div class="whatwedo-tags">
-          <span>AI Literacy</span>
-          <span>Coding Bootcamps</span>
-          <span>Digital Skills</span>
+    <!-- What We Do Section -->
+    <div class="section section-light scroll-reveal" style="position: relative; overflow: hidden;">
+      <div class="glowing-orb" style="top: -50px; right: -50px; width: 300px; height: 300px;"></div>
+      <div class="container">
+        <div class="section-title"><span>✦ What We Do ✦</span><h2>Building Africa's AI-Powered Growth Infrastructure</h2><p style="max-width: 700px; margin: 16px auto 0; color: var(--muted);">We provide digital skills, productivity technology, economic empowerment, and innovation ecosystems for African enterprises and young populations/professionals.</p></div>
+        <div class="whatwedo-grid">
+          <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><div class="whatwedo-icon"><i class="fas fa-graduation-cap pulse-ring"></i></div><h3>Education / EdTech</h3><p>We provide digital skills in <strong>AI, coding, and more</strong> to young African populations through our <strong>Digital Skills & AI Learning</strong> platform.</p><div class="whatwedo-tags"><span>AI Literacy</span><span>Coding Bootcamps</span><span>Digital Skills</span></div></div>
+          <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><div class="whatwedo-icon"><i class="fas fa-chart-line pulse-ring"></i></div><h3>Digital Transformation & Productivity</h3><p>We help businesses <strong>digitize operations, adopt AI, improve workflows</strong> through MaZida AI and Workspace tools.</p><div class="whatwedo-tags"><span>AI Adoption</span><span>Workflow Automation</span><span>Productivity Tools</span></div></div>
+          <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><div class="whatwedo-icon"><i class="fas fa-chalkboard-user pulse-ring"></i></div><h3>Economic Empowerment & Entrepreneurship</h3><p>We serve <strong>SMEs, startups, consultants, and professionals</strong> through SME growth enablement and enterprise solutions.</p><div class="whatwedo-tags"><span>SME Support</span><span>Startup Growth</span><span>Consultant Tools</span></div></div>
+          <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><div class="whatwedo-icon"><i class="fas fa-rocket pulse-ring"></i></div><h3>Startup Infrastructure</h3><p>We provide <strong>founder & business systems</strong> to help startups build, scale, and succeed in the African market.</p><div class="whatwedo-tags"><span>Founder Systems</span><span>Business Operations</span><span>Scaling Tools</span></div></div>
+          <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><div class="whatwedo-icon"><i class="fas fa-globe pulse-ring"></i></div><h3>Innovation Ecosystems</h3><p>Through <strong>MaZida Hub</strong>, we build connected ecosystems where founders, mentors, and investors meet and grow together.</p><div class="whatwedo-tags"><span>Community Hub</span><span>Mentorship</span><span>Investor Network</span></div></div>
+          <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><div class="whatwedo-icon"><i class="fas fa-brain pulse-ring"></i></div><h3>Future of Work</h3><p>We prepare African professionals for tomorrow's economy through <strong>productivity & AI workflows</strong> that enhance how work gets done.</p><div class="whatwedo-tags"><span>Remote Work</span><span>AI Workflows</span><span>Future Skills</span></div></div>
         </div>
-      </div>
-
-      <!-- Pillar 2: Digital Transformation & Productivity -->
-      <div class="whatwedo-card magnetic-card glow-gradient">
-        <div class="card-glow"></div>
-        <div class="whatwedo-icon"><i class="fas fa-chart-line pulse-ring"></i></div>
-        <h3>Digital Transformation & Productivity</h3>
-        <p>We help businesses <strong>digitize operations, adopt AI, improve workflows, and modernize productivity</strong> through MaZida AI and Workspace tools.</p>
-        <div class="whatwedo-tags">
-          <span>AI Adoption</span>
-          <span>Workflow Automation</span>
-          <span>Productivity Tools</span>
-        </div>
-      </div>
-
-      <!-- Pillar 3: Economic Empowerment & Entrepreneurship -->
-      <div class="whatwedo-card magnetic-card glow-gradient">
-        <div class="card-glow"></div>
-        <div class="whatwedo-icon"><i class="fas fa-chalkboard-user pulse-ring"></i></div>
-        <h3>Economic Empowerment & Entrepreneurship</h3>
-        <p>We serve <strong>SMEs, startups, consultants, and professionals</strong> through SME growth enablement and enterprise solutions.</p>
-        <div class="whatwedo-tags">
-          <span>SME Support</span>
-          <span>Startup Growth</span>
-          <span>Consultant Tools</span>
-        </div>
-      </div>
-
-      <!-- Pillar 4: Startup Infrastructure -->
-      <div class="whatwedo-card magnetic-card glow-gradient">
-        <div class="card-glow"></div>
-        <div class="whatwedo-icon"><i class="fas fa-rocket pulse-ring"></i></div>
-        <h3>Startup Infrastructure</h3>
-        <p>We provide <strong>founder & business systems</strong> to help startups build, scale, and succeed in the African market.</p>
-        <div class="whatwedo-tags">
-          <span>Founder Systems</span>
-          <span>Business Operations</span>
-          <span>Scaling Tools</span>
-        </div>
-      </div>
-
-      <!-- Pillar 5: Innovation Ecosystems -->
-      <div class="whatwedo-card magnetic-card glow-gradient">
-        <div class="card-glow"></div>
-        <div class="whatwedo-icon"><i class="fas fa-globe pulse-ring"></i></div>
-        <h3>Innovation Ecosystems</h3>
-        <p>Through <strong>MaZida Hub</strong>, we build connected ecosystems where founders, mentors, and investors meet and grow together.</p>
-        <div class="whatwedo-tags">
-          <span>Community Hub</span>
-          <span>Mentorship</span>
-          <span>Investor Network</span>
-        </div>
-      </div>
-
-      <!-- Pillar 6: Future of Work -->
-      <div class="whatwedo-card magnetic-card glow-gradient">
-        <div class="card-glow"></div>
-        <div class="whatwedo-icon"><i class="fas fa-brain pulse-ring"></i></div>
-        <h3>Future of Work</h3>
-        <p>We prepare African professionals for tomorrow's economy through <strong>productivity & AI workflows</strong> that enhance how work gets done.</p>
-        <div class="whatwedo-tags">
-          <span>Remote Work</span>
-          <span>AI Workflows</span>
-          <span>Future Skills</span>
-        </div>
+        <div class="whatwedo-mission cosmic-bg"><div class="mission-content"><i class="fas fa-quote-left" style="font-size: 36px; color: var(--green); opacity: 0.5; margin-bottom: 16px;"></i><p>MaZida builds <strong>AI-powered business infrastructure and innovation systems</strong> that help African SMEs, startups, and professionals <strong>plan, operate, grow, and access opportunities</strong> more effectively.</p><div class="mission-platforms"><span><i class="fas fa-microchip"></i> MaZida AI</span><span><i class="fas fa-desktop"></i> AI Workspace</span><span><i class="fas fa-bullhorn"></i> Startup Media</span><span><i class="fas fa-cube"></i> Digital Skills Hub</span></div></div></div>
+        <div class="who-we-serve"><h4>✦ Who We Serve ✦</h4><div class="serve-grid"><div class="serve-item"><i class="fas fa-building"></i><span>SMEs</span></div><div class="serve-item"><i class="fas fa-rocket"></i><span>Startups</span></div><div class="serve-item"><i class="fas fa-chalkboard-user"></i><span>Consultants</span></div><div class="serve-item"><i class="fas fa-users"></i><span>Young Populations</span><small>Students · Job Seekers · Youth</small></div><div class="serve-item"><i class="fas fa-briefcase"></i><span>Young Professionals</span><small>Working · Freelancing</small></div><div class="serve-item"><i class="fas fa-handshake"></i><span>Entrepreneurs</span></div></div></div>
       </div>
     </div>
 
-    <!-- Mission Statement Box -->
-    <div class="whatwedo-mission cosmic-bg">
-      <div class="mission-content">
-        <i class="fas fa-quote-left" style="font-size: 36px; color: var(--green); opacity: 0.5; margin-bottom: 16px;"></i>
-        <p>MaZida builds <strong>AI-powered business infrastructure and innovation systems</strong> that help African SMEs, startups, and professionals <strong>plan, operate, grow, and access opportunities</strong> more effectively.</p>
-        <div class="mission-platforms">
-          <span><i class="fas fa-microchip"></i> MaZida AI</span>
-          <span><i class="fas fa-desktop"></i> AI Workspace</span>
-          <span><i class="fas fa-bullhorn"></i> Startup Media</span>
-          <span><i class="fas fa-cube"></i> Digital Skills Hub</span>
-        </div>
-      </div>
-    </div>
+    <!-- How MaZida Works -->
+    <div class="section section-light scroll-reveal"><div class="container"><div class="section-title"><span>Ecosystem Architecture</span><h2>How MaZida Works</h2></div><table class="module-table glow-gradient"><thead><tr><th>Function</th><th>Role</th></tr></thead><tbody><tr><td><strong>Innovation Platform</strong></td><td>Technology & ecosystem development</tr><tr><td><strong>Learning Platform</strong></td><td>Digital skills & AI education — <strong>Digital Skills Academy</strong></td></tr><tr><td><strong>Business Consulting Platform</strong></td><td>SME/startup growth support</td></tr><tr><td><strong>Opportunity Platform</strong></td><td>Networking, visibility, partnerships</td></tr><tr><td><strong>Ecosystem Gateway</strong></td><td>Entry point into MaZida services/products</td></tr></tbody></table></div></div>
 
-    <!-- Who We Serve -->
-    <div class="who-we-serve">
-  <h4>✦ Who We Serve ✦</h4>
-  <div class="serve-grid">
-    <div class="serve-item"><i class="fas fa-building"></i> <span>SMEs</span></div>
-    <div class="serve-item"><i class="fas fa-rocket"></i> <span>Startups</span></div>
-    <div class="serve-item"><i class="fas fa-chalkboard-user"></i> <span>Consultants</span></div>
-    <div class="serve-item"><i class="fas fa-users"></i> <span>Young Populations</span><small style="font-size: 10px;">Students · Job Seekers · Youth</small></div>
-    <div class="serve-item"><i class="fas fa-briefcase"></i> <span>Young Professionals</span><small style="font-size: 10px;">Working · Freelancing</small></div>
-    <div class="serve-item"><i class="fas fa-handshake"></i> <span>Entrepreneurs</span></div>
-  </div>
-</div>
-
-   <div class="section section-light scroll-reveal"><div class="container"><div class="section-title"><span>Ecosystem Architecture</span><h2>How MaZida Works</h2></div><table class="module-table glow-gradient"><thead><tr><th>Function</th><th>Role</th></tr></thead><tbody><tr><td><strong>Innovation Platform</strong></td><td>Technology & ecosystem development</td></tr><tr><td><strong>Learning Platform</strong></td><td>Digital skills & AI education — <strong>Digital Skills Academy</strong></td></tr><tr><td><strong>Business Consulting Platform</strong></td><td>SME/startup growth support</td></tr><tr><td><strong>Opportunity Platform</strong></td><td>Networking, visibility, partnerships</td></tr><tr><td><strong>Ecosystem Gateway</strong></td><td>Entry point into MaZida services/products</td></tr></tbody></table></div></div>
-
+    <!-- Core Technology -->
     <div class="section section-soft cosmic-bg scroll-reveal"><div class="container"><div class="section-title"><span>Core Technology</span><h2 style="color: white;">MaZida AI</h2></div><div class="card glow-gradient" style="text-align: center;"><i class="fas fa-microchip pulse-ring" style="font-size: 56px; color: var(--green);"></i><p style="margin-top: 20px;">MaZida AI is building AI-powered productivity and business growth tools for African SMEs and startups. The platform helps users and supports financial inclusion by helping underserved African SMEs and startups access AI-powered business planning, operational support & execution, proposal generation, and investor-readiness tools that are traditionally inaccessible or expensive.</p><a class="btn btn-primary" style="margin-top: 24px;" data-page="coreplatforms">Explore MaZida AI →</a></div></div></div>
 
-    <div class="section section-light scroll-reveal">
-  <div class="container">
-    <div class="section-title">
-      <span> We Are Building First</span>
-      <h2>Our Flagship Products</h2>
-      <p>Two powerful platforms launching together to transform African business</p>
-    </div>
-    <div class="grid-2col">
-      
-      <!-- Card 1: MaZida AI Workspace -->
-      <div class="card glow-gradient" style="border: 2px solid var(--green);">
-        <div style="text-align: center; margin-bottom: 20px;">
-          <i class="fas fa-crown pulse-ring" style="font-size: 48px; color: var(--green);"></i>
-          <h3 style="margin-top: 12px;">MaZida AI Workspace</h3>
-          <p style="color: var(--green); font-weight: 500;">The First Artifact — Forming Now</p>
-        </div>
-        <p>An AI-powered business productivity platform helping African businesses: organize, plan, execute, communicate, and scale more effectively.</p>
-        <table class="module-table" style="margin-top: 20px;">
-          <thead><tr><th>Module</th><th>Purpose</th></tr></thead>
-          <tbody>
-            <tr><td><strong>AI Business Assistant</strong></td><td>Guidance & productivity</td></tr>
-            <tr><td><strong>Business Planning</strong></td><td>Structure & strategy</td></tr>
-            <tr><td><strong>Proposal Generator</strong></td><td>Faster workflows</td></tr>
-            <tr><td><strong>Investor Readiness</strong></td><td>Funding preparation</td></tr>
-            <tr><td><strong>Content Assistant</strong></td><td>Communication support</td></tr>
-            <tr><td><strong>Execution Workspace</strong></td><td>Operations & task support</td></tr>
-          </tbody>
-        </table>
-        <div style="text-align: center; margin-top: 25px;">
-          <a class="btn btn-primary" data-page="workspace">Explore Workspace →</a>
-        </div>
-      </div>
-      
-      <!-- Card 2: MaZida AI Skills Academy (NEW) -->
-      <div class="card glow-gradient" style="border: 2px solid var(--green);">
-        <div style="text-align: center; margin-bottom: 20px;">
-          <i class="fas fa-graduation-cap pulse-ring" style="font-size: 48px; color: var(--green);"></i>
-          <h3 style="margin-top: 12px;">MaZida AI Skills Academy</h3>
-          <p style="color: var(--green); font-weight: 500;">Building Africa's Workforce — Coming Next</p>
-        </div>
-        <p>An AI-powered digital skills training platform equipping African professionals, entrepreneurs, and job seekers with practical, job-ready skills.</p>
-        <table class="module-table" style="margin-top: 20px;">
-          <thead><tr><th>Program Track</th><th>Focus Area</th></tr></thead>
-          <tbody>
-            <tr><td><strong>AI & Machine Learning</strong></td><td>Prompt engineering, AI tools, automation</td></tr>
-            <tr><td><strong>Web & App Development</strong></td><td>Frontend, backend, no-code tools</td></tr>
-            <tr><td><strong>Digital Marketing & Sales</strong></td><td>SEO, social media, content strategy</td></tr>
-            <tr><td><strong>Data Analytics</strong></td><td>Excel, Power BI, Tableau</td></tr>
-            <tr><td><strong>Business & Proposal Writing</strong></td><td>Grants, proposals, investor comms</td></tr>
-            <tr><td><strong>Content Creation</strong></td><td>Video editing, graphic design, branding</td></tr>
-          </tbody>
-        </table>
-        <div style="text-align: center; margin-top: 25px;">
-          <a class="btn btn-primary" data-page="learning">Explore Academy →</a>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
+    <!-- Flagship Products -->
+    <div class="section section-light scroll-reveal"><div class="container"><div class="section-title"><span>🚀 We Are Building First</span><h2>Our Flagship Products</h2><p>Two powerful platforms launching together to transform African business</p></div><div class="grid-2col"><div class="card glow-gradient" style="border: 2px solid var(--green);"><div style="text-align: center; margin-bottom: 20px;"><i class="fas fa-crown pulse-ring" style="font-size: 48px; color: var(--green);"></i><h3 style="margin-top: 12px;">MaZida AI Workspace</h3><p style="color: var(--green); font-weight: 500;">The First Artifact — Forming Now</p></div><p>An AI-powered business productivity platform helping African businesses: organize, plan, execute, communicate, and scale more effectively.</p><table class="module-table" style="margin-top: 20px;"><thead><tr><th>Module</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>AI Business Assistant</strong></td><td>Guidance & productivity</td></tr><tr><td><strong>Business Planning</strong></td><td>Structure & strategy</td></tr><tr><td><strong>Proposal Generator</strong></td><td>Faster workflows</td></tr><tr><td><strong>Investor Readiness</strong></td><td>Funding preparation</td></tr><tr><td><strong>Content Assistant</strong></td><td>Communication support</td></tr><tr><td><strong>Execution Workspace</strong></td><td>Operations & task support</td></tr></tbody></table><div style="text-align: center; margin-top: 25px;"><a class="btn btn-primary" data-page="workspace">Explore Workspace →</a></div></div><div class="card glow-gradient" style="border: 2px solid var(--green);"><div style="text-align: center; margin-bottom: 20px;"><i class="fas fa-graduation-cap pulse-ring" style="font-size: 48px; color: var(--green);"></i><h3 style="margin-top: 12px;">MaZida AI Skills Academy</h3><p style="color: var(--green); font-weight: 500;">Building Africa's Workforce — Coming Next</p></div><p>An AI-powered digital skills training platform equipping African professionals, entrepreneurs, and job seekers with practical, job-ready skills.</p><table class="module-table" style="margin-top: 20px;"><thead><tr><th>Program Track</th><th>Focus Area</th></tr></thead><tbody><tr><td><strong>AI & Machine Learning</strong></td><td>Prompt engineering, AI tools, automation</td></tr><tr><td><strong>Web & App Development</strong></td><td>Frontend, backend, no-code tools</td></tr><tr><td><strong>Digital Marketing & Sales</strong></td><td>SEO, social media, content strategy</td></tr><tr><td><strong>Data Analytics</strong></td><td>Excel, Power BI, Tableau</td></tr><tr><td><strong>Business & Proposal Writing</strong></td><td>Grants, proposals, investor comms</td></tr><tr><td><strong>Content Creation</strong></td><td>Video editing, graphic design, branding</td></tr></tbody></table><div style="text-align: center; margin-top: 25px;"><a class="btn btn-primary" data-page="learning">Explore Academy →</a></div></div></div></div></div>
 
-    <div class="section section-soft scroll-reveal"><div class="container"><div class="section-title"><span>Media, PR & Storytelling</span><h2>MaZida Startup Media</h2><p>A digital media platform highlighting startup stories, mentor insights, funding opportunities, and ecosystem news in Zambia.</p></div><table class="module-table glow-gradient"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>Startup Stories</strong></td><td>Ecosystem visibility &	Inspires new entrepreneurs </td></tr><tr><td><strong>Founder Insights</strong></td><td>Provides mentorship visibility and expert insights</td></tr><tr><td><strong>AI Education</strong></td><td>Adoption support</td></tr><tr><td><strong>Business Intelligence</strong></td><td>Market understanding</td></tr><tr><td><strong>Opportunity Sharing</strong></td><td>Helps startups attract investors and customers</td></tr></tbody></table></div></div>
+    <!-- Startup Media -->
+    <div class="section section-soft scroll-reveal"><div class="container"><div class="section-title"><span>Media, PR & Storytelling</span><h2>MaZida Startup Media</h2><p>A digital media platform highlighting startup stories, mentor insights, funding opportunities, and ecosystem news in Zambia.</p></div><table class="module-table glow-gradient"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>Startup Stories</strong></td><td>Ecosystem visibility & inspires new entrepreneurs</td></tr><tr><td><strong>Founder Insights</strong></td><td>Provides mentorship visibility and expert insights</td></tr><tr><td><strong>AI Education</strong></td><td>Adoption support</td></tr><tr><td><strong>Business Intelligence</strong></td><td>Market understanding</td></tr><tr><td><strong>Opportunity Sharing</strong></td><td>Helps startups attract investors and customers</td></tr></tbody></table></div></div>
   </div>
 
-  <!-- Other pages preserved -->
-  <div id="about-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>About MaZida</h1><p>Operated by Basiwel Holistic Ventures Ltd</p></div></div><div class="section scroll-reveal"><div class="container"><div class="grid-2col"><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-flag-checkered pulse-ring" style="font-size: 40px; color: var(--green);"></i><h3>Our Mission</h3><p>To empower African entrepreneurs, startups, and professionals with AI-powered systems and digital skills that unlock growth, efficiency, and global competitiveness.</p></div><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring" style="font-size: 40px; color: var(--green);"></i><h3>Our Vision</h3><p>"A platform where African businesses and professionals can plan, build, operate, learn, access opportunities, and scale using AI-powered systems."</p></div></div><div class="card magnetic-card glow-gradient" style="margin-top: 32px;"><div class="card-glow"></div><i class="fas fa-building pulse-ring" style="font-size: 36px; color: var(--green);"></i><h3>Legal Operator</h3><p><strong>Basiwel Holistic Ventures Ltd</strong> — a generic startup and legal entity focused on technology, innovation, financial inclusion,  and enterprise development across Africa. MaZida is its flagship ecosystem platform.</p></div></div></div></div>
+  <!-- ==================== OTHER PAGES ==================== -->
+  <div id="about-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>About MaZida</h1><p>Operated by Basiwel Holistic Ventures Ltd</p></div></div><div class="section scroll-reveal"><div class="container"><div class="grid-2col"><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-flag-checkered pulse-ring" style="font-size: 40px; color: var(--green);"></i><h3>Our Mission</h3><p>To empower African entrepreneurs, startups, and professionals with AI-powered systems and digital skills that unlock growth, efficiency, and global competitiveness.</p></div><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring" style="font-size: 40px; color: var(--green);"></i><h3>Our Vision</h3><p>"A platform where African businesses and professionals can plan, build, operate, learn, access opportunities, and scale using AI-powered systems."</p></div></div><div class="card magnetic-card glow-gradient" style="margin-top: 32px;"><div class="card-glow"></div><i class="fas fa-building pulse-ring" style="font-size: 36px; color: var(--green);"></i><h3>Legal Operator</h3><p><strong>Basiwel Holistic Ventures Ltd</strong> — a generic startup and legal entity focused on technology, innovation, financial inclusion, and enterprise development across Africa. MaZida is its flagship ecosystem platform.</p></div></div></div></div>
 
   <div id="coreplatforms-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Core Platforms</h1><p>Three pillars powering African innovation</p></div></div><div class="section scroll-reveal"><div class="container"><div class="grid-2col"><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-brain pulse-ring" style="font-size: 48px; color: var(--green);"></i><h3>MaZida AI</h3><p>Intelligent productivity & business growth tools.</p><a class="btn btn-outline" style="margin-top: 16px;">Learn More</a></div><div class="card magnetic-card glow-gradient" style="border: 2px solid var(--green);"><div class="card-glow"></div><i class="fas fa-desktop pulse-ring" style="font-size: 48px; color: var(--green);"></i><h3>⭐ MaZida AI Workspace</h3><p><strong>Our First Product — Currently Building</strong></p><a class="btn btn-primary" style="margin-top: 16px;" data-page="workspace">Explore Workspace</a></div><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-bullhorn pulse-ring" style="font-size: 48px; color: var(--green);"></i><h3>MaZida Startup Media</h3><p>Ecosystem storytelling and visibility.</p><a class="btn btn-outline" style="margin-top: 16px;">View Media</a></div></div></div></div></div>
 
@@ -744,14 +306,12 @@
 
   <div id="opportunities-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Opportunities</h1></div></div><div class="section scroll-reveal"><div class="container"><div class="grid-2col"><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-handshake pulse-ring"></i><h3>Startup Media Feature</h3><a class="btn btn-outline" style="margin-top: 16px;">Nominate</a></div><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-briefcase pulse-ring"></i><h3>AI Workspace Pilot</h3><a class="btn btn-primary" style="margin-top: 16px;" data-page="workspace">Apply</a></div></div></div></div></div>
 
-  <div id="learning-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1> Digital Skills Academy</h1></div></div><div class="section scroll-reveal"><div class="container"><div class="academy-grid"><div class="academy-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-robot pulse-ring"></i><h3>AI & Machine Learning</h3><span class="course-badge">4-8 weeks</span></div><div class="academy-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-laptop-code pulse-ring"></i><h3>Web Development</h3><span class="course-badge">8-12 weeks</span></div></div></div></div></div>
+  <div id="learning-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>📚 Digital Skills Academy</h1></div></div><div class="section scroll-reveal"><div class="container"><div class="academy-grid"><div class="academy-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-robot pulse-ring"></i><h3>AI & Machine Learning</h3><span class="course-badge">4-8 weeks</span></div><div class="academy-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-laptop-code pulse-ring"></i><h3>Web Development</h3><span class="course-badge">8-12 weeks</span></div></div></div></div></div>
 
   <div id="contact-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Contact</h1></div></div><div class="section scroll-reveal"><div class="container"><div class="grid-2col"><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-envelope pulse-ring"></i><h3>Email</h3><p>hello@mazida.com</p></div><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fab fa-whatsapp pulse-ring"></i><h3>WhatsApp</h3><p>+260 97 123 4567</p></div></div></div></div></div>
 </div>
 
-<footer>
-  <div class="container">© 2025 MaZida Digital Skills & Innovation Hub — Operated by Basiwel Holistic Ventures Ltd. <strong>⭐ First Product: MaZida AI Workspace | 📚 Digital Skills Academy: Building Africa's Workforce</strong></div>
-</footer>
+<footer><div class="container">© 2025 MaZida Digital Skills & Innovation Hub — Operated by Basiwel Holistic Ventures Ltd. <strong>⭐ First Product: MaZida AI Workspace | 📚 Digital Skills Academy: Building Africa's Workforce</strong></div></footer>
 
 <div class="floating-bottom-nav">
   <a class="nav-item" data-page="home"><i class="fas fa-home"></i><span>Home</span></a>
@@ -787,24 +347,18 @@ createStars();
 // Scroll reveal animation
 const scrollElements = document.querySelectorAll('.scroll-reveal');
 const scrollObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('revealed'); });
 }, { threshold: 0.1 });
 scrollElements.forEach(el => scrollObserver.observe(el));
 
-// Magnetic mouse-follow glow on cards
+// Magnetic mouse-follow glow
 document.querySelectorAll('.magnetic-card').forEach(card => {
   const glow = card.querySelector('.card-glow');
   if (!glow) return;
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    glow.style.left = x + 'px';
-    glow.style.top = y + 'px';
+    glow.style.left = (e.clientX - rect.left) + 'px';
+    glow.style.top = (e.clientY - rect.top) + 'px';
   });
 });
 
@@ -836,20 +390,16 @@ function showSlide(index) {
 }
 
 function nextSlide() { showSlide((currentVideoIndex + 1) % videos.length); }
-videos.forEach((video, i) => { if (video) video.addEventListener('ended', () => setTimeout(nextSlide, 300)); });
+videos.forEach((video) => { if (video) video.addEventListener('ended', () => setTimeout(nextSlide, 300)); });
 createDots();
 showSlide(0);
 
 // Page switching
 const pages = {
-  home: document.getElementById('home-page'),
-  about: document.getElementById('about-page'),
-  coreplatforms: document.getElementById('coreplatforms-page'),
-  workspace: document.getElementById('workspace-page'),
-  programs: document.getElementById('programs-page'),
-  opportunities: document.getElementById('opportunities-page'),
-  learning: document.getElementById('learning-page'),
-  contact: document.getElementById('contact-page')
+  home: document.getElementById('home-page'), about: document.getElementById('about-page'),
+  coreplatforms: document.getElementById('coreplatforms-page'), workspace: document.getElementById('workspace-page'),
+  programs: document.getElementById('programs-page'), opportunities: document.getElementById('opportunities-page'),
+  learning: document.getElementById('learning-page'), contact: document.getElementById('contact-page')
 };
 const allTriggers = document.querySelectorAll('[data-page]');
 const navItems = document.querySelectorAll('.nav-item');
