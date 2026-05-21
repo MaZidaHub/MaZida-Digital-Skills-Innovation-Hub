@@ -17,7 +17,7 @@
     }
 
     :root {
-      --navy: #0a192f;      /* deep dark blue */
+      --navy: #0a192f;
       --navy-light: #112240;
       --navy-dark: #051022;
       --green: #2ecc71;
@@ -29,10 +29,11 @@
       --muted: #64748b;
       --gray-mid: #e2e8f0;
       --gray-dark: #475569;
-      --success: #2ecc71;
-      --error: #e74c3c;
-      --shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.05);
+      --success: #28A745;
+      --error: #DC3545;
+      --warning: #FFC107;
+      --shadow: 0 10px 40px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
       --radius: 28px;
       --transition: all 0.3s ease;
     }
@@ -45,12 +46,10 @@
       padding-bottom: 80px;
     }
 
-    .container {
-      width: min(1180px, 92%);
-      margin: auto;
-    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1180px, 92%); margin: auto; }
 
-    /* NAVBAR - dark blue background */
+    /* NAVBAR */
     .navbar {
       position: fixed;
       top: 0;
@@ -58,259 +57,171 @@
       right: 0;
       width: 100%;
       z-index: 1000;
-      background: var(--navy);
+      background: rgba(10,25,47,0.96);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(46,204,113,0.2);
     }
-
     .nav-wrapper {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
+      padding: 18px 0;
       flex-wrap: wrap;
       gap: 16px;
       width: min(1180px, 92%);
       margin: auto;
     }
-
     .logo {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
-
-    .logo-text {
+    .logo-brand {
       font-size: 28px;
       font-weight: 800;
       letter-spacing: -0.5px;
       font-family: 'Inter', sans-serif;
     }
-    .logo-text .green-z {
-      color: var(--green);
-      font-size: 32px;
-    }
-    .logo-text .white-letters {
-      color: white;
-    }
-    .logo span {
+    .logo-brand .ma { color: white; }
+    .logo-brand .z-green { color: var(--green); font-size: 32px; display: inline-block; }
+    .logo-brand .ida { color: white; }
+    .logo span.tagline {
       font-size: 10px;
       color: var(--green);
-      letter-spacing: 1px;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
       margin-top: 4px;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: #e2e8f0;
-      transition: 0.3s ease;
-      cursor: pointer;
-    }
-    .nav-links a:hover {
-      color: var(--green);
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-    .btn {
-      padding: 10px 22px;
-      border-radius: 40px;
-      font-weight: 600;
-      transition: 0.3s ease;
-      cursor: pointer;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-    .btn-primary {
-      background: var(--green);
-      color: var(--navy);
-      box-shadow: 0 8px 18px rgba(46,204,113,0.25);
-    }
-    .btn-primary:hover {
-      background: var(--green-dark);
-      transform: translateY(-2px);
-    }
-    .btn-outline {
-      border: 1px solid var(--green);
-      color: white;
-      background: transparent;
-    }
-    .btn-outline:hover {
-      background: rgba(46,204,113,0.15);
-      transform: translateY(-2px);
-    }
+    .nav-links { display: flex; gap: 34px; align-items: center; flex-wrap: wrap; }
+    .nav-links a { font-size: 15px; font-weight: 500; color: #e2e8f0; transition: 0.3s ease; cursor: pointer; }
+    .nav-links a:hover, .nav-links a.active-nav { color: var(--green); }
+    .cta-buttons { display: flex; gap: 12px; align-items: center; }
+    .btn { padding: 12px 22px; border-radius: 999px; font-weight: 600; transition: 0.3s ease; cursor: pointer; font-size: 14px; white-space: nowrap; }
+    .btn-primary { background: linear-gradient(135deg, #2ecc71, #27ae60); color: var(--navy); box-shadow: 0 10px 20px rgba(46,204,113,0.25); }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-outline { border: 1px solid rgba(46,204,113,0.5); color: white; background: transparent; }
+    .btn-outline:hover { background: rgba(46,204,113,0.1); transform: translateY(-2px); }
 
     .navbar-spacer { height: 85px; width: 100%; }
 
-    /* HERO with video */
-    .hero-section {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .video-carousel {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-    .video-carousel video {
-      position: absolute;
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      transition: opacity 1.2s ease;
-    }
-    .hero-overlay {
-      position: absolute;
-      background: linear-gradient(135deg, rgba(10,25,47,0.7), rgba(5,16,34,0.85));
-      inset: 0;
-      z-index: 2;
-    }
-    .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      width: 100%;
-      max-width: 800px;
-      padding: 0 20px;
-      text-align: center;
-    }
-    .hero-headline {
-      color: white;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-    .hero-headline .green-highlight { color: var(--green); }
-    .hero-subheadline {
-      color: rgba(255,255,255,0.9);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
+    /* HERO SECTION - LAYOUT ORIGINAL */
+    .hero-section { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+    .video-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .video-carousel video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.2s ease; }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10,25,47,0.55), rgba(5,16,34,0.75)); z-index: 2; }
+    .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; width: 100%; max-width: 800px; padding: 0 20px; text-align: center; }
+    .hero-headline { color: white; font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.3; margin-bottom: 30px; }
+    .hero-headline .green { color: var(--green); }
+    .hero-subheadline { color: rgba(255,255,255,0.9); font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
     .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .slide-text { display: none; }
     .slide-text.active-slide-text { display: block; }
-    .carousel-dots {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 12px;
-      z-index: 3;
-    }
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-    }
+    .carousel-dots { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 3; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: 0.3s ease; }
     .dot.active { background: var(--green); width: 24px; border-radius: 20px; }
 
-    /* sections */
+    /* SECTION STYLES */
     .section { padding: 80px 0; }
     .section-light { background: white; }
     .section-soft { background: var(--soft); }
     .section-title { text-align: center; margin-bottom: 60px; }
     .section-title span { color: var(--green); text-transform: uppercase; letter-spacing: 2px; font-size: 13px; font-weight: 700; }
-    .section-title h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--navy); }
+    .section-title h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); margin-top: 14px; color: var(--navy); }
 
-    /* cards */
-    .problem-card, .solution-card, .vision-card {
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    .problem-card { display: grid; grid-template-columns: 1fr 1fr; background: white; margin-bottom: 40px; }
+    /* PROBLEM CARD */
+    .problem-card { background: white; border-radius: 28px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; gap: 0; box-shadow: var(--shadow); margin-bottom: 40px; }
     .problem-content { padding: 50px 40px; }
-    .problem-headline { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 20px; }
+    .problem-headline { font-family: 'Playfair Display', serif; font-size: 1.8rem; line-height: 1.35; margin-bottom: 25px; font-weight: 700; color: var(--navy); }
     .problem-headline span { color: var(--green); }
-    .problem-bullets li { padding: 8px 0 8px 28px; position: relative; list-style: none; }
-    .problem-bullets li::before { content: "✗"; color: #e74c3c; position: absolute; left: 0; }
+    .problem-text { font-size: 1rem; line-height: 1.7; color: #4a5568; margin-bottom: 20px; }
+    .problem-bullets { list-style: none; margin-top: 20px; }
+    .problem-bullets li { padding: 10px 0 10px 28px; position: relative; font-size: 0.95rem; color: #4a5568; }
+    .problem-bullets li::before { content: "✗"; position: absolute; left: 0; color: #e74c3c; font-weight: bold; }
+    .problem-image { position: relative; background: var(--navy); overflow: hidden; min-height: 100%; }
+    .problem-image img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 
-    .solution-card { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 50px 40px; color: white; text-align: center; }
+    /* SOLUTION CARD */
+    .solution-card { background: linear-gradient(135deg, #0a192f 0%, #112240 100%); border-radius: 28px; padding: 50px 40px; color: white; margin-bottom: 40px; text-align: center; }
+    .solution-headline { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 25px; }
     .solution-headline span { color: var(--green); }
-    .solution-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 20px; margin-top: 30px; }
-    .feature-item { background: rgba(255,255,255,0.08); border-radius: 20px; padding: 20px; }
+    .solution-text { font-size: 1rem; line-height: 1.7; margin-bottom: 30px; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .solution-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+    .feature-item { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; text-align: center; }
+    .feature-icon { font-size: 2rem; margin-bottom: 10px; }
+    .feature-item h4 { font-size: 1rem; margin-bottom: 8px; }
+    .feature-item p { font-size: 0.8rem; opacity: 0.8; }
 
-    .featured-programs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-    }
-    .featured-program-card {
-      background: white;
-      border-radius: 24px;
-      padding: 28px;
-      transition: var(--transition);
-      border: 1px solid #eef2f6;
-    }
-    .featured-program-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-    .program-icon-large { font-size: 40px; color: var(--green); margin-bottom: 16px; }
-    .featured-program-card h3 { font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    /* VISION CARD */
+    .vision-card { background: white; border-radius: 28px; padding: 50px 40px; text-align: center; box-shadow: var(--shadow); }
+    .vision-icon { font-size: 3rem; margin-bottom: 20px; }
+    .vision-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 20px; }
+    .vision-card h2 span { color: var(--green); }
+    .vision-text { font-size: 1rem; line-height: 1.7; color: #4a5568; max-width: 800px; margin: 0 auto; }
+    .milestones { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px; }
+    .milestone { background: var(--soft); border-radius: 20px; padding: 25px; min-width: 200px; }
+    .milestone-number { font-size: 1.3rem; font-weight: 800; color: var(--green); }
+    .milestone-label { font-size: 0.85rem; color: #4a5568; }
 
+    /* FEATURED PROGRAMS GRID */
+    .featured-programs-section { padding: 80px 0; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); }
+    .featured-programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 48px; }
+    .featured-program-card { background: white; border-radius: 28px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); }
+    .featured-program-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--green-10); }
+    .program-badge { display: inline-block; background: var(--green-10); color: var(--green-dark); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 20px; }
+    .program-icon-large { font-size: 48px; color: var(--green); margin-bottom: 20px; }
+    .featured-program-card h3 { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+    .program-description { font-size: 0.9rem; line-height: 1.6; color: var(--gray-dark); margin-bottom: 20px; }
+    .program-features { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; padding-top: 16px; border-top: 1px solid var(--gray-mid); }
+    .program-features span { font-size: 0.75rem; color: var(--gray-dark); display: flex; align-items: center; gap: 6px; }
+    .program-features span i { color: var(--green); font-size: 0.7rem; }
+    .btn-small { padding: 10px 20px; border-radius: 40px; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+    .btn-small.btn-primary { background: var(--green); color: var(--navy); }
+    .btn-small.btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-small.btn-outline-small { border: 1px solid var(--green); color: var(--navy); background: transparent; }
+
+    /* FLOATING BOTTOM NAV */
     .floating-bottom-nav {
       position: fixed;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--navy);
+      width: auto;
+      background: rgba(10,25,47,0.95);
       backdrop-filter: blur(12px);
       border-radius: 60px;
       padding: 10px 24px;
       display: flex;
       gap: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
       z-index: 1000;
       border: 1px solid rgba(46,204,113,0.3);
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #cbd5e1;
-      font-size: 0.7rem;
-      cursor: pointer;
-      gap: 4px;
-    }
-    .nav-item i { font-size: 1.3rem; }
-    .nav-item.active, .nav-item:hover { color: var(--green); }
-
-    footer {
-      background: var(--navy-dark);
-      color: #94a3b8;
-      padding: 40px 20px;
-      text-align: center;
-      font-size: 13px;
-    }
-    .page { display: none; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #cbd5e1; font-size: 0.75rem; transition: all 0.2s; gap: 4px; cursor: pointer; }
+    .nav-item i { font-size: 1.4rem; }
+    .nav-item:hover, .nav-item.active { color: var(--green); transform: translateY(-2px); }
+    .scroll-top { position: fixed; bottom: 100px; right: 20px; background: var(--green); color: var(--navy); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: 0.3s; z-index: 99; }
+    .scroll-top.visible { opacity: 1; }
+    footer { background: #041124; color: rgba(255,255,255,0.7); padding: 40px 20px; text-align: center; font-size: 14px; }
+    .page { display: none; position: relative; }
     .page.active { display: block; }
-    .page-header {
-      background: var(--navy);
-      padding: 60px 0;
-      color: white;
-      text-align: center;
-    }
-    .page-header h1 { font-family: 'Playfair Display', serif; }
+    .page-header { background: var(--navy); padding: 60px 0; color: white; text-align: center; }
+    .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-family: 'Playfair Display', serif; }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .cta-buttons { margin-left: auto; }
+      .btn { padding: 10px 16px; font-size: 12px; }
+      .navbar-spacer { height: 75px; }
+      .hero-section { height: 90vh; }
       .problem-card { grid-template-columns: 1fr; }
+      .problem-image { min-height: 250px; }
+      .problem-image img { position: relative; height: 250px; }
+      .floating-bottom-nav { gap: 16px; padding: 8px 16px; }
+      .nav-item i { font-size: 1.2rem; }
+      .nav-item span { font-size: 0.65rem; }
+      body { padding-bottom: 70px; }
     }
   </style>
 </head>
@@ -319,177 +230,156 @@
 <nav class="navbar">
   <div class="nav-wrapper">
     <div class="logo">
-      <div class="logo-text">
-        <span class="white-letters">MaZida</span><span class="green-z">Z</span>
-      </div>
-      <span>Digital Skills & Innovation Hub</span>
+      <div class="logo-brand"><span class="ma">Ma</span><span class="z-green">Z</span><span class="ida">ida</span></div>
+      <span class="tagline">Digital Skills & Innovation Hub</span>
     </div>
     <div class="nav-links">
-      <a data-page="home">Home</a>
+      <a data-page="home" class="active-nav">Home</a>
       <a data-page="about">About</a>
       <a data-page="programs">Programs</a>
-      <a data-page="labs">Innovation Labs</a>
-      <a data-page="opportunities">Opportunities</a>
-      <a data-page="learning">Learning</a>
+      <a data-page="community">Community</a>
+      <a data-page="apply">Apply</a>
       <a data-page="contact">Contact</a>
     </div>
     <div class="cta-buttons">
-      <a class="btn btn-outline" data-page="opportunities">✨ Join Ecosystem</a>
-      <a class="btn btn-primary" data-page="learning">📚 Start Learning</a>
+      <a class="btn btn-outline" data-page="apply">🎓 Apply Now</a>
+      <a class="btn btn-primary" data-page="community">🤝 Join Community</a>
     </div>
   </div>
 </nav>
 
 <div class="page-container">
-  <!-- HOME PAGE -->
+  <!-- HOME PAGE - ACTIVE BY DEFAULT with ALL original sections -->
   <div id="home-page" class="page active">
     <div class="navbar-spacer"></div>
     <div class="hero-section">
       <div class="video-carousel">
-        <video id="video1" autoplay muted playsinline style="opacity:1"><source src="gear.mp4" type="video/mp4"></video>
-        <video id="video2" muted playsinline style="opacity:0"><source src="cl.mp4" type="video/mp4"></video>
-        <video id="video3" muted playsinline style="opacity:0"><source src="a.mp4" type="video/mp4"></video>
+        <video id="video1" autoplay muted playsinline style="opacity: 1;"><source src="gear.mp4" type="video/mp4"></video>
+        <video id="video2" muted playsinline style="opacity: 0;"><source src="cl.mp4" type="video/mp4"></video>
+        <video id="video3" muted playsinline style="opacity: 0;"><source src="a.mp4" type="video/mp4"></video>
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <div id="slide1-text" class="slide-text active-slide-text">
-          <div class="hero-headline">MaZida <span class="green-highlight">Digital Skills & Innovation Hub</span></div>
+          <div class="hero-headline">MaZida <span class="green">Digital Skills & Innovation Hub</span></div>
           <div class="hero-subheadline">Empowering African businesses, startups & professionals through AI-powered systems, digital skills, and growth infrastructure. Operated by Basiwel Holistic Ventures Ltd.</div>
         </div>
         <div id="slide2-text" class="slide-text">
-          <div class="hero-headline">MaZida <span class="green-highlight">AI Workspace</span> & Startup Media</div>
+          <div class="hero-headline">MaZida <span class="green">AI Workspace</span> & Startup Media</div>
           <div class="hero-subheadline">AI-powered business planning, operational execution, investor-readiness tools — accessible and built for African SMEs.</div>
         </div>
         <div id="slide3-text" class="slide-text">
-          <div class="hero-headline">AI for <span class="green-highlight">Financial Inclusion</span></div>
+          <div class="hero-headline">AI for <span class="green">Financial Inclusion</span></div>
           <div class="hero-subheadline">Underserved entrepreneurs now access intelligent systems for proposals, execution, and scaling. GPU compute for advanced workflows.</div>
         </div>
         <div class="hero-actions">
-          <a class="btn btn-primary" data-page="labs">Explore Innovation Labs</a>
-          <a class="btn btn-outline" data-page="opportunities">Join Community →</a>
+          <a class="btn btn-primary" data-page="programs">Explore Programs</a>
+          <a class="btn btn-outline" data-page="community">Join Community →</a>
         </div>
       </div>
       <div class="carousel-dots"><div class="dot active" data-slide="0"></div><div class="dot" data-slide="1"></div><div class="dot" data-slide="2"></div></div>
     </div>
 
-    <!-- Core Platforms Section -->
+    <!-- PROBLEM SECTION (original layout) -->
     <div class="section section-light">
       <div class="container">
         <div class="problem-card">
           <div class="problem-content">
-            <h2 class="problem-headline">Core <span>Platforms</span></h2>
-            <ul class="problem-bullets" style="list-style: none;">
-              <li style="color:var(--navy); font-weight:500;">🤖 MaZida AI – Intelligent productivity & business growth tools</li>
-              <li style="color:var(--navy); font-weight:500;">⚙️ MaZida AI Workspace – Operational execution & proposal generation</li>
-              <li style="color:var(--navy); font-weight:500;">📺 MaZida Startup Media – Storytelling & visibility for African innovators</li>
+            <h2 class="problem-headline">The <span>Problem</span></h2>
+            <p class="problem-text">Millions of young Africans and SMEs lack access to AI-powered business tools, digital skills, and growth infrastructure. Traditional systems are too expensive, complex, or inaccessible.</p>
+            <ul class="problem-bullets">
+              <li>AI tools too expensive for African SMEs</li>
+              <li>Lack of practical digital skills training</li>
+              <li>No investor-readiness infrastructure</li>
+              <li>Operational inefficiencies due to manual processes</li>
+              <li>Limited access to GPU compute and AI workflows</li>
             </ul>
-            <p style="margin-top: 24px; color: var(--muted);"><strong>Legal Operator:</strong> Basiwel Holistic Ventures Ltd</p>
           </div>
-          <div style="background: var(--navy); display: flex; align-items: center; justify-content: center; min-height: 260px;"><i class="fas fa-microchip" style="font-size: 80px; color: var(--green); opacity: 0.7;"></i></div>
+          <div class="problem-image"><img src="https://raw.githubusercontent.com/mlewiscapitalpartners/mlewiscapitalpartners/main/exist.png" alt="African entrepreneurs facing challenges"></div>
         </div>
       </div>
     </div>
 
-    <!-- AI Mission -->
+    <!-- SOLUTION SECTION (original layout) -->
     <div class="section section-soft">
       <div class="container">
         <div class="solution-card">
-          <h2 class="solution-headline">MaZida AI: <span>Building Africa’s AI Growth Infrastructure</span></h2>
-          <p class="solution-text">AI-powered productivity and business growth tools for African SMEs and startups. Business planning, operational execution, proposal generation, investor readiness — powered by intelligent systems. GPU compute for scalable AI processing and document analysis.</p>
+          <h2 class="solution-headline">The <span>Solution</span></h2>
+          <p class="solution-text"><strong>MaZida Digital Skills & Innovation Hub</strong> offers AI-powered business tools, digital skills training, and growth infrastructure for African SMEs, startups, and professionals. Operated by Basiwel Holistic Ventures Ltd.</p>
           <div class="solution-features">
-            <div class="feature-item"><i class="fas fa-chart-line"></i><h4>AI Business Planning</h4></div>
-            <div class="feature-item"><i class="fas fa-file-alt"></i><h4>Proposal Generation</h4></div>
-            <div class="feature-item"><i class="fas fa-chalkboard-user"></i><h4>Investor Readiness</h4></div>
-            <div class="feature-item"><i class="fas fa-server"></i><h4>GPU Compute</h4></div>
+            <div class="feature-item"><div class="feature-icon">🤖</div><h4>MaZida AI</h4><p>Business planning & proposals</p></div>
+            <div class="feature-item"><div class="feature-icon">⚙️</div><h4>AI Workspace</h4><p>Operational execution tools</p></div>
+            <div class="feature-item"><div class="feature-icon">📺</div><h4>Startup Media</h4><p>Storytelling & visibility</p></div>
+            <div class="feature-item"><div class="feature-icon">💻</div><h4>GPU Compute</h4><p>Scalable AI processing</p></div>
+            <div class="feature-item"><div class="feature-icon">📈</div><h4>Investor Readiness</h4><p>Funding preparation</p></div>
+            <div class="feature-item"><div class="feature-icon">🌍</div><h4>Digital Skills</h4><p>AI literacy & training</p></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Featured programs / Learning pathways -->
+    <!-- FEATURED PROGRAMS SECTION (original layout) -->
+    <div class="featured-programs-section">
+      <div class="container">
+        <div class="section-title"><span>Our Platforms</span><h2>AI-Powered. Skill-Driven. Growth-Focused.</h2></div>
+        <div class="featured-programs-grid">
+          <div class="featured-program-card"><div class="program-badge">⚡ INTELLIGENT SYSTEMS</div><div class="program-icon-large"><i class="fas fa-brain"></i></div><h3>MaZida AI</h3><p class="program-description">AI-powered business planning, proposal generation, and investor readiness tools for African SMEs.</p><div class="program-features"><span><i class="fas fa-check-circle"></i> Business Planning</span><span><i class="fas fa-check-circle"></i> Proposal Gen</span></div><div class="program-ctas"><a href="#" class="btn-small btn-primary" data-page="apply">Get Access →</a><a href="#" class="btn-small btn-outline-small" data-page="programs">Learn More</a></div></div>
+          <div class="featured-program-card"><div class="program-badge">🚀 OPERATIONAL EXECUTION</div><div class="program-icon-large"><i class="fas fa-desktop"></i></div><h3>MaZida AI Workspace</h3><p class="program-description">Operational execution, document analysis, workflow automation, and AI-assisted collaboration tools.</p><div class="program-features"><span><i class="fas fa-check-circle"></i> Automation</span><span><i class="fas fa-check-circle"></i> Document AI</span></div><div class="program-ctas"><a href="#" class="btn-small btn-primary" data-page="apply">Start Workspace →</a><a href="#" class="btn-small btn-outline-small" data-page="programs">Learn More</a></div></div>
+          <div class="featured-program-card"><div class="program-badge">📺 STORYTELLING</div><div class="program-icon-large"><i class="fas fa-bullhorn"></i></div><h3>MaZida Startup Media</h3><p class="program-description">Amplify African innovation through media features, founder spotlights, and ecosystem visibility campaigns.</p><div class="program-features"><span><i class="fas fa-check-circle"></i> Founder Features</span><span><i class="fas fa-check-circle"></i> Media Campaigns</span></div><div class="program-ctas"><a href="#" class="btn-small btn-primary" data-page="apply">Get Featured →</a><a href="#" class="btn-small btn-outline-small" data-page="programs">Learn More</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISION SECTION (original layout) -->
     <div class="section section-light">
       <div class="container">
-        <div class="section-title"><span>Digital Skills & Innovation</span><h2>Upskill. Build. Scale.</h2></div>
-        <div class="featured-programs-grid">
-          <div class="featured-program-card"><div class="program-icon-large"><i class="fas fa-brain"></i></div><h3>MaZida AI Workspace</h3><p>Operational execution & support tools, AI-assisted document analysis, custom business workflows.</p><a class="btn btn-outline" style="margin-top:16px; display:inline-block;" data-page="learning">Explore →</a></div>
-          <div class="featured-program-card"><div class="program-icon-large"><i class="fas fa-rocket"></i></div><h3>Startup Media</h3><p>Storytelling, visibility campaigns, founder spotlights across Africa.</p><a class="btn btn-outline" style="margin-top:16px;" data-page="opportunities">Join Media →</a></div>
-          <div class="featured-program-card"><div class="program-icon-large"><i class="fas fa-flask"></i></div><h3>Innovation Labs</h3><p>Sandbox for AI prototypes, GPU-accelerated experiments, and product incubation.</p><a class="btn btn-outline" style="margin-top:16px;" data-page="labs">Learn More</a></div>
+        <div class="vision-card">
+          <div class="vision-icon">👁️</div>
+          <h2>Our <span>Vision</span></h2>
+          <p class="vision-text">MaZida Digital Skills & Innovation Hub is building Africa's leading AI-powered growth ecosystem for SMEs, startups, and professionals. We are creating accessible infrastructure for business planning, operational execution, and investor readiness.</p>
+          <div class="milestones">
+            <div class="milestone"><div class="milestone-number">Phase 1</div><div class="milestone-label">AI Workspace Launch</div></div>
+            <div class="milestone"><div class="milestone-number">Phase 2</div><div class="milestone-label">GPU Compute Cluster</div></div>
+            <div class="milestone"><div class="milestone-number">Phase 3</div><div class="milestone-label">Pan-African Expansion</div></div>
+            <div class="milestone"><div class="milestone-number">Phase 4</div><div class="milestone-label">Leading AI Ecosystem</div></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ABOUT PAGE -->
-  <div id="about-page" class="page">
-    <div class="navbar-spacer"></div>
-    <div class="page-header"><div class="container"><h1>About MaZida</h1><p>Digital skills, AI infrastructure & growth ecosystem for Africa</p></div></div>
-    <section class="section"><div class="container"><div style="background:white; border-radius:28px; padding:48px; box-shadow:var(--shadow);"><p style="font-size:1.1rem; line-height:1.6;">MaZida Digital Skills & Innovation Hub is an African innovation ecosystem platform focused on empowering businesses, startups, and professionals through AI-powered systems, digital skills, and growth infrastructure. Operated by <strong>Basiwel Holistic Ventures Ltd</strong>, we develop MaZida AI Workspace and Startup Media initiatives. We champion financial inclusion by helping underserved African SMEs and startups access AI-powered business planning, operational execution & support, and investor-readiness tools — traditionally inaccessible or expensive.</p><br><p><strong>MaZida AI</strong> builds AI-powered productivity tools for African SMEs: business planning, proposal generation, operational execution. GPU compute ensures scalable document analysis and future AI model optimization.</p></div></div></section>
-  </div>
+  <div id="about-page" class="page"><div class="navbar-spacer"></div><div class="page-header"><div class="container"><h1>About MaZida</h1><p>Digital skills, AI infrastructure & growth ecosystem for Africa</p></div></div><section class="section"><div class="container"><div style="background:white; border-radius:28px; padding:48px; box-shadow:var(--shadow);"><p>MaZida Digital Skills & Innovation Hub is an African innovation ecosystem platform focused on empowering businesses, startups, and professionals through AI-powered systems, digital skills, and growth infrastructure. Operated by <strong>Basiwel Holistic Ventures Ltd</strong>.</p><br><p><strong>MaZida AI</strong> builds AI-powered productivity tools for African SMEs: business planning, proposal generation, operational execution. GPU compute ensures scalable document analysis.</p></div></div></section></div>
 
-  <!-- PROGRAMS PAGE (learning & skills) -->
-  <div id="programs-page" class="page">
-    <div class="navbar-spacer"></div>
-    <div class="page-header"><div class="container"><h1>Programs & Certifications</h1><p>Short courses, AI tooling, and digital business tracks</p></div></div>
-    <section class="section"><div class="container"><div class="featured-programs-grid">
-      <div class="featured-program-card"><i class="fas fa-robot program-icon-large"></i><h3>AI for Business</h3><p>Prompt engineering, AI productivity tools, workflow automation. 6 weeks.</p></div>
-      <div class="featured-program-card"><i class="fas fa-chart-simple program-icon-large"></i><h3>Startup Financial Modeling</h3><p>Investor-ready projections, unit economics using AI-assisted templates.</p></div>
-      <div class="featured-program-card"><i class="fas fa-globe program-icon-large"></i><h3>Digital Export & E‑commerce</h3><p>Global market access, AI localization, cross-border operations.</p></div>
-    </div></div></section>
-  </div>
+  <!-- PROGRAMS PAGE -->
+  <div id="programs-page" class="page"><div class="navbar-spacer"></div><div class="page-header"><div class="container"><h1>Programs & Certifications</h1></div></div><section class="section"><div class="container"><div class="featured-programs-grid"><div class="featured-program-card"><i class="fas fa-robot program-icon-large"></i><h3>AI for Business</h3><p>Prompt engineering, AI productivity tools, workflow automation.</p></div><div class="featured-program-card"><i class="fas fa-chart-simple program-icon-large"></i><h3>Startup Financial Modeling</h3><p>Investor-ready projections using AI-assisted templates.</p></div><div class="featured-program-card"><i class="fas fa-globe program-icon-large"></i><h3>Digital Export & E‑commerce</h3><p>Global market access, AI localization.</p></div></div></div></section></div>
 
-  <!-- INNOVATION LABS -->
-  <div id="labs-page" class="page">
-    <div class="navbar-spacer"></div>
-    <div class="page-header"><div class="container"><h1>Innovation Labs</h1><p>Prototype. Iterate. Deploy AI-native solutions.</p></div></div>
-    <section class="section"><div class="container"><div class="solution-card" style="background:var(--navy);"><h3>⚡ GPU Compute Sandbox</h3><p>Access to cloud GPU resources for training, fine-tuning LLMs, and document intelligence. Mentorship from AI engineers, plus API integration for MaZida AI Workspace.</p><div style="margin-top:24px;"><a class="btn btn-primary" data-page="opportunities">Apply for Lab Access</a></div></div></div></section>
-  </div>
+  <!-- COMMUNITY PAGE -->
+  <div id="community-page" class="page"><div class="navbar-spacer"></div><div class="page-header"><div class="container"><h1>MaZida Community</h1><p>Free. Lifelong. Supportive.</p></div></div><section class="section"><div class="container"><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px;"><div class="featured-program-card"><h3>🎓 For Entrepreneurs</h3><p>Free access to AI tools pilot, mentorship network, and investor leads.</p></div><div class="featured-program-card"><h3>🌍 For The Public</h3><p>Free workshops, community meetups, and AI literacy resources.</p></div><div class="featured-program-card"><h3>🤝 For Partners</h3><p>Partner with us to scale AI adoption across Africa.</p></div></div></div></section></div>
 
-  <!-- OPPORTUNITIES -->
-  <div id="opportunities-page" class="page">
-    <div class="navbar-spacer"></div>
-    <div class="page-header"><div class="container"><h1>Opportunities</h1><p>Funding readiness, talent matching, and ecosystem partnerships</p></div></div>
-    <section class="section"><div class="container"><div style="display:grid; gap:24px;">
-      <div style="background:white; border-radius:20px; padding:28px;"><i class="fas fa-handshake" style="color:var(--green); font-size:32px;"></i><h3 style="margin:12px 0;">Startup Media Feature</h3><p>Get featured on MaZida Startup Media – share your story to investors and customers.</p><a class="btn btn-outline" data-page="contact">Nominate Startup</a></div>
-      <div style="background:white; border-radius:20px; padding:28px;"><i class="fas fa-briefcase" style="color:var(--green); font-size:32px;"></i><h3>AI Workspace Pilot</h3><p>Early access to AI proposal & planning tools for SMEs in Zambia & beyond.</p><a class="btn btn-outline" data-page="contact">Join Pilot</a></div>
-    </div></div></section>
-  </div>
-
-  <!-- LEARNING (courses) -->
-  <div id="learning-page" class="page">
-    <div class="navbar-spacer"></div>
-    <div class="page-header"><div class="container"><h1>Learning Hub</h1><p>On-demand, AI-augmented digital skills</p></div></div>
-    <section class="section"><div class="container"><div class="featured-programs-grid">
-      <div class="featured-program-card"><i class="fas fa-code program-icon-large"></i><h3>AI Literacy for Founders</h3><p>Master prompt design, AI agents, and automation without code.</p><a class="btn-small btn-primary" data-page="contact" style="margin-top:16px; background:var(--green); color:var(--navy); padding:8px 18px; border-radius:40px;">Enroll Free</a></div>
-      <div class="featured-program-card"><i class="fas fa-chalkboard program-icon-large"></i><h3>Digital Transformation</h3><p>Integrate AI into operations, finance, and customer engagement.</p><a class="btn-small btn-outline" style="margin-top:16px;">Coming soon</a></div>
-    </div></div></section>
-  </div>
+  <!-- APPLY PAGE (simplified) -->
+  <div id="apply-page" class="page"><div class="navbar-spacer"></div><div class="page-header"><div class="container"><h1>Apply for Early Access</h1><p>Join MaZida AI Workspace pilot program</p></div></div><section class="section"><div class="container"><div class="problem-card" style="grid-template-columns:1fr;"><div class="problem-content"><h3>Request Access</h3><input type="text" placeholder="Full Name" style="width:100%; padding:12px; margin:10px 0; border-radius:12px; border:1px solid #ccc;"><input type="email" placeholder="Email" style="width:100%; padding:12px; margin:10px 0; border-radius:12px;"><select style="width:100%; padding:12px;"><option>MaZida AI</option><option>MaZida AI Workspace</option><option>Startup Media</option></select><a class="btn btn-primary" style="margin-top:20px; display:inline-block;">Submit Application</a></div></div></div></section></div>
 
   <!-- CONTACT PAGE -->
-  <div id="contact-page" class="page">
-    <div class="navbar-spacer"></div>
-    <div class="page-header"><div class="container"><h1>Connect with MaZida</h1><p>Partnerships, media inquiries, or ecosystem support</p></div></div>
-    <section class="section"><div class="container"><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px;">
-      <div style="background:white; border-radius:24px; padding:32px;"><i class="fas fa-envelope" style="font-size:36px; color:var(--green);"></i><h3>Email</h3><p>hello@mazida.africa</p><p>partners@basiwel.com</p></div>
-      <div style="background:white; border-radius:24px; padding:32px;"><i class="fab fa-whatsapp" style="font-size:36px; color:var(--green);"></i><h3>WhatsApp</h3><p>+260 76 123 4567</p></div>
-      <div style="background:white; border-radius:24px; padding:32px;"><i class="fas fa-map-marker-alt" style="font-size:36px; color:var(--green);"></i><h3>Lusaka Innovation Hub</h3><p>Great East Road, Lusaka, Zambia</p></div>
-    </div></div></section>
-  </div>
+  <div id="contact-page" class="page"><div class="navbar-spacer"></div><div class="page-header"><div class="container"><h1>Contact Us</h1></div></div><section class="section"><div class="container"><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px;"><div class="featured-program-card"><i class="fas fa-envelope" style="font-size:36px; color:var(--green);"></i><h3>Email</h3><p>hello@mazida.africa</p></div><div class="featured-program-card"><i class="fab fa-whatsapp" style="font-size:36px; color:var(--green);"></i><h3>WhatsApp</h3><p>+260 97 123 4567</p></div><div class="featured-program-card"><i class="fas fa-map-marker-alt" style="font-size:36px; color:var(--green);"></i><h3>Lusaka, Zambia</h3><p>Great East Road</p></div></div></div></section></div>
 </div>
 
 <footer><div class="container">© 2025 MaZida Digital Skills & Innovation Hub — Operated by Basiwel Holistic Ventures Ltd. Empowering African SMEs with AI, digital skills & growth infrastructure.</div></footer>
 
+<!-- FLOATING BOTTOM NAVIGATION - EXTENDED with all buttons -->
 <div class="floating-bottom-nav">
-  <a class="nav-item" data-page="home"><i class="fas fa-home"></i><span>Home</span></a>
+  <a class="nav-item active" data-page="home"><i class="fas fa-home"></i><span>Home</span></a>
   <a class="nav-item" data-page="about"><i class="fas fa-info-circle"></i><span>About</span></a>
   <a class="nav-item" data-page="programs"><i class="fas fa-graduation-cap"></i><span>Programs</span></a>
-  <a class="nav-item" data-page="labs"><i class="fas fa-flask"></i><span>Labs</span></a>
-  <a class="nav-item" data-page="opportunities"><i class="fas fa-chart-line"></i><span>Opportunities</span></a>
-  <a class="nav-item" data-page="learning"><i class="fas fa-book-open"></i><span>Learning</span></a>
+  <a class="nav-item" data-page="community"><i class="fas fa-users"></i><span>Community</span></a>
+  <a class="nav-item" data-page="apply"><i class="fas fa-file-alt"></i><span>Apply</span></a>
   <a class="nav-item" data-page="contact"><i class="fas fa-envelope"></i><span>Contact</span></a>
 </div>
 
+<div class="scroll-top" id="scrollTop">↑</div>
+
 <script>
-  // video carousel logic
+  // Video carousel
   let currentSlide = 0;
   const videos = [video1, video2, video3];
   const slideTexts = [document.getElementById('slide1-text'), document.getElementById('slide2-text'), document.getElementById('slide3-text')];
@@ -502,17 +392,14 @@
     currentSlide = index;
   }
   function nextSlide() { showSlide((currentSlide+1)%videos.length); }
-  if(dots.length) dots.forEach((dot,i)=> dot.addEventListener('click',()=>{ showSlide(i); clearInterval(interval); interval=setInterval(nextSlide,7000); }));
+  dots.forEach((dot,i)=> dot.addEventListener('click',()=>{ showSlide(i); clearInterval(interval); interval=setInterval(nextSlide,7000); }));
   interval = setInterval(nextSlide,7000);
 
-  // page switching
-  const pages = {
-    home: document.getElementById('home-page'), about: document.getElementById('about-page'), programs: document.getElementById('programs-page'),
-    labs: document.getElementById('labs-page'), opportunities: document.getElementById('opportunities-page'),
-    learning: document.getElementById('learning-page'), contact: document.getElementById('contact-page')
-  };
+  // Page switching
+  const pages = { home: document.getElementById('home-page'), about: document.getElementById('about-page'), programs: document.getElementById('programs-page'), community: document.getElementById('community-page'), apply: document.getElementById('apply-page'), contact: document.getElementById('contact-page') };
   const allTriggers = document.querySelectorAll('[data-page]');
   const navItems = document.querySelectorAll('.nav-item');
+  const navLinks = document.querySelectorAll('.nav-links a');
   let current = 'home';
   function switchPage(id) {
     if(!pages[id] || current===id) return;
@@ -520,12 +407,19 @@
     pages[id].classList.add('active');
     current = id;
     navItems.forEach(item=> item.classList.toggle('active', item.getAttribute('data-page')===id));
+    navLinks.forEach(link=> link.classList.toggle('active-nav', link.getAttribute('data-page')===id));
     window.scrollTo(0,0);
   }
   allTriggers.forEach(el=> el.addEventListener('click',(e)=>{ e.preventDefault(); const pid = el.getAttribute('data-page'); if(pid && pages[pid]) switchPage(pid); }));
   navItems.forEach(item=> item.addEventListener('click',()=>{ const pid = item.getAttribute('data-page'); if(pid && pages[pid]) switchPage(pid); }));
-  // set active initial
+  
+  // Scroll top
+  const scrollTop = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => { if(scrollTop) scrollTop.classList.toggle('visible', window.scrollY > 300); });
+  if(scrollTop) scrollTop.addEventListener('click', () => window.scrollTo(0,0));
+  
+  // Home active by default
   switchPage('home');
 </script>
 </body>
-  </html>
+</html>
