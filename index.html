@@ -1785,6 +1785,9 @@ The platform supports financial inclusion by helping underserved African SMEs an
 </div>
 
 <script>
+// =========================================================
+// STARS BACKGROUND
+// =========================================================
 function createStars() {
   const starsContainer = document.getElementById('starsContainer');
   if (!starsContainer) return;
@@ -1803,12 +1806,18 @@ function createStars() {
 }
 createStars();
 
+// =========================================================
+// SCROLL REVEAL ANIMATION
+// =========================================================
 const scrollElements = document.querySelectorAll('.scroll-reveal');
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('revealed'); });
 }, { threshold: 0.1 });
 scrollElements.forEach(el => scrollObserver.observe(el));
 
+// =========================================================
+// MAGNETIC MOUSE-FOLLOW GLOW
+// =========================================================
 document.querySelectorAll('.magnetic-card').forEach(card => {
   const glow = card.querySelector('.card-glow');
   if (!glow) return;
@@ -1819,6 +1828,9 @@ document.querySelectorAll('.magnetic-card').forEach(card => {
   });
 });
 
+// =========================================================
+// VIDEO CAROUSEL
+// =========================================================
 const videos = [slideVideo0, slideVideo1, slideVideo2, slideVideo3, slideVideo4, slideVideo5];
 const slideTexts = [slideText0, slideText1, slideText2, slideText3, slideText4, slideText5];
 let currentVideoIndex = 0;
@@ -1850,6 +1862,242 @@ videos.forEach((video) => { if (video) video.addEventListener('ended', () => set
 createDots();
 showSlide(0);
 
+// =========================================================
+// GLOBAL WORKSPACE DATA (REQUIRED FOR INTELLIGENCE)
+// =========================================================
+let workspaceData = {
+  businessProfile: {},
+  tasks: [],
+  notes: '',
+  documents: [],
+  intelligence: {
+    activities: [],
+    recommendations: [],
+    knowledgeBase: []
+  }
+};
+
+function loadWorkspaceData() {
+  const savedProfile = localStorage.getItem('mazida_business_profile');
+  if (savedProfile) workspaceData.businessProfile = JSON.parse(savedProfile);
+  const savedTasks = localStorage.getItem('mazida_tasks');
+  if (savedTasks) workspaceData.tasks = JSON.parse(savedTasks);
+  const savedDocs = localStorage.getItem('mazida_documents');
+  if (savedDocs) workspaceData.documents = JSON.parse(savedDocs);
+  const savedActivities = localStorage.getItem('mazida_workspace_activities');
+  if (savedActivities) workspaceData.intelligence.activities = JSON.parse(savedActivities);
+}
+loadWorkspaceData();
+
+// =========================================================
+// ENTERPRISE INTELLIGENCE CORE
+// =========================================================
+window.MaZidaIntelligence = {
+  reasoning: { active: true, confidence: 0, lastDecision: null, decisionHistory: [] },
+  connections: new Map(),
+  strategy: { focus: null, milestones: [], nextActions: [] },
+  learning: { patterns: [], userBehavior: {}, contextMemory: [] },
+  graph: { nodes: [], edges: [] },
+  automations: [],
+  knowledge: new Map(),
+  agent: { mode: 'autonomous', activeTask: null, executionHistory: [] },
+  predictions: { readiness: 0, nextActions: [], riskScore: 0 }
+};
+
+// AI Reasoning Engine
+class AIReasoningEngine {
+  analyze(context, data) {
+    const profile = data.businessProfile || {};
+    return {
+      timestamp: new Date().toISOString(),
+      analysis: { stage: profile.stage || 'Idea Stage', gaps: this.identifyGaps(data) },
+      confidence: this.calculateConfidence(data),
+      recommendation: this.generateRecommendation(data)
+    };
+  }
+  identifyGaps(data) {
+    const gaps = [];
+    if (!data.businessProfile?.businessName) gaps.push('missing_business_name');
+    if (!data.businessProfile?.targetMarket) gaps.push('undefined_target_market');
+    if (data.documents?.length < 2) gaps.push('insufficient_documentation');
+    return gaps;
+  }
+  calculateConfidence(data) {
+    let factors = 0;
+    if (data.businessProfile?.businessName) factors += 0.25;
+    if (data.documents?.length > 1) factors += 0.25;
+    if (data.tasks?.length > 5) factors += 0.25;
+    if (data.businessProfile?.stage !== 'Idea Stage') factors += 0.25;
+    return factors;
+  }
+  generateRecommendation(data) {
+    const stage = data.businessProfile?.stage;
+    const recs = { 
+      'Idea Stage': 'Validate your market hypothesis before building. Conduct customer interviews.',
+      'MVP': 'Focus on acquiring first 10 customers and gathering feedback.',
+      'Growth': 'Optimize operations and prepare for scaling.',
+      'Scaling': 'Build systems and delegate. Consider fundraising.'
+    };
+    return recs[stage] || 'Continue building your business foundation.';
+  }
+}
+
+// Autonomous Workflow Engine
+class AutonomousWorkflowEngine {
+  constructor() { this.workflows = []; }
+  registerWorkflow(trigger, actions) { this.workflows.push({ id: Date.now(), trigger, actions, active: true, executionCount: 0 }); }
+  evaluateTriggers(event, data) {
+    const triggered = this.workflows.filter(w => w.active && this.matchesTrigger(w.trigger, event, data));
+    triggered.forEach(workflow => this.executeWorkflow(workflow, data));
+    return triggered;
+  }
+  matchesTrigger(trigger, event, data) {
+    if (trigger.type === 'document_created') return event === 'document' && data.type === trigger.documentType;
+    if (trigger.type === 'profile_completed') return event === 'profile' && this.isProfileComplete(data);
+    if (trigger.type === 'task_completed') return event === 'task' && data.completed;
+    return false;
+  }
+  isProfileComplete(profile) { return profile.businessName && profile.industry && profile.targetMarket; }
+  executeWorkflow(workflow, data) {
+    workflow.executionCount++;
+    workflow.actions.forEach(action => {
+      if (action.type === 'create_task') {
+        const newTask = { text: action.params.title, completed: false, automated: true };
+        workspaceData.tasks.push(newTask);
+        localStorage.setItem('mazida_tasks', JSON.stringify(workspaceData.tasks));
+        if (typeof renderTaskList === 'function') renderTaskList();
+      }
+    });
+  }
+}
+
+// Learning Engine
+class LearningEngine {
+  constructor() { this.patterns = []; this.behaviorModel = {}; }
+  learn(event, context, outcome) {
+    const pattern = { id: Date.now(), event, context, outcome, frequency: 1, effectiveness: outcome.success ? 1 : 0, timestamp: new Date() };
+    const existing = this.patterns.find(p => p.event === event && JSON.stringify(p.context) === JSON.stringify(context));
+    if (existing) { existing.frequency++; existing.effectiveness = (existing.effectiveness + (outcome.success ? 1 : 0)) / 2; } 
+    else { this.patterns.push(pattern); }
+    window.MaZidaIntelligence.learning.patterns = this.patterns;
+    return pattern;
+  }
+  predictNextAction(userContext) {
+    const preferred = this.getPreferredActions();
+    if (preferred.length === 0) return 'complete_profile';
+    if (!userContext.hasDocuments) return 'generate_document';
+    if (!userContext.hasTasks) return 'create_task';
+    return preferred[0];
+  }
+  getPreferredActions() {
+    const actionCounts = {};
+    this.patterns.forEach(pattern => { const action = pattern.event.split(':')[0]; actionCounts[action] = (actionCounts[action] || 0) + pattern.frequency; });
+    return Object.entries(actionCounts).sort((a,b) => b[1] - a[1]).map(([action]) => action);
+  }
+}
+
+// Predictive Recommendation Engine
+class PredictiveRecommendationEngine {
+  constructor() { this.model = { weights: { profileCompleteness: 0.2, documentCount: 0.2, taskCompletionRate: 0.2, stageProgression: 0.2, engagementFrequency: 0.2 } }; }
+  calculatePredictionScore(businessData) {
+    let score = 0;
+    let profileComplete = 0;
+    if (businessData.businessProfile?.businessName) profileComplete += 0.33;
+    if (businessData.businessProfile?.industry) profileComplete += 0.33;
+    if (businessData.businessProfile?.targetMarket) profileComplete += 0.34;
+    score += profileComplete * 0.2;
+    const docScore = Math.min(businessData.documents?.length || 0, 10) / 10;
+    score += docScore * 0.2;
+    const totalTasks = businessData.tasks?.length || 0;
+    const completedTasks = businessData.tasks?.filter(t => t.completed).length || 0;
+    const completionRate = totalTasks > 0 ? completedTasks / totalTasks : 0;
+    score += completionRate * 0.2;
+    const stageScores = { 'Idea Stage': 0.25, 'MVP': 0.5, 'Growth': 0.75, 'Scaling': 1.0 };
+    score += (stageScores[businessData.businessProfile?.stage] || 0) * 0.2;
+    const activityCount = businessData.intelligence?.activities?.length || 0;
+    score += Math.min(activityCount / 20, 1) * 0.2;
+    return Math.min(score, 1);
+  }
+  predictNextActions(businessData) {
+    const score = this.calculatePredictionScore(businessData);
+    if (score < 0.3) return ['Complete your business profile', 'Generate your first business document', 'Add tasks to your workspace'];
+    if (score < 0.6) return ['Generate investor-ready materials', 'Create a business plan', 'Build your document portfolio'];
+    if (score < 0.8) return ['Prepare for fundraising conversations', 'Expand your business documentation', 'Review and refine your strategy'];
+    return ['Explore growth opportunities', 'Consider strategic partnerships', 'Scale your operations'];
+  }
+}
+
+// AI Agent
+class AIAgent {
+  constructor() { this.mode = 'autonomous'; this.currentMission = null; this.capabilities = ['document_generation', 'task_automation', 'insight_generation', 'recommendation', 'workflow_execution']; }
+  async execute(goal, context) {
+    this.currentMission = { goal, context, startedAt: new Date() };
+    window.MaZidaIntelligence.agent.activeTask = goal;
+    window.MaZidaIntelligence.agent.mode = 'executing';
+    const actions = this.decomposeGoal(goal);
+    const results = [];
+    for (const action of actions) {
+      const result = await this.performAction(action);
+      results.push(result);
+      window.MaZidaIntelligence.agent.executionHistory.push({ action, result, timestamp: new Date() });
+    }
+    this.currentMission.completedAt = new Date();
+    window.MaZidaIntelligence.agent.activeTask = null;
+    window.MaZidaIntelligence.agent.mode = 'autonomous';
+    return { goal, actions, results, success: results.every(r => r.success), summary: `Agent completed ${results.filter(r => r.success).length}/${results.length} actions successfully.` };
+  }
+  decomposeGoal(goal) {
+    if (goal.includes('investor') || goal.includes('fundraising')) {
+      return [
+        { type: 'analyze', description: 'Assess investor readiness' },
+        { type: 'generate', description: 'Create investor package' },
+        { type: 'tasks', description: 'Generate outreach tasks' },
+        { type: 'recommend', description: 'Provide investor recommendations' }
+      ];
+    }
+    if (goal.includes('plan') || goal.includes('business')) {
+      return [
+        { type: 'analyze', description: 'Analyze business stage' },
+        { type: 'generate', description: 'Generate business plan' },
+        { type: 'tasks', description: 'Create execution tasks' }
+      ];
+    }
+    return [{ type: 'analyze', description: 'Analyze current state' }, { type: 'recommend', description: 'Generate recommendations' }];
+  }
+  async performAction(action) {
+    switch(action.type) {
+      case 'analyze': return { success: true, action: action.type, output: 'Analysis complete' };
+      case 'generate': return { success: true, action: action.type, output: `${action.description} generated` };
+      case 'tasks': return { success: true, action: action.type, output: `${action.description} created` };
+      case 'recommend': return { success: true, action: action.type, output: 'Recommendations ready' };
+      default: return { success: false, action: action.type, error: 'Unknown action' };
+    }
+  }
+  getStatus() { return { mode: this.mode, currentMission: this.currentMission, capabilities: this.capabilities, executionHistory: window.MaZidaIntelligence.agent.executionHistory.slice(-5) }; }
+}
+
+// Initialize Intelligence Components
+window.aiReasoning = new AIReasoningEngine();
+window.autonomousWorkflows = new AutonomousWorkflowEngine();
+window.learningEngine = new LearningEngine();
+window.predictiveEngine = new PredictiveRecommendationEngine();
+window.aiAgent = new AIAgent();
+
+// Register default workflows
+window.autonomousWorkflows.registerWorkflow(
+  { type: 'document_created', documentType: 'business_plan' },
+  [{ type: 'create_task', params: { title: 'Review and refine your business plan' } }, { type: 'create_task', params: { title: 'Prepare investor pitch deck' } }]
+);
+window.autonomousWorkflows.registerWorkflow(
+  { type: 'profile_completed' },
+  [{ type: 'create_task', params: { title: 'Generate your business plan' } }]
+);
+
+console.log('Enterprise Intelligence Integrated Successfully');
+
+// =========================================================
+// PAGE SWITCHING
+// =========================================================
 const pages = {
   home: document.getElementById('home-page'),
   about: document.getElementById('about-page'),
@@ -1876,1261 +2124,6 @@ function switchPage(pageId) {
   window.scrollTo(0, 0);
 }
 
-/* =========================================================
-ENTERPRISE INTELLIGENCE CORE - COMPLETE
-========================================================= */
-
-// 1. CENTRAL INTELLIGENCE STATE
-window.MaZidaIntelligence = {
-  // Core State
-  reasoning: {
-    active: true,
-    confidence: 0,
-    lastDecision: null,
-    decisionHistory: []
-  },
-  
-  // Connected Outputs Registry
-  connections: new Map(),
-  
-  // Strategic Memory
-  strategy: {
-    focus: null,
-    milestones: [],
-    nextActions: []
-  },
-  
-  // Learning Engine
-  learning: {
-    patterns: [],
-    userBehavior: {},
-    contextMemory: []
-  },
-  
-  // Document Relationship Graph
-  graph: {
-    nodes: [],
-    edges: []
-  },
-  
-  // Automation Rules
-  automations: [],
-  
-  // Knowledge Base (Reusable)
-  knowledge: new Map(),
-  
-  // Agent State
-  agent: {
-    mode: 'autonomous',
-    activeTask: null,
-    executionHistory: []
-  },
-  
-  // Predictive Models
-  predictions: {
-    readiness: 0,
-    nextActions: [],
-    riskScore: 0
-  }
-};
-
-/* =========================================================
-1. AI REASONING LAYER
-Strategic decision-making, not just responses
-========================================================= */
-class AIReasoningEngine {
-  constructor() {
-    this.confidenceThreshold = 0.7;
-    this.reasoningChain = [];
-  }
-  
-  analyze(context, data) {
-    const reasoning = {
-      timestamp: new Date().toISOString(),
-      context: context,
-      analysis: this.performAnalysis(data),
-      confidence: this.calculateConfidence(data),
-      recommendation: this.generateRecommendation(data),
-      alternatives: this.generateAlternatives(data)
-    };
-    
-    this.reasoningChain.push(reasoning);
-    window.MaZidaIntelligence.reasoning.lastDecision = reasoning;
-    window.MaZidaIntelligence.reasoning.confidence = reasoning.confidence;
-    
-    return reasoning;
-  }
-  
-  performAnalysis(data) {
-    const profile = data.businessProfile || {};
-    const stage = profile.stage || 'Idea Stage';
-    
-    return {
-      stage: stage,
-      readiness: this.calculateReadiness(data),
-      gaps: this.identifyGaps(data),
-      opportunities: this.identifyOpportunities(data)
-    };
-  }
-  
-  calculateReadiness(data) {
-    let score = 0;
-    if (data.businessProfile?.businessName) score += 15;
-    if (data.businessProfile?.targetMarket) score += 15;
-    if (data.documents?.length > 0) score += 20;
-    if (data.tasks?.filter(t => t.completed).length > 2) score += 20;
-    if (data.businessProfile?.stage !== 'Idea Stage') score += 30;
-    return score;
-  }
-  
-  identifyGaps(data) {
-    const gaps = [];
-    if (!data.businessProfile?.businessName) gaps.push('missing_business_name');
-    if (!data.businessProfile?.targetMarket) gaps.push('undefined_target_market');
-    if (data.documents?.length < 2) gaps.push('insufficient_documentation');
-    if (data.tasks?.filter(t => t.completed).length < 3) gaps.push('low_task_completion');
-    return gaps;
-  }
-  
-  identifyOpportunities(data) {
-    const opps = [];
-    const stage = data.businessProfile?.stage;
-    if (stage === 'Idea Stage') opps.push('validation_opportunity');
-    if (stage === 'MVP') opps.push('fundraising_opportunity');
-    if (data.documents?.length > 3) opps.push('investor_readiness');
-    return opps;
-  }
-  
-  calculateConfidence(data) {
-    let factors = 0;
-    if (data.businessProfile?.businessName) factors += 0.25;
-    if (data.documents?.length > 1) factors += 0.25;
-    if (data.tasks?.length > 5) factors += 0.25;
-    if (data.businessProfile?.stage !== 'Idea Stage') factors += 0.25;
-    return factors;
-  }
-  
-  generateRecommendation(data) {
-    const stage = data.businessProfile?.stage;
-    const recommendations = {
-      'Idea Stage': 'Validate your market hypothesis before building. Conduct customer interviews.',
-      'MVP': 'Focus on acquiring first 10 customers and gathering feedback.',
-      'Growth': 'Optimize operations and prepare for scaling.',
-      'Scaling': 'Build systems and delegate. Consider fundraising.'
-    };
-    return recommendations[stage] || 'Continue building your business foundation.';
-  }
-  
-  generateAlternatives(data) {
-    return [
-      'Accelerate timeline with additional resources',
-      'Pivot based on market feedback',
-      'Strategic partnership approach'
-    ];
-  }
-  
-  strategicDecision(action, data) {
-    const analysis = this.analyze(action, data);
-    const decision = {
-      action: action,
-      approved: analysis.confidence >= this.confidenceThreshold,
-      reasoning: analysis.recommendation,
-      confidence: analysis.confidence
-    };
-    window.MaZidaIntelligence.reasoning.decisionHistory.push(decision);
-    return decision;
-  }
-}
-
-/* =========================================================
-2. CONNECTED OUTPUTS SYSTEM
-Real intelligence: outputs automatically feed into next steps
-========================================================= */
-class ConnectedOutputsEngine {
-  constructor() {
-    this.pipelines = {
-      'business_plan': ['investor_package', 'financial_forecast', 'pitch_deck'],
-      'investor_package': ['pitch_deck', 'due_diligence', 'term_sheet'],
-      'proposal': ['contract', 'invoice', 'follow_up'],
-      'financial_forecast': ['budget', 'cashflow', 'funding_request']
-    };
-  }
-  
-  registerOutput(type, data) {
-    window.MaZidaIntelligence.connections.set(type + '_' + Date.now(), {
-      type: type,
-      data: data,
-      timestamp: new Date(),
-      downstream: this.pipelines[type] || []
-    });
-    
-    // Automatically generate connected outputs
-    this.generateConnectedOutputs(type, data);
-    return this.pipelines[type] || [];
-  }
-  
-  generateConnectedOutputs(sourceType, sourceData) {
-    const downstream = this.pipelines[sourceType];
-    if (!downstream) return [];
-    
-    return downstream.map(target => ({
-      source: sourceType,
-      target: target,
-      status: 'pending',
-      canAutoGenerate: this.canAutoGenerate(target, sourceData),
-      autoGenerated: false
-    }));
-  }
-  
-  canAutoGenerate(target, sourceData) {
-    const autoGeneratable = ['pitch_deck', 'investor_package', 'financial_forecast'];
-    return autoGeneratable.includes(target);
-  }
-  
-  getOutputChain(startType) {
-    const chain = [startType];
-    let current = startType;
-    while (this.pipelines[current] && this.pipelines[current].length > 0) {
-      chain.push(this.pipelines[current][0]);
-      current = this.pipelines[current][0];
-    }
-    return chain;
-  }
-  
-  getCompleteWorkflow() {
-    const workflows = {};
-    Object.keys(this.pipelines).forEach(source => {
-      workflows[source] = this.getOutputChain(source);
-    });
-    return workflows;
-  }
-}
-
-/* =========================================================
-3. STRATEGIC INTELLIGENCE ENGINE
-Multi-step planning and execution strategy
-========================================================= */
-class StrategicIntelligence {
-  constructor() {
-    this.strategies = {
-      'go_to_market': {
-        steps: ['validate', 'build_mvp', 'acquire_early_users', 'scale'],
-        timeline: '3-6 months'
-      },
-      'fundraising': {
-        steps: ['prepare_materials', 'identify_investors', 'pitch', 'negotiate', 'close'],
-        timeline: '4-8 weeks'
-      },
-      'growth': {
-        steps: ['optimize', 'automate', 'hire', 'expand'],
-        timeline: '6-12 months'
-      }
-    };
-  }
-  
-  developStrategy(goal, businessData) {
-    const strategy = this.strategies[goal] || this.strategies['go_to_market'];
-    const personalized = {
-      goal: goal,
-      steps: strategy.steps,
-      timeline: strategy.timeline,
-      currentStep: this.identifyCurrentStep(businessData, strategy.steps),
-      nextActions: this.generateNextActions(businessData, strategy.steps),
-      successProbability: this.calculateSuccessProbability(businessData)
-    };
-    
-    window.MaZidaIntelligence.strategy.focus = goal;
-    window.MaZidaIntelligence.strategy.nextActions = personalized.nextActions;
-    return personalized;
-  }
-  
-  identifyCurrentStep(businessData, steps) {
-    const stage = businessData.businessProfile?.stage;
-    const mapping = {
-      'Idea Stage': 'validate',
-      'MVP': 'build_mvp',
-      'Growth': 'acquire_early_users',
-      'Scaling': 'scale'
-    };
-    return mapping[stage] || steps[0];
-  }
-  
-  generateNextActions(businessData, steps) {
-    const currentStep = this.identifyCurrentStep(businessData, steps);
-    const currentIndex = steps.indexOf(currentStep);
-    if (currentIndex < steps.length - 1) {
-      return [`Prepare for: ${steps[currentIndex + 1]}`, `Complete: ${currentStep}`];
-    }
-    return ['Strategy complete. Review outcomes.'];
-  }
-  
-  calculateSuccessProbability(businessData) {
-    let probability = 0.3; // base
-    if (businessData.businessProfile?.targetMarket) probability += 0.2;
-    if (businessData.documents?.length > 2) probability += 0.2;
-    if (businessData.tasks?.filter(t => t.completed).length > 5) probability += 0.2;
-    if (businessData.businessProfile?.stage !== 'Idea Stage') probability += 0.1;
-    return Math.min(probability, 0.95);
-  }
-  
-  getStrategicMilestones() {
-    return window.MaZidaIntelligence.strategy.milestones;
-  }
-  
-  addMilestone(title, description) {
-    window.MaZidaIntelligence.strategy.milestones.push({
-      id: Date.now(),
-      title,
-      description,
-      completed: false,
-      createdAt: new Date().toISOString()
-    });
-  }
-}
-
-/* =========================================================
-4. AUTONOMOUS WORKFLOW ENGINE
-Self-executing business processes
-========================================================= */
-class AutonomousWorkflowEngine {
-  constructor() {
-    this.workflows = [];
-    this.activeWorkflows = [];
-  }
-  
-  registerWorkflow(trigger, actions) {
-    this.workflows.push({
-      id: Date.now(),
-      trigger: trigger,
-      actions: actions,
-      active: true,
-      executionCount: 0
-    });
-  }
-  
-  evaluateTriggers(event, data) {
-    const triggered = this.workflows.filter(w => 
-      w.active && this.matchesTrigger(w.trigger, event, data)
-    );
-    
-    triggered.forEach(workflow => {
-      this.executeWorkflow(workflow, data);
-    });
-    
-    return triggered;
-  }
-  
-  matchesTrigger(trigger, event, data) {
-    if (trigger.type === 'document_created') {
-      return event === 'document' && data.type === trigger.documentType;
-    }
-    if (trigger.type === 'profile_completed') {
-      return event === 'profile' && this.isProfileComplete(data);
-    }
-    if (trigger.type === 'task_completed') {
-      return event === 'task' && data.completed;
-    }
-    return false;
-  }
-  
-  isProfileComplete(profile) {
-    return profile.businessName && profile.industry && profile.targetMarket;
-  }
-  
-  async executeWorkflow(workflow, data) {
-    this.activeWorkflows.push(workflow.id);
-    workflow.executionCount++;
-    
-    for (const action of workflow.actions) {
-      await this.executeAction(action, data);
-    }
-    
-    this.activeWorkflows = this.activeWorkflows.filter(id => id !== workflow.id);
-    this.logExecution(workflow, data);
-  }
-  
-  async executeAction(action, data) {
-    switch(action.type) {
-      case 'create_task':
-        this.createTask(action.params.title);
-        break;
-      case 'generate_document':
-        this.generateDocument(action.params.type, data);
-        break;
-      case 'send_notification':
-        this.sendNotification(action.params.message);
-        break;
-      case 'update_readiness':
-        this.updateReadinessScore();
-        break;
-    }
-  }
-  
-  createTask(title) {
-    const newTask = { text: title, completed: false, automated: true };
-    workspaceData.tasks.push(newTask);
-    localStorage.setItem('mazida_tasks', JSON.stringify(workspaceData.tasks));
-    if (typeof renderTaskList === 'function') renderTaskList();
-  }
-  
-  generateDocument(type, sourceData) {
-    console.log(`Auto-generating ${type} from source data`);
-  }
-  
-  sendNotification(message) {
-    console.log(`[WORKFLOW NOTIFICATION] ${message}`);
-  }
-  
-  updateReadinessScore() {
-    if (typeof updateReadinessScore === 'function') updateReadinessScore();
-  }
-  
-  logExecution(workflow, data) {
-    const execution = {
-      workflowId: workflow.id,
-      timestamp: new Date(),
-      data: data,
-      executionCount: workflow.executionCount
-    };
-    window.MaZidaIntelligence.automations.push(execution);
-  }
-}
-
-/* =========================================================
-5. LEARNING ENGINE WITH PATTERN RECOGNITION
-========================================================= */
-class LearningEngine {
-  constructor() {
-    this.patterns = [];
-    this.behaviorModel = {};
-  }
-  
-  learn(event, context, outcome) {
-    const pattern = {
-      id: Date.now(),
-      event: event,
-      context: context,
-      outcome: outcome,
-      frequency: 1,
-      effectiveness: this.calculateEffectiveness(outcome),
-      timestamp: new Date()
-    };
-    
-    const existing = this.findPattern(event, context);
-    if (existing) {
-      existing.frequency++;
-      existing.effectiveness = (existing.effectiveness + this.calculateEffectiveness(outcome)) / 2;
-    } else {
-      this.patterns.push(pattern);
-    }
-    
-    window.MaZidaIntelligence.learning.patterns = this.patterns;
-    this.updateBehaviorModel();
-    return pattern;
-  }
-  
-  findPattern(event, context) {
-    return this.patterns.find(p => 
-      p.event === event && 
-      JSON.stringify(p.context) === JSON.stringify(context)
-    );
-  }
-  
-  calculateEffectiveness(outcome) {
-    if (outcome.success) return 1;
-    if (outcome.partial) return 0.5;
-    return 0;
-  }
-  
-  updateBehaviorModel() {
-    this.behaviorModel = {
-      preferredActions: this.getPreferredActions(),
-      timePatterns: this.getTimePatterns(),
-      successRates: this.getSuccessRates()
-    };
-    window.MaZidaIntelligence.learning.userBehavior = this.behaviorModel;
-  }
-  
-  getPreferredActions() {
-    const actionCounts = {};
-    this.patterns.forEach(pattern => {
-      const action = pattern.event.split(':')[0];
-      actionCounts[action] = (actionCounts[action] || 0) + pattern.frequency;
-    });
-    return Object.entries(actionCounts).sort((a,b) => b[1] - a[1]).map(([action]) => action);
-  }
-  
-  getTimePatterns() {
-    const hourly = new Array(24).fill(0);
-    this.patterns.forEach(pattern => {
-      const hour = new Date(pattern.timestamp).getHours();
-      hourly[hour]++;
-    });
-    return hourly;
-  }
-  
-  getSuccessRates() {
-    const rates = {};
-    this.patterns.forEach(pattern => {
-      const category = pattern.event.split(':')[0];
-      if (!rates[category]) rates[category] = { total: 0, successful: 0 };
-      rates[category].total++;
-      if (pattern.effectiveness > 0.7) rates[category].successful++;
-    });
-    Object.keys(rates).forEach(cat => {
-      rates[cat].rate = rates[cat].successful / rates[cat].total;
-    });
-    return rates;
-  }
-  
-  predictNextAction(userContext) {
-    const preferred = this.getPreferredActions();
-    if (preferred.length === 0) return 'complete_profile';
-    
-    // Context-aware prediction
-    if (userContext.hasDocuments === false) return 'generate_document';
-    if (userContext.hasTasks === false) return 'create_task';
-    if (userContext.readinessScore < 50) return 'improve_readiness';
-    
-    return preferred[0];
-  }
-  
-  getInsights() {
-    return {
-      topPatterns: this.patterns.slice(0, 5),
-      behaviorProfile: this.behaviorModel,
-      recommendations: this.generateRecommendations()
-    };
-  }
-  
-  generateRecommendations() {
-    const recs = [];
-    const successRates = this.getSuccessRates();
-    
-    for (const [action, data] of Object.entries(successRates)) {
-      if (data.rate < 0.5) {
-        recs.push(`Consider improving your approach to ${action} for better outcomes.`);
-      } else if (data.rate > 0.8) {
-        recs.push(`Your ${action} strategy is highly effective. Continue this pattern.`);
-      }
-    }
-    
-    return recs;
-  }
-}
-
-/* =========================================================
-6. DOCUMENT RELATIONSHIP GRAPH
-========================================================= */
-class RelationshipGraph {
-  constructor() {
-    this.graph = {
-      nodes: [],
-      edges: []
-    };
-  }
-  
-  addNode(id, type, metadata) {
-    if (!this.graph.nodes.find(n => n.id === id)) {
-      this.graph.nodes.push({ id, type, metadata, connections: [] });
-    }
-  }
-  
-  addEdge(fromId, toId, relationship) {
-    this.graph.edges.push({
-      from: fromId,
-      to: toId,
-      relationship: relationship,
-      weight: 1
-    });
-    
-    const fromNode = this.graph.nodes.find(n => n.id === fromId);
-    if (fromNode) fromNode.connections.push(toId);
-  }
-  
-  buildFromDocuments(documents) {
-    documents.forEach(doc => {
-      this.addNode(doc.id, doc.type, { title: doc.title, createdAt: doc.createdAt });
-    });
-    
-    // Build relationships based on content similarity and type
-    for (let i = 0; i < documents.length; i++) {
-      for (let j = i + 1; j < documents.length; j++) {
-        if (documents[i].type === 'business_plan' && documents[j].type === 'investor_package') {
-          this.addEdge(documents[i].id, documents[j].id, 'informs');
-        }
-        if (documents[i].type === 'proposal' && documents[j].type === 'contract') {
-          this.addEdge(documents[i].id, documents[j].id, 'precedes');
-        }
-      }
-    }
-    
-    window.MaZidaIntelligence.graph = this.graph;
-    return this.graph;
-  }
-  
-  getDocumentPath(startId, endId) {
-    // Simple BFS to find path between documents
-    const visited = new Set();
-    const queue = [[startId]];
-    
-    while (queue.length > 0) {
-      const path = queue.shift();
-      const node = path[path.length - 1];
-      
-      if (node === endId) return path;
-      
-      if (!visited.has(node)) {
-        visited.add(node);
-        const connections = this.graph.nodes.find(n => n.id === node)?.connections || [];
-        for (const next of connections) {
-          queue.push([...path, next]);
-        }
-      }
-    }
-    return null;
-  }
-  
-  getRelatedDocuments(documentId) {
-    const node = this.graph.nodes.find(n => n.id === documentId);
-    if (!node) return [];
-    return node.connections.map(connId => 
-      this.graph.nodes.find(n => n.id === connId)
-    ).filter(Boolean);
-  }
-  
-  visualize() {
-    return {
-      nodes: this.graph.nodes.map(n => ({ id: n.id, label: n.type, group: n.type })),
-      edges: this.graph.edges.map(e => ({ from: e.from, to: e.to, label: e.relationship }))
-    };
-  }
-}
-
-/* =========================================================
-7. AI DECISION SUPPORT SYSTEM
-========================================================= */
-class DecisionSupportSystem {
-  constructor() {
-    this.decisionCache = new Map();
-  }
-  
-  evaluate(options, criteria, businessData) {
-    const scores = {};
-    const reasoning = {};
-    
-    options.forEach(option => {
-      let score = 0;
-      const rationales = [];
-      
-      criteria.forEach(criterion => {
-        const evaluation = this.evaluateCriterion(option, criterion, businessData);
-        score += evaluation.score;
-        rationales.push(evaluation.rationale);
-      });
-      
-      scores[option] = score;
-      reasoning[option] = rationales;
-    });
-    
-    const bestOption = Object.keys(scores).reduce((a,b) => scores[a] > scores[b] ? a : b);
-    
-    return {
-      recommendation: bestOption,
-      scores: scores,
-      reasoning: reasoning,
-      confidence: scores[bestOption] / (criteria.length * 10)
-    };
-  }
-  
-  evaluateCriterion(option, criterion, data) {
-    const evaluationFunctions = {
-      'readiness_impact': () => this.evaluateReadinessImpact(option, data),
-      'resource_requirement': () => this.evaluateResourceRequirement(option),
-      'time_to_execute': () => this.evaluateTimeToExecute(option),
-      'risk_level': () => this.evaluateRiskLevel(option),
-      'alignment': () => this.evaluateAlignment(option, data)
-    };
-    
-    const result = evaluationFunctions[criterion] ? evaluationFunctions[criterion]() : { score: 5, rationale: 'Neutral impact' };
-    return result;
-  }
-  
-  evaluateReadinessImpact(option, data) {
-    const impact = {
-      'generate_business_plan': { score: 9, rationale: 'Critical foundation document' },
-      'prepare_investor_package': { score: 8, rationale: 'Essential for fundraising' },
-      'create_proposal': { score: 7, rationale: 'Enables client acquisition' },
-      'complete_profile': { score: 6, rationale: 'Improves personalization' }
-    };
-    return impact[option] || { score: 5, rationale: 'Moderate impact on readiness' };
-  }
-  
-  evaluateResourceRequirement(option) {
-    const requirements = {
-      'generate_business_plan': { score: 7, rationale: 'Low resource, high value' },
-      'prepare_investor_package': { score: 6, rationale: 'Moderate effort required' },
-      'create_proposal': { score: 8, rationale: 'Quick to execute' },
-      'complete_profile': { score: 9, rationale: 'Minimal time investment' }
-    };
-    return requirements[option] || { score: 5, rationale: 'Average resource requirement' };
-  }
-  
-  evaluateTimeToExecute(option) {
-    const times = {
-      'generate_business_plan': { score: 7, rationale: '~15 minutes' },
-      'prepare_investor_package': { score: 6, rationale: '~20 minutes' },
-      'create_proposal': { score: 8, rationale: '~10 minutes' },
-      'complete_profile': { score: 9, rationale: '~5 minutes' }
-    };
-    return times[option] || { score: 5, rationale: '~15 minutes' };
-  }
-  
-  evaluateRiskLevel(option) {
-    const risks = {
-      'generate_business_plan': { score: 9, rationale: 'Very low risk' },
-      'prepare_investor_package': { score: 8, rationale: 'Low risk' },
-      'create_proposal': { score: 8, rationale: 'Low risk' },
-      'complete_profile': { score: 10, rationale: 'No risk' }
-    };
-    return risks[option] || { score: 7, rationale: 'Low risk' };
-  }
-  
-  evaluateAlignment(option, data) {
-    const stage = data.businessProfile?.stage;
-    const alignment = {
-      'Idea Stage': { 'generate_business_plan': 10, 'complete_profile': 9 },
-      'MVP': { 'prepare_investor_package': 9, 'generate_business_plan': 8 },
-      'Growth': { 'prepare_investor_package': 10, 'create_proposal': 8 }
-    };
-    const score = alignment[stage]?.[option] || 7;
-    return { score: score, rationale: `Alignment with ${stage} stage` };
-  }
-  
-  getStrategicAdvice(businessData) {
-    const options = ['complete_profile', 'generate_business_plan', 'prepare_investor_package', 'create_proposal'];
-    const criteria = ['readiness_impact', 'resource_requirement', 'time_to_execute', 'risk_level', 'alignment'];
-    
-    const evaluation = this.evaluate(options, criteria, businessData);
-    
-    return {
-      recommendedAction: evaluation.recommendation,
-      confidence: evaluation.confidence,
-      alternatives: options.filter(o => o !== evaluation.recommendation),
-      nextSteps: this.generateNextSteps(evaluation.recommendation, businessData)
-    };
-  }
-  
-  generateNextSteps(decision, data) {
-    const steps = {
-      'complete_profile': ['Enter business name', 'Define industry', 'Describe target market'],
-      'generate_business_plan': ['Review executive summary', 'Define value proposition', 'Create financial projections'],
-      'prepare_investor_package': ['Gather traction data', 'Prepare pitch deck', 'Create financial model'],
-      'create_proposal': ['Define scope', 'Set pricing', 'Add terms and conditions']
-    };
-    return steps[decision] || ['Execute recommended action'];
-  }
-}
-
-/* =========================================================
-8. UNIVERSAL SEARCH (Enterprise Grade)
-========================================================= */
-class EnterpriseSearchEngine {
-  constructor() {
-    this.index = new Map();
-    this.searchHistory = [];
-  }
-  
-  indexDocument(doc) {
-    const terms = this.tokenize(doc.title + ' ' + (doc.content || ''));
-    terms.forEach(term => {
-      if (!this.index.has(term)) this.index.set(term, []);
-      this.index.get(term).push({ type: 'document', id: doc.id, score: 1, data: doc });
-    });
-  }
-  
-  indexTask(task) {
-    const terms = this.tokenize(task.text);
-    terms.forEach(term => {
-      if (!this.index.has(term)) this.index.set(term, []);
-      this.index.get(term).push({ type: 'task', id: task.id, score: 1, data: task });
-    });
-  }
-  
-  tokenize(text) {
-    return text.toLowerCase()
-      .replace(/[^\w\s]/g, '')
-      .split(/\s+/)
-      .filter(word => word.length > 2);
-  }
-  
-  search(query, filters = {}) {
-    const queryTerms = this.tokenize(query);
-    const results = new Map();
-    
-    queryTerms.forEach(term => {
-      const matches = this.index.get(term) || [];
-      matches.forEach(match => {
-        const key = `${match.type}_${match.id}`;
-        if (!results.has(key)) {
-          results.set(key, { ...match, relevance: 0 });
-        }
-        results.get(key).relevance += match.score;
-      });
-    });
-    
-    let sorted = Array.from(results.values()).sort((a,b) => b.relevance - a.relevance);
-    
-    // Apply filters
-    if (filters.type) {
-      sorted = sorted.filter(r => r.type === filters.type);
-    }
-    
-    this.searchHistory.push({ query, timestamp: new Date(), resultCount: sorted.length });
-    
-    return sorted.slice(0, 20);
-  }
-  
-  getSearchSuggestions(partial) {
-    const terms = this.tokenize(partial);
-    const suggestions = [];
-    
-    this.index.forEach((matches, term) => {
-      if (term.startsWith(partial.toLowerCase()) || terms.some(t => term.includes(t))) {
-        suggestions.push(term);
-      }
-    });
-    
-    return suggestions.slice(0, 5);
-  }
-  
-  getTrendingSearches() {
-    const last24h = this.searchHistory.filter(h => 
-      new Date(h.timestamp) > new Date(Date.now() - 24 * 60 * 60 * 1000)
-    );
-    const queryCounts = {};
-    last24h.forEach(h => {
-      queryCounts[h.query] = (queryCounts[h.query] || 0) + 1;
-    });
-    return Object.entries(queryCounts)
-      .sort((a,b) => b[1] - a[1])
-      .slice(0, 5)
-      .map(([query]) => query);
-  }
-  
-  getSearchAnalytics() {
-    return {
-      totalSearches: this.searchHistory.length,
-      uniqueQueries: new Set(this.searchHistory.map(h => h.query)).size,
-      averageResults: this.searchHistory.reduce((sum, h) => sum + h.resultCount, 0) / this.searchHistory.length || 0
-    };
-  }
-}
-
-/* =========================================================
-9. REUSABLE KNOWLEDGE ENGINE
-========================================================= */
-class KnowledgeReuseEngine {
-  constructor() {
-    this.knowledgeGraph = new Map();
-  }
-  
-  storeKnowledge(category, content, source) {
-    const knowledgeId = `kb_${Date.now()}_${category}`;
-    const knowledge = {
-      id: knowledgeId,
-      category,
-      content,
-      source,
-      createdAt: new Date(),
-      reuseCount: 0,
-      lastReused: null
-    };
-    
-    if (!this.knowledgeGraph.has(category)) {
-      this.knowledgeGraph.set(category, []);
-    }
-    this.knowledgeGraph.get(category).push(knowledge);
-    
-    return knowledgeId;
-  }
-  
-  retrieveKnowledge(category, query) {
-    const items = this.knowledgeGraph.get(category) || [];
-    const relevant = items.filter(item => 
-      item.content.toLowerCase().includes(query.toLowerCase())
-    );
-    
-    relevant.forEach(item => {
-      item.reuseCount++;
-      item.lastReused = new Date();
-    });
-    
-    return relevant;
-  }
-  
-  getMostUsedKnowledge(limit = 5) {
-    const allItems = [];
-    this.knowledgeGraph.forEach(items => {
-      allItems.push(...items);
-    });
-    return allItems.sort((a,b) => b.reuseCount - a.reuseCount).slice(0, limit);
-  }
-  
-  getKnowledgeByCategory(category) {
-    return this.knowledgeGraph.get(category) || [];
-  }
-  
-  deriveInsights() {
-    const insights = [];
-    this.knowledgeGraph.forEach((items, category) => {
-      const avgReuse = items.reduce((sum, i) => sum + i.reuseCount, 0) / items.length;
-      if (avgReuse > 3) {
-        insights.push(`${category} knowledge is frequently reused (${avgReuse.toFixed(1)}x avg)`);
-      }
-    });
-    return insights;
-  }
-  
-  findRelatedKnowledge(knowledgeId) {
-    const target = this.findKnowledgeById(knowledgeId);
-    if (!target) return [];
-    
-    const related = [];
-    this.knowledgeGraph.forEach(items => {
-      items.forEach(item => {
-        if (item.id !== knowledgeId && this.areRelated(target, item)) {
-          related.push(item);
-        }
-      });
-    });
-    return related;
-  }
-  
-  areRelated(k1, k2) {
-    // Simple similarity based on shared words
-    const words1 = new Set(k1.content.toLowerCase().split(/\s+/));
-    const words2 = new Set(k2.content.toLowerCase().split(/\s+/));
-    let intersection = 0;
-    words1.forEach(w => { if (words2.has(w)) intersection++; });
-    return intersection > 3;
-  }
-  
-  findKnowledgeById(id) {
-    let found = null;
-    this.knowledgeGraph.forEach(items => {
-      const match = items.find(i => i.id === id);
-      if (match) found = match;
-    });
-    return found;
-  }
-}
-
-/* =========================================================
-10. PREDICTIVE RECOMMENDATION ENGINE
-========================================================= */
-class PredictiveRecommendationEngine {
-  constructor() {
-    this.model = {
-      weights: {
-        profileCompleteness: 0.2,
-        documentCount: 0.15,
-        taskCompletionRate: 0.2,
-        stageProgression: 0.25,
-        engagementFrequency: 0.2
-      }
-    };
-  }
-  
-  calculatePredictionScore(businessData) {
-    let score = 0;
-    
-    // Profile completeness
-    let profileComplete = 0;
-    if (businessData.businessProfile?.businessName) profileComplete += 0.33;
-    if (businessData.businessProfile?.industry) profileComplete += 0.33;
-    if (businessData.businessProfile?.targetMarket) profileComplete += 0.34;
-    score += profileComplete * this.model.weights.profileCompleteness;
-    
-    // Document count
-    const docScore = Math.min(businessData.documents?.length || 0, 10) / 10;
-    score += docScore * this.model.weights.documentCount;
-    
-    // Task completion rate
-    const totalTasks = businessData.tasks?.length || 0;
-    const completedTasks = businessData.tasks?.filter(t => t.completed).length || 0;
-    const completionRate = totalTasks > 0 ? completedTasks / totalTasks : 0;
-    score += completionRate * this.model.weights.taskCompletionRate;
-    
-    // Stage progression
-    const stageScores = { 'Idea Stage': 0.25, 'MVP': 0.5, 'Growth': 0.75, 'Scaling': 1.0 };
-    score += (stageScores[businessData.businessProfile?.stage] || 0) * this.model.weights.stageProgression;
-    
-    // Engagement frequency
-    const activityCount = businessData.intelligence?.activities?.length || 0;
-    const engagementScore = Math.min(activityCount / 20, 1);
-    score += engagementScore * this.model.weights.engagementFrequency;
-    
-    return Math.min(score, 1);
-  }
-  
-  predictNextActions(businessData, limit = 3) {
-    const score = this.calculatePredictionScore(businessData);
-    const actions = [];
-    
-    if (score < 0.3) {
-      actions.push('Complete your business profile');
-      actions.push('Generate your first business document');
-      actions.push('Add tasks to your workspace');
-    } else if (score < 0.6) {
-      actions.push('Generate investor-ready materials');
-      actions.push('Create a business plan');
-      actions.push('Build your document portfolio');
-    } else if (score < 0.8) {
-      actions.push('Prepare for fundraising conversations');
-      actions.push('Expand your business documentation');
-      actions.push('Review and refine your strategy');
-    } else {
-      actions.push('Explore growth opportunities');
-      actions.push('Consider strategic partnerships');
-      actions.push('Scale your operations');
-    }
-    
-    // Personalize based on stage
-    const stage = businessData.businessProfile?.stage;
-    if (stage === 'Idea Stage') {
-      actions.unshift('Validate your market hypothesis');
-    } else if (stage === 'MVP') {
-      actions.unshift('Focus on customer acquisition');
-    } else if (stage === 'Growth') {
-      actions.unshift('Optimize your operations');
-    }
-    
-    return actions.slice(0, limit);
-  }
-  
-  predictSuccessProbability(businessData, goal) {
-    const baseScore = this.calculatePredictionScore(businessData);
-    
-    const goalMultipliers = {
-      'fundraising': 1.2,
-      'market_entry': 1.0,
-      'scaling': 0.8,
-      'product_launch': 0.9
-    };
-    
-    const multiplier = goalMultipliers[goal] || 1.0;
-    const probability = Math.min(baseScore * multiplier, 0.95);
-    
-    return {
-      probability: probability,
-      confidence: 0.7 + (baseScore * 0.3),
-      factors: this.getSuccessFactors(businessData)
-    };
-  }
-  
-  getSuccessFactors(businessData) {
-    const factors = [];
-    if (businessData.businessProfile?.targetMarket) factors.push('✓ Clear target market defined');
-    if (businessData.documents?.length > 2) factors.push('✓ Strong documentation foundation');
-    if (businessData.tasks?.filter(t => t.completed).length > 5) factors.push('✓ Good execution track record');
-    if (businessData.businessProfile?.stage !== 'Idea Stage') factors.push('✓ Progressing beyond idea stage');
-    return factors;
-  }
-  
-  getRiskAssessment(businessData) {
-    const risks = [];
-    if (!businessData.businessProfile?.targetMarket) risks.push('Undefined target market');
-    if (businessData.documents?.length === 0) risks.push('No business documentation');
-    if (!businessData.tasks?.length) risks.push('No active tasks or planning');
-    if (businessData.businessProfile?.stage === 'Idea Stage' && businessData.documents?.length > 3) {
-      risks.push('Potential over-planning without validation');
-    }
-    return {
-      riskLevel: risks.length <= 1 ? 'Low' : risks.length <= 3 ? 'Medium' : 'High',
-      risks: risks,
-      recommendations: risks.map(r => `Address: ${r}`)
-    };
-  }
-}
-
-/* =========================================================
-11. AGENT EXECUTION MODE
-========================================================= */
-class AIAgent {
-  constructor() {
-    this.mode = 'autonomous';
-    this.currentMission = null;
-    this.capabilities = [
-      'document_generation',
-      'task_automation',
-      'insight_generation',
-      'recommendation',
-      'workflow_execution'
-    ];
-  }
-  
-  async execute(goal, context) {
-    this.currentMission = { goal, context, startedAt: new Date() };
-    window.MaZidaIntelligence.agent.activeTask = goal;
-    window.MaZidaIntelligence.agent.mode = 'executing';
-    
-    const actions = this.decomposeGoal(goal, context);
-    const results = [];
-    
-    for (const action of actions) {
-      const result = await this.performAction(action, context);
-      results.push(result);
-      window.MaZidaIntelligence.agent.executionHistory.push({
-        action: action,
-        result: result,
-        timestamp: new Date()
-      });
-    }
-    
-    this.currentMission.completedAt = new Date();
-    window.MaZidaIntelligence.agent.activeTask = null;
-    window.MaZidaIntelligence.agent.mode = 'autonomous';
-    
-    return {
-      goal: goal,
-      actions: actions,
-      results: results,
-      success: results.every(r => r.success),
-      summary: this.generateSummary(results)
-    };
-  }
-  
-  decomposeGoal(goal, context) {
-    if (goal.includes('investor') || goal.includes('fundraising')) {
-      return [
-        { type: 'analyze', description: 'Assess investor readiness' },
-        { type: 'generate', description: 'Create investor package' },
-        { type: 'tasks', description: 'Generate outreach tasks' },
-        { type: 'recommend', description: 'Provide investor recommendations' }
-      ];
-    }
-    
-    if (goal.includes('plan') || goal.includes('business')) {
-      return [
-        { type: 'analyze', description: 'Analyze business stage' },
-        { type: 'generate', description: 'Generate business plan' },
-        { type: 'tasks', description: 'Create execution tasks' }
-      ];
-    }
-    
-    return [
-      { type: 'analyze', description: 'Analyze current state' },
-      { type: 'recommend', description: 'Generate recommendations' }
-    ];
-  }
-  
-  async performAction(action, context) {
-    switch(action.type) {
-      case 'analyze':
-        return { success: true, action: action.type, output: 'Analysis complete' };
-      case 'generate':
-        return { success: true, action: action.type, output: `${action.description} generated` };
-      case 'tasks':
-        return { success: true, action: action.type, output: `${action.description} created` };
-      case 'recommend':
-        return { success: true, action: action.type, output: 'Recommendations ready' };
-      default:
-        return { success: false, action: action.type, error: 'Unknown action' };
-    }
-  }
-  
-  generateSummary(results) {
-    const successful = results.filter(r => r.success).length;
-    return `Agent completed ${successful}/${results.length} actions successfully.`;
-  }
-  
-  getStatus() {
-    return {
-      mode: this.mode,
-      currentMission: this.currentMission,
-      capabilities: this.capabilities,
-      executionHistory: window.MaZidaIntelligence.agent.executionHistory.slice(-5)
-    };
-  }
-  
-  interrupt() {
-    this.mode = 'interrupted';
-    window.MaZidaIntelligence.agent.mode = 'interrupted';
-    return { status: 'interrupted', mission: this.currentMission };
-  }
-  
-  resume() {
-    this.mode = 'autonomous';
-    window.MaZidaIntelligence.agent.mode = 'autonomous';
-    return { status: 'resumed' };
-  }
-}
-
-/* =========================================================
-12. ENTERPRISE INTELLIGENCE INITIALIZATION
-========================================================= */
-function initializeEnterpriseIntelligence() {
-  window.aiReasoning = new AIReasoningEngine();
-  window.connectedOutputs = new ConnectedOutputsEngine();
-  window.strategicIntel = new StrategicIntelligence();
-  window.autonomousWorkflows = new AutonomousWorkflowEngine();
-  window.learningEngine = new LearningEngine();
-  window.relationshipGraph = new RelationshipGraph();
-  window.decisionSupport = new DecisionSupportSystem();
-  window.searchEngine = new EnterpriseSearchEngine();
-  window.knowledgeReuse = new KnowledgeReuseEngine();
-  window.predictiveEngine = new PredictiveRecommendationEngine();
-  window.aiAgent = new AIAgent();
-  
-  // Register default workflows
-  autonomousWorkflows.registerWorkflow(
-    { type: 'document_created', documentType: 'business_plan' },
-    [
-      { type: 'create_task', params: { title: 'Review and refine your business plan' } },
-      { type: 'create_task', params: { title: 'Prepare investor pitch deck' } },
-      { type: 'update_readiness', params: {} }
-    ]
-  );
-  
-  autonomousWorkflows.registerWorkflow(
-    { type: 'profile_completed' },
-    [
-      { type: 'create_task', params: { title: 'Generate your business plan' } },
-      { type: 'send_notification', params: { message: 'Profile complete! Ready to build.' } }
-    ]
-  );
-  
-  autonomousWorkflows.registerWorkflow(
-    { type: 'task_completed' },
-    [
-      { type: 'update_readiness', params: {} },
-      { type: 'send_notification', params: { message: 'Great progress! Task completed.' } }
-    ]
-  );
-  
-  console.log('Enterprise Intelligence System Initialized');
-  console.log('Features:', {
-    reasoning: !!window.aiReasoning,
-    connectedOutputs: !!window.connectedOutputs,
-    strategicIntelligence: !!window.strategicIntel,
-    autonomousWorkflows: !!window.autonomousWorkflows,
-    learningEngine: !!window.learningEngine,
-    relationshipGraph: !!window.relationshipGraph,
-    decisionSupport: !!window.decisionSupport,
-    searchEngine: !!window.searchEngine,
-    knowledgeReuse: !!window.knowledgeReuse,
-    predictiveEngine: !!window.predictiveEngine,
-    aiAgent: !!window.aiAgent
-  });
-}
-
-// Auto-initialize when page loads
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeEnterpriseIntelligence);
-} else {
-  initializeEnterpriseIntelligence();
-}
 allTriggers.forEach(el => el.addEventListener('click', (e) => { e.preventDefault(); const pid = el.getAttribute('data-page'); if (pid && pages[pid]) switchPage(pid); }));
 navItems.forEach(item => item.addEventListener('click', () => { const pid = item.getAttribute('data-page'); if (pid && pages[pid]) switchPage(pid); }));
 </script>
