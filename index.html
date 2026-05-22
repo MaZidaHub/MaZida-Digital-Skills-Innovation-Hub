@@ -720,22 +720,20 @@ createDots();
 showSlide(0);
 
 const pages = {
-  home: document.getElementById('home-page'), about: document.getElementById('about-page'),
-  coreplatforms: document.getElementById('coreplatforms-page'), workspace: document.getElementById('workspace-page'),
-  programs: document.getElementById('programs-page'), opportunities: document.getElementById('opportunities-page'),
-  learning: document.getElementById('learning-page'), contact: document.getElementById('contact-page')
+  home: document.getElementById('home-page'),
+  about: document.getElementById('about-page'),
+  coreplatforms: document.getElementById('coreplatforms-page'),
+  workspace: document.getElementById('workspace-page'),
+  programs: document.getElementById('programs-page'),
+  opportunities: document.getElementById('opportunities-page'),
+  learning: document.getElementById('learning-page'),
+  contact: document.getElementById('contact-page'),
+  'mazida-ai': document.getElementById('mazida-ai-page')
 };
 const allTriggers = document.querySelectorAll('[data-page]');
 const navItems = document.querySelectorAll('.nav-item');
 const navLinks = document.querySelectorAll('.nav-links a');
 let currentPage = 'home';
-const pages = {
-  home: document.getElementById('home-page'), about: document.getElementById('about-page'),
-  coreplatforms: document.getElementById('coreplatforms-page'), workspace: document.getElementById('workspace-page'),
-  programs: document.getElementById('programs-page'), opportunities: document.getElementById('opportunities-page'),
-  learning: document.getElementById('learning-page'), contact: document.getElementById('contact-page'),
-  'mazida-ai': document.getElementById('mazida-ai-page')  // ← ADD THIS
-};
 
 function switchPage(pageId) {
   if (!pages[pageId] || currentPage === pageId) return;
