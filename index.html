@@ -1740,241 +1740,873 @@ function nextSlide() { showSlide((currentVideoIndex + 1) % videos.length); }
 videos.forEach((video) => { if (video) video.addEventListener('ended', () => setTimeout(nextSlide, 300)); });
 createDots();
 showSlide(0);
+/* =========================================================
+   MaZidaOS — Enterprise AI Workspace Runtime
+   Real Architecture Foundation
+   ========================================================= */
 
-// =========================================================
-// GLOBAL WORKSPACE DATA (REQUIRED FOR INTELLIGENCE)
-// =========================================================
-let workspaceData = {
-  businessProfile: {},
-  tasks: [],
-  notes: '',
-  documents: [],
-  intelligence: {
-    activities: [],
-    recommendations: [],
-    knowledgeBase: []
-  }
+/* =========================================================
+   GLOBAL OS
+========================================================= */
+
+window.MaZidaOS = {
+  version: "1.0.0",
+  initialized: false,
+
+  core: {},
+  events: {},
+  memory: {},
+  agents: {},
+  tools: {},
+  workflows: {},
+  intelligence: {},
+  integrations: {},
+  runtime: {}
 };
 
-function loadWorkspaceData() {
-  const savedProfile = localStorage.getItem('mazida_business_profile');
-  if (savedProfile) workspaceData.businessProfile = JSON.parse(savedProfile);
-  const savedTasks = localStorage.getItem('mazida_tasks');
-  if (savedTasks) workspaceData.tasks = JSON.parse(savedTasks);
-  const savedDocs = localStorage.getItem('mazida_documents');
-  if (savedDocs) workspaceData.documents = JSON.parse(savedDocs);
-  const savedActivities = localStorage.getItem('mazida_workspace_activities');
-  if (savedActivities) workspaceData.intelligence.activities = JSON.parse(savedActivities);
-}
-loadWorkspaceData();
+/* =========================================================
+   1. EVENT BUS
+   Nervous system of the platform
+========================================================= */
 
-// =========================================================
-// ENTERPRISE INTELLIGENCE CORE
-// =========================================================
-window.MaZidaIntelligence = {
-  reasoning: { active: true, confidence: 0, lastDecision: null, decisionHistory: [] },
-  connections: new Map(),
-  strategy: { focus: null, milestones: [], nextActions: [] },
-  learning: { patterns: [], userBehavior: {}, contextMemory: [] },
-  graph: { nodes: [], edges: [] },
-  automations: [],
-  knowledge: new Map(),
-  agent: { mode: 'autonomous', activeTask: null, executionHistory: [] },
-  predictions: { readiness: 0, nextActions: [], riskScore: 0 }
-};
+class EventBus {
+  constructor() {
+    this.listeners = {};
+    this.history = [];
+  }
 
-// AI Reasoning Engine
-class AIReasoningEngine {
-  analyze(context, data) {
-    const profile = data.businessProfile || {};
-    return {
-      timestamp: new Date().toISOString(),
-      analysis: { stage: profile.stage || 'Idea Stage', gaps: this.identifyGaps(data) },
-      confidence: this.calculateConfidence(data),
-      recommendation: this.generateRecommendation(data)
+  on(event, callback) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+
+    this.listeners[event].push(callback);
+  }
+
+  emit(event, payload = {}) {
+    const eventData = {
+      event,
+      payload,
+      timestamp: new Date().toISOString()
     };
-  }
-  identifyGaps(data) {
-    const gaps = [];
-    if (!data.businessProfile?.businessName) gaps.push('missing_business_name');
-    if (!data.businessProfile?.targetMarket) gaps.push('undefined_target_market');
-    if (data.documents?.length < 2) gaps.push('insufficient_documentation');
-    return gaps;
-  }
-  calculateConfidence(data) {
-    let factors = 0;
-    if (data.businessProfile?.businessName) factors += 0.25;
-    if (data.documents?.length > 1) factors += 0.25;
-    if (data.tasks?.length > 5) factors += 0.25;
-    if (data.businessProfile?.stage !== 'Idea Stage') factors += 0.25;
-    return factors;
-  }
-  generateRecommendation(data) {
-    const stage = data.businessProfile?.stage;
-    const recs = { 
-      'Idea Stage': 'Validate your market hypothesis before building. Conduct customer interviews.',
-      'MVP': 'Focus on acquiring first 10 customers and gathering feedback.',
-      'Growth': 'Optimize operations and prepare for scaling.',
-      'Scaling': 'Build systems and delegate. Consider fundraising.'
-    };
-    return recs[stage] || 'Continue building your business foundation.';
-  }
-}
 
-// Autonomous Workflow Engine
-class AutonomousWorkflowEngine {
-  constructor() { this.workflows = []; }
-  registerWorkflow(trigger, actions) { this.workflows.push({ id: Date.now(), trigger, actions, active: true, executionCount: 0 }); }
-  evaluateTriggers(event, data) {
-    const triggered = this.workflows.filter(w => w.active && this.matchesTrigger(w.trigger, event, data));
-    triggered.forEach(workflow => this.executeWorkflow(workflow, data));
-    return triggered;
-  }
-  matchesTrigger(trigger, event, data) {
-    if (trigger.type === 'document_created') return event === 'document' && data.type === trigger.documentType;
-    if (trigger.type === 'profile_completed') return event === 'profile' && this.isProfileComplete(data);
-    if (trigger.type === 'task_completed') return event === 'task' && data.completed;
-    return false;
-  }
-  isProfileComplete(profile) { return profile.businessName && profile.industry && profile.targetMarket; }
-  executeWorkflow(workflow, data) {
-    workflow.executionCount++;
-    workflow.actions.forEach(action => {
-      if (action.type === 'create_task') {
-        const newTask = { text: action.params.title, completed: false, automated: true };
-        workspaceData.tasks.push(newTask);
-        localStorage.setItem('mazida_tasks', JSON.stringify(workspaceData.tasks));
-        if (typeof renderTaskList === 'function') renderTaskList();
+    this.history.push(eventData);
+
+    if (!this.listeners[event]) return;
+
+    this.listeners[event].forEach(listener => {
+      try {
+        listener(payload);
+      } catch (err) {
+        console.error(`Event Error (${event})`, err);
       }
     });
   }
-}
 
-// Learning Engine
-class LearningEngine {
-  constructor() { this.patterns = []; this.behaviorModel = {}; }
-  learn(event, context, outcome) {
-    const pattern = { id: Date.now(), event, context, outcome, frequency: 1, effectiveness: outcome.success ? 1 : 0, timestamp: new Date() };
-    const existing = this.patterns.find(p => p.event === event && JSON.stringify(p.context) === JSON.stringify(context));
-    if (existing) { existing.frequency++; existing.effectiveness = (existing.effectiveness + (outcome.success ? 1 : 0)) / 2; } 
-    else { this.patterns.push(pattern); }
-    window.MaZidaIntelligence.learning.patterns = this.patterns;
-    return pattern;
+  off(event, callback) {
+    if (!this.listeners[event]) return;
+
+    this.listeners[event] =
+      this.listeners[event].filter(cb => cb !== callback);
   }
-  predictNextAction(userContext) {
-    const preferred = this.getPreferredActions();
-    if (preferred.length === 0) return 'complete_profile';
-    if (!userContext.hasDocuments) return 'generate_document';
-    if (!userContext.hasTasks) return 'create_task';
-    return preferred[0];
-  }
-  getPreferredActions() {
-    const actionCounts = {};
-    this.patterns.forEach(pattern => { const action = pattern.event.split(':')[0]; actionCounts[action] = (actionCounts[action] || 0) + pattern.frequency; });
-    return Object.entries(actionCounts).sort((a,b) => b[1] - a[1]).map(([action]) => action);
+
+  getHistory(limit = 50) {
+    return this.history.slice(-limit);
   }
 }
 
-// Predictive Recommendation Engine
-class PredictiveRecommendationEngine {
-  constructor() { this.model = { weights: { profileCompleteness: 0.2, documentCount: 0.2, taskCompletionRate: 0.2, stageProgression: 0.2, engagementFrequency: 0.2 } }; }
-  calculatePredictionScore(businessData) {
-    let score = 0;
-    let profileComplete = 0;
-    if (businessData.businessProfile?.businessName) profileComplete += 0.33;
-    if (businessData.businessProfile?.industry) profileComplete += 0.33;
-    if (businessData.businessProfile?.targetMarket) profileComplete += 0.34;
-    score += profileComplete * 0.2;
-    const docScore = Math.min(businessData.documents?.length || 0, 10) / 10;
-    score += docScore * 0.2;
-    const totalTasks = businessData.tasks?.length || 0;
-    const completedTasks = businessData.tasks?.filter(t => t.completed).length || 0;
-    const completionRate = totalTasks > 0 ? completedTasks / totalTasks : 0;
-    score += completionRate * 0.2;
-    const stageScores = { 'Idea Stage': 0.25, 'MVP': 0.5, 'Growth': 0.75, 'Scaling': 1.0 };
-    score += (stageScores[businessData.businessProfile?.stage] || 0) * 0.2;
-    const activityCount = businessData.intelligence?.activities?.length || 0;
-    score += Math.min(activityCount / 20, 1) * 0.2;
-    return Math.min(score, 1);
+/* =========================================================
+   2. CENTRAL STATE ENGINE
+========================================================= */
+
+class StateEngine {
+  constructor() {
+    this.state = {
+      user: {},
+      workspace: {
+        documents: [],
+        tasks: [],
+        notes: []
+      },
+
+      intelligence: {
+        readiness: 0,
+        predictions: [],
+        recommendations: []
+      },
+
+      runtime: {
+        activeAgents: [],
+        activeWorkflows: [],
+        lastActivity: null
+      }
+    };
   }
-  predictNextActions(businessData) {
-    const score = this.calculatePredictionScore(businessData);
-    if (score < 0.3) return ['Complete your business profile', 'Generate your first business document', 'Add tasks to your workspace'];
-    if (score < 0.6) return ['Generate investor-ready materials', 'Create a business plan', 'Build your document portfolio'];
-    if (score < 0.8) return ['Prepare for fundraising conversations', 'Expand your business documentation', 'Review and refine your strategy'];
-    return ['Explore growth opportunities', 'Consider strategic partnerships', 'Scale your operations'];
+
+  get(path = "") {
+    if (!path) return this.state;
+
+    return path
+      .split(".")
+      .reduce((obj, key) => obj?.[key], this.state);
+  }
+
+  set(path, value) {
+    const keys = path.split(".");
+    let obj = this.state;
+
+    while (keys.length > 1) {
+      const key = keys.shift();
+
+      if (!obj[key]) {
+        obj[key] = {};
+      }
+
+      obj = obj[key];
+    }
+
+    obj[keys[0]] = value;
+
+    MaZidaOS.events.emit("state.updated", {
+      path,
+      value
+    });
+
+    this.persist();
+  }
+
+  update(path, updater) {
+    const current = this.get(path);
+    const updated = updater(current);
+
+    this.set(path, updated);
+  }
+
+  persist() {
+    localStorage.setItem(
+      "mazida_os_state",
+      JSON.stringify(this.state)
+    );
+  }
+
+  restore() {
+    const saved = localStorage.getItem("mazida_os_state");
+
+    if (!saved) return;
+
+    try {
+      this.state = JSON.parse(saved);
+    } catch (err) {
+      console.error("State restore failed", err);
+    }
   }
 }
 
-// AI Agent
-class AIAgent {
-  constructor() { this.mode = 'autonomous'; this.currentMission = null; this.capabilities = ['document_generation', 'task_automation', 'insight_generation', 'recommendation', 'workflow_execution']; }
-  async execute(goal, context) {
-    this.currentMission = { goal, context, startedAt: new Date() };
-    window.MaZidaIntelligence.agent.activeTask = goal;
-    window.MaZidaIntelligence.agent.mode = 'executing';
-    const actions = this.decomposeGoal(goal);
+/* =========================================================
+   3. MEMORY ENGINE
+========================================================= */
+
+class MemoryEngine {
+  constructor() {
+    this.shortTerm = [];
+    this.longTerm = [];
+    this.vectorMemory = [];
+  }
+
+  remember(type, content, metadata = {}) {
+    const memory = {
+      id: crypto.randomUUID(),
+      type,
+      content,
+      metadata,
+      createdAt: new Date().toISOString()
+    };
+
+    this.shortTerm.push(memory);
+
+    if (this.shortTerm.length > 100) {
+      this.longTerm.push(this.shortTerm.shift());
+    }
+
+    MaZidaOS.events.emit("memory.stored", memory);
+
+    return memory;
+  }
+
+  recall(query) {
+    const all = [
+      ...this.shortTerm,
+      ...this.longTerm
+    ];
+
+    return all.filter(memory =>
+      JSON.stringify(memory)
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    );
+  }
+
+  recent(limit = 10) {
+    return this.shortTerm.slice(-limit);
+  }
+}
+
+/* =========================================================
+   4. TOOL REGISTRY
+========================================================= */
+
+class ToolRegistry {
+  constructor() {
+    this.tools = new Map();
+  }
+
+  register(name, tool) {
+    this.tools.set(name, tool);
+
+    MaZidaOS.events.emit("tool.registered", {
+      name
+    });
+  }
+
+  get(name) {
+    return this.tools.get(name);
+  }
+
+  async execute(name, payload = {}) {
+    const tool = this.get(name);
+
+    if (!tool) {
+      throw new Error(`Tool not found: ${name}`);
+    }
+
+    const result = await tool.execute(payload);
+
+    MaZidaOS.events.emit("tool.executed", {
+      name,
+      payload,
+      result
+    });
+
+    return result;
+  }
+
+  list() {
+    return Array.from(this.tools.keys());
+  }
+}
+
+/* =========================================================
+   5. DOCUMENT TOOL
+========================================================= */
+
+class DocumentTool {
+  async execute(payload) {
+    const document = {
+      id: crypto.randomUUID(),
+      type: payload.type || "general",
+      title: payload.title || "Untitled",
+      content: payload.content || "",
+      createdAt: new Date().toISOString()
+    };
+
+    const docs =
+      MaZidaOS.core.state.get(
+        "workspace.documents"
+      );
+
+    docs.push(document);
+
+    MaZidaOS.core.state.set(
+      "workspace.documents",
+      docs
+    );
+
+    MaZidaOS.events.emit(
+      "document.created",
+      document
+    );
+
+    return document;
+  }
+}
+
+/* =========================================================
+   6. TASK TOOL
+========================================================= */
+
+class TaskTool {
+  async execute(payload) {
+    const task = {
+      id: crypto.randomUUID(),
+      text: payload.text,
+      completed: false,
+      priority: payload.priority || "normal",
+      createdAt: new Date().toISOString()
+    };
+
+    const tasks =
+      MaZidaOS.core.state.get(
+        "workspace.tasks"
+      );
+
+    tasks.push(task);
+
+    MaZidaOS.core.state.set(
+      "workspace.tasks",
+      tasks
+    );
+
+    MaZidaOS.events.emit(
+      "task.created",
+      task
+    );
+
+    return task;
+  }
+}
+
+/* =========================================================
+   7. SEARCH ENGINE
+========================================================= */
+
+class SearchEngine {
+  search(query) {
+    const docs =
+      MaZidaOS.core.state.get(
+        "workspace.documents"
+      );
+
+    const tasks =
+      MaZidaOS.core.state.get(
+        "workspace.tasks"
+      );
+
+    const documentResults = docs.filter(doc =>
+      JSON.stringify(doc)
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    );
+
+    const taskResults = tasks.filter(task =>
+      JSON.stringify(task)
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    );
+
+    return {
+      documents: documentResults,
+      tasks: taskResults
+    };
+  }
+}
+
+/* =========================================================
+   8. AI REASONING ENGINE
+========================================================= */
+
+class AIReasoningEngine {
+  analyze(workspace) {
+    const documents =
+      workspace.documents.length;
+
+    const tasks =
+      workspace.tasks.length;
+
+    const completed =
+      workspace.tasks.filter(
+        t => t.completed
+      ).length;
+
+    let readiness = 0;
+
+    if (documents > 0) readiness += 25;
+    if (documents > 3) readiness += 25;
+
+    if (tasks > 0) readiness += 20;
+    if (completed > 3) readiness += 30;
+
+    return {
+      readiness,
+      status:
+        readiness > 70
+          ? "Advanced"
+          : readiness > 40
+          ? "Growing"
+          : "Early Stage",
+
+      recommendations:
+        this.recommend(readiness)
+    };
+  }
+
+  recommend(score) {
+    if (score < 30) {
+      return [
+        "Create foundational business documents",
+        "Add execution tasks",
+        "Define workspace structure"
+      ];
+    }
+
+    if (score < 70) {
+      return [
+        "Expand operational planning",
+        "Prepare investor materials",
+        "Improve execution tracking"
+      ];
+    }
+
+    return [
+      "Scale operations",
+      "Optimize workflows",
+      "Enable autonomous execution"
+    ];
+  }
+}
+
+/* =========================================================
+   9. PREDICTION ENGINE
+========================================================= */
+
+class PredictionEngine {
+  predict() {
+    const workspace =
+      MaZidaOS.core.state.get("workspace");
+
+    const docs = workspace.documents.length;
+    const tasks = workspace.tasks.length;
+
+    const predictions = [];
+
+    if (docs === 0) {
+      predictions.push(
+        "User likely needs business planning assistance"
+      );
+    }
+
+    if (tasks < 3) {
+      predictions.push(
+        "Execution tracking insufficient"
+      );
+    }
+
+    if (docs > 5 && tasks > 5) {
+      predictions.push(
+        "Workspace approaching investor readiness"
+      );
+    }
+
+    return predictions;
+  }
+}
+
+/* =========================================================
+   10. WORKFLOW ORCHESTRATOR
+========================================================= */
+
+class WorkflowOrchestrator {
+  constructor() {
+    this.workflows = [];
+
+    this.initialize();
+  }
+
+  initialize() {
+    MaZidaOS.events.on(
+      "document.created",
+      payload => {
+        this.onDocumentCreated(payload);
+      }
+    );
+
+    MaZidaOS.events.on(
+      "task.completed",
+      payload => {
+        this.onTaskCompleted(payload);
+      }
+    );
+  }
+
+  async onDocumentCreated(document) {
+    if (document.type === "business_plan") {
+      await MaZidaOS.tools.registry.execute(
+        "task",
+        {
+          text:
+            "Prepare investor pitch deck"
+        }
+      );
+
+      await MaZidaOS.tools.registry.execute(
+        "task",
+        {
+          text:
+            "Review business plan"
+        }
+      );
+    }
+  }
+
+  onTaskCompleted(task) {
+    console.log(
+      "Workflow Triggered:",
+      task.text
+    );
+  }
+}
+
+/* =========================================================
+   11. AGENT RUNTIME
+========================================================= */
+
+class AgentRuntime {
+  constructor() {
+    this.activeAgents = [];
+  }
+
+  async execute(goal, context = {}) {
+    const agent = {
+      id: crypto.randomUUID(),
+      goal,
+      startedAt: new Date().toISOString(),
+      status: "running"
+    };
+
+    this.activeAgents.push(agent);
+
+    MaZidaOS.events.emit(
+      "agent.started",
+      agent
+    );
+
+    const plan =
+      await this.createPlan(goal);
+
     const results = [];
-    for (const action of actions) {
-      const result = await this.performAction(action);
+
+    for (const step of plan.steps) {
+      const result =
+        await this.executeStep(step);
+
       results.push(result);
-      window.MaZidaIntelligence.agent.executionHistory.push({ action, result, timestamp: new Date() });
     }
-    this.currentMission.completedAt = new Date();
-    window.MaZidaIntelligence.agent.activeTask = null;
-    window.MaZidaIntelligence.agent.mode = 'autonomous';
-    return { goal, actions, results, success: results.every(r => r.success), summary: `Agent completed ${results.filter(r => r.success).length}/${results.length} actions successfully.` };
+
+    agent.status = "completed";
+
+    MaZidaOS.events.emit(
+      "agent.completed",
+      {
+        agent,
+        results
+      }
+    );
+
+    return {
+      agent,
+      plan,
+      results
+    };
   }
-  decomposeGoal(goal) {
-    if (goal.includes('investor') || goal.includes('fundraising')) {
-      return [
-        { type: 'analyze', description: 'Assess investor readiness' },
-        { type: 'generate', description: 'Create investor package' },
-        { type: 'tasks', description: 'Generate outreach tasks' },
-        { type: 'recommend', description: 'Provide investor recommendations' }
-      ];
+
+  async createPlan(goal) {
+    if (
+      goal.includes("business")
+    ) {
+      return {
+        steps: [
+          {
+            tool: "document",
+            payload: {
+              type: "business_plan",
+              title:
+                "Business Plan",
+              content:
+                "Generated business plan structure"
+            }
+          },
+
+          {
+            tool: "task",
+            payload: {
+              text:
+                "Validate market opportunity"
+            }
+          }
+        ]
+      };
     }
-    if (goal.includes('plan') || goal.includes('business')) {
-      return [
-        { type: 'analyze', description: 'Analyze business stage' },
-        { type: 'generate', description: 'Generate business plan' },
-        { type: 'tasks', description: 'Create execution tasks' }
-      ];
-    }
-    return [{ type: 'analyze', description: 'Analyze current state' }, { type: 'recommend', description: 'Generate recommendations' }];
+
+    return {
+      steps: [
+        {
+          tool: "task",
+          payload: {
+            text:
+              "General workspace action"
+          }
+        }
+      ]
+    };
   }
-  async performAction(action) {
-    switch(action.type) {
-      case 'analyze': return { success: true, action: action.type, output: 'Analysis complete' };
-      case 'generate': return { success: true, action: action.type, output: `${action.description} generated` };
-      case 'tasks': return { success: true, action: action.type, output: `${action.description} created` };
-      case 'recommend': return { success: true, action: action.type, output: 'Recommendations ready' };
-      default: return { success: false, action: action.type, error: 'Unknown action' };
-    }
+
+  async executeStep(step) {
+    return await MaZidaOS.tools.registry.execute(
+      step.tool,
+      step.payload
+    );
   }
-  getStatus() { return { mode: this.mode, currentMission: this.currentMission, capabilities: this.capabilities, executionHistory: window.MaZidaIntelligence.agent.executionHistory.slice(-5) }; }
 }
 
-// Initialize Intelligence Components
-window.aiReasoning = new AIReasoningEngine();
-window.autonomousWorkflows = new AutonomousWorkflowEngine();
-window.learningEngine = new LearningEngine();
-window.predictiveEngine = new PredictiveRecommendationEngine();
-window.aiAgent = new AIAgent();
+/* =========================================================
+   12. AI INTEGRATION LAYER
+========================================================= */
 
-// Register default workflows
-window.autonomousWorkflows.registerWorkflow(
-  { type: 'document_created', documentType: 'business_plan' },
-  [{ type: 'create_task', params: { title: 'Review and refine your business plan' } }, { type: 'create_task', params: { title: 'Prepare investor pitch deck' } }]
-);
-window.autonomousWorkflows.registerWorkflow(
-  { type: 'profile_completed' },
-  [{ type: 'create_task', params: { title: 'Generate your business plan' } }]
-);
+class LLMIntegration {
+  constructor(config = {}) {
+    this.endpoint =
+      config.endpoint || "/api/ai";
+  }
 
-console.log('Enterprise Intelligence Integrated Successfully');
+  async generate(prompt) {
+    try {
+      const response =
+        await fetch(this.endpoint, {
+          method: "POST",
 
-// =========================================================
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+            prompt
+          })
+        });
+
+      return await response.json();
+    } catch (err) {
+      console.error(
+        "LLM Error",
+        err
+      );
+
+      return {
+        error: true,
+        message:
+          "AI generation failed"
+      };
+    }
+  }
+}
+
+/* =========================================================
+   13. ANALYTICS ENGINE
+========================================================= */
+
+class AnalyticsEngine {
+  snapshot() {
+    const workspace =
+      MaZidaOS.core.state.get(
+        "workspace"
+      );
+
+    return {
+      documents:
+        workspace.documents.length,
+
+      tasks:
+        workspace.tasks.length,
+
+      completedTasks:
+        workspace.tasks.filter(
+          t => t.completed
+        ).length,
+
+      memoryEntries:
+        MaZidaOS.memory.engine.shortTerm
+          .length,
+
+      activeAgents:
+        MaZidaOS.agents.runtime
+          .activeAgents.length
+    };
+  }
+}
+
+/* =========================================================
+   14. INITIALIZATION
+========================================================= */
+
+function initializeMaZidaOS() {
+  /* Core */
+
+  MaZidaOS.events =
+    new EventBus();
+
+  MaZidaOS.core.state =
+    new StateEngine();
+
+  MaZidaOS.core.state.restore();
+
+  /* Memory */
+
+  MaZidaOS.memory.engine =
+    new MemoryEngine();
+
+  /* Tools */
+
+  MaZidaOS.tools.registry =
+    new ToolRegistry();
+
+  MaZidaOS.tools.registry.register(
+    "document",
+    new DocumentTool()
+  );
+
+  MaZidaOS.tools.registry.register(
+    "task",
+    new TaskTool()
+  );
+
+  /* Intelligence */
+
+  MaZidaOS.intelligence.reasoning =
+    new AIReasoningEngine();
+
+  MaZidaOS.intelligence.prediction =
+    new PredictionEngine();
+
+  /* Runtime */
+
+  MaZidaOS.runtime.search =
+    new SearchEngine();
+
+  MaZidaOS.runtime.analytics =
+    new AnalyticsEngine();
+
+  /* Workflows */
+
+  MaZidaOS.workflows.orchestrator =
+    new WorkflowOrchestrator();
+
+  /* Agents */
+
+  MaZidaOS.agents.runtime =
+    new AgentRuntime();
+
+  /* Integrations */
+
+  MaZidaOS.integrations.llm =
+    new LLMIntegration({
+      endpoint: "/api/ai"
+    });
+
+  /* Global Events */
+
+  MaZidaOS.events.on(
+    "state.updated",
+    payload => {
+      console.log(
+        "State Updated",
+        payload
+      );
+    }
+  );
+
+  MaZidaOS.events.on(
+    "document.created",
+    doc => {
+      MaZidaOS.memory.engine.remember(
+        "document",
+        doc
+      );
+    }
+  );
+
+  MaZidaOS.events.on(
+    "task.created",
+    task => {
+      MaZidaOS.memory.engine.remember(
+        "task",
+        task
+      );
+    }
+  );
+
+  MaZidaOS.initialized = true;
+
+  console.log(
+    "MaZidaOS Initialized"
+  );
+
+  console.log({
+    events:
+      !!MaZidaOS.events,
+
+    state:
+      !!MaZidaOS.core.state,
+
+    memory:
+      !!MaZidaOS.memory.engine,
+
+    tools:
+      MaZidaOS.tools.registry.list(),
+
+    agents:
+      !!MaZidaOS.agents.runtime,
+
+    workflows:
+      !!MaZidaOS.workflows.orchestrator,
+
+    intelligence:
+      !!MaZidaOS.intelligence.reasoning
+  });
+}
+
+/* =========================================================
+   AUTO START
+========================================================= */
+
+if (
+  document.readyState ===
+  "loading"
+) {
+  document.addEventListener(
+    "DOMContentLoaded",
+    initializeMaZidaOS
+  );
+} else {
+  initializeMaZidaOS();
+}
+
+/* =========================================================
+   EXAMPLE EXECUTION
+========================================================= */
+
+// Example:
+// MaZidaOS.agents.runtime.execute(
+//   "Create business workspace"
+// );
+
+// Example:
+// MaZidaOS.tools.registry.execute(
+//   "document",
+//   {
+//     type: "business_plan",
+//     title: "AI Startup Plan",
+//     content: "Business plan content"
+//   }
+// );
+
+// Example:
+// MaZidaOS.runtime.search.search(
+//   "business"
+// );
+
+// Example:
+// MaZidaOS.intelligence.reasoning.analyze(
+//   MaZidaOS.core.state.get("workspace")
+// );// =========================================================
 // PAGE SWITCHING
 // =========================================================
 const pages = {
