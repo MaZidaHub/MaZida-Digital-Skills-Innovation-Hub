@@ -272,44 +272,30 @@
       border-color: rgba(46,204,113,0.3);
     }
     
-    /* ===== WHAT WE DO SECTION STYLES ===== */
-    .whatwedo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      margin: 40px 0;
-    }
-    .whatwedo-card {
-      background: white;
-      border-radius: 24px;
-      padding: 28px;
-      text-align: center;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-    .whatwedo-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 0 20px rgba(46,204,113,0.2); }
-    .whatwedo-icon { font-size: 48px; color: var(--green); margin-bottom: 20px; }
-    .whatwedo-card h3 { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
-    .whatwedo-card p { font-size: 0.9rem; line-height: 1.6; color: var(--text); margin-bottom: 16px; }
-    .whatwedo-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
-    .whatwedo-tags span { background: var(--green-10); color: var(--green-dark); font-size: 0.7rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
-    .whatwedo-mission { background: linear-gradient(135deg, var(--navy), var(--navy-light)); border-radius: 28px; padding: 40px; margin: 40px 0; text-align: center; position: relative; overflow: hidden; }
-    .mission-content { position: relative; z-index: 2; }
-    .mission-content p { font-size: 1.2rem; line-height: 1.7; color: white; max-width: 800px; margin: 0 auto; }
-    .mission-content p strong { color: var(--green); }
-    .mission-platforms { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 28px; }
-    .mission-platforms span { color: rgba(255,255,255,0.8); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; }
-    .mission-platforms span i { color: var(--green); font-size: 1rem; }
-    .who-we-serve { text-align: center; margin-top: 30px; }
-    .who-we-serve h4 { color: var(--green); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; margin-bottom: 20px; }
-    .serve-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; }
-    .serve-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-    .serve-item i { font-size: 28px; color: var(--green); background: var(--green-10); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease; }
-    .serve-item span { font-size: 0.8rem; font-weight: 500; color: var(--navy); }
-    .serve-item small { font-size: 10px; color: var(--muted); }
-    .serve-item:hover i { transform: translateY(-3px); background: rgba(46,204,113,0.2); box-shadow: 0 0 15px rgba(46,204,113,0.3); }
+    /* What We Do Categories */
+.whatwedo-category {
+  margin-top: 60px;
+}
+
+.whatwedo-category:first-child {
+  margin-top: 0;
+}
+
+.category-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.category-desc {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+  max-width: 800px;
+}
     
     /* Impact Metrics */
     .impact-grid {
@@ -437,6 +423,217 @@
       </div>
     </div>
 
+    <!-- ===== WHAT WE DO SECTION ===== -->
+<div class="section section-light scroll-reveal whatwedo-section">
+
+    <div class="glowing-orb whatwedo-orb"></div>
+
+    <div class="container">
+
+        <!-- SECTION TITLE -->
+        <div class="section-title whatwedo-title">
+            <span class="whatwedo-subtitle">
+                ✦ What We Do ✦
+            </span>
+
+            <h2>
+                What We Do
+            </h2>
+        </div>
+
+        <!-- MAIN DESCRIPTION -->
+        <div class="card whatwedo-intro-card">
+
+            <p>
+                At MaZida Digital Skills & Innovation Hub, we empower individuals,
+                startups, businesses, and communities with practical digital skills,
+                innovation support, and technology solutions designed for the modern economy across African markets.
+            </p>
+
+            <p class="intro-spacing">
+                We bridge the gap between learning and real-world opportunity by helping people build skills,
+                create solutions, launch businesses, and generate income through technology and innovation.
+            </p>
+
+        </div>
+
+        <!-- DIGITAL SKILLS TRAINING -->
+        <div class="whatwedo-category">
+
+            <h3 class="category-title">
+                <i class="fas fa-graduation-cap"></i>
+                Digital Skills Training
+            </h3>
+
+            <p class="category-desc">
+                We provide practical, industry-relevant training programs that prepare learners for today's digital economy.
+            </p>
+
+            <div class="whatwedo-grid">
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-code pulse-ring"></i>
+                    <span>Web Development & Website Design</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-paint-brush pulse-ring"></i>
+                    <span>Graphic Design & Branding</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-chart-line pulse-ring"></i>
+                    <span>Digital Marketing & Social Media Management</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-robot pulse-ring"></i>
+                    <span>AI Tools & Automation</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-pen-fancy pulse-ring"></i>
+                    <span>UI/UX Design</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-video pulse-ring"></i>
+                    <span>Content Creation & Video Editing</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- AI & DIGITAL TRANSFORMATION -->
+        <div class="whatwedo-category">
+
+            <h3 class="category-title">
+                <i class="fas fa-microchip"></i>
+                AI & Digital Transformation
+            </h3>
+
+            <p class="category-desc">
+                We help businesses, entrepreneurs, and professionals adopt modern digital tools and AI-powered systems.
+            </p>
+
+            <div class="whatwedo-grid">
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-chalkboard-user pulse-ring"></i>
+                    <span>AI Workshops & Training</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-gears pulse-ring"></i>
+                    <span>Business Automation Solutions</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-network-wired pulse-ring"></i>
+                    <span>Digital Business Systems</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-tools pulse-ring"></i>
+                    <span>AI Productivity Tools</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- WEBSITE & DIGITAL SOLUTIONS -->
+        <div class="whatwedo-category">
+
+            <h3 class="category-title">
+                <i class="fas fa-globe"></i>
+                Website & Digital Solutions
+            </h3>
+
+            <p class="category-desc">
+                We design and develop professional digital solutions for businesses,
+                brands, startups, and organizations.
+            </p>
+
+            <div class="whatwedo-grid">
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-code pulse-ring"></i>
+                    <span>Website Design & Development</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-trademark pulse-ring"></i>
+                    <span>Business Branding & Identity</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-cart-shopping pulse-ring"></i>
+                    <span>E-commerce Websites</span>
+                </div>
+
+                <div class="whatwedo-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-envelope pulse-ring"></i>
+                    <span>Business Email Setup</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MISSION & VISION -->
+        <div class="mission-vision-grid">
+
+            <div class="card mission-card">
+
+                <i class="fas fa-flag-checkered mission-icon"></i>
+
+                <h3>
+                    Our Mission
+                </h3>
+
+                <p>
+                    To empower individuals and businesses through practical digital skills,
+                    innovation, AI, and technology-driven opportunities that create sustainable growth and economic empowerment.
+                </p>
+
+            </div>
+
+            <div class="card mission-card">
+
+                <i class="fas fa-eye mission-icon"></i>
+
+                <h3>
+                    Our Vision
+                </h3>
+
+                <p>
+                    To become a leading African hub for digital empowerment,
+                    innovation, entrepreneurship, and future-ready skills development.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
     <!-- CORE PROBLEM & MARKET REALITY SECTION -->
     <div class="section section-light scroll-reveal" style="background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%); position: relative; overflow: hidden;">
       <div class="glowing-orb" style="top: -150px; right: -150px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(46,204,113,0.08) 0%, transparent 70%);"></div>
