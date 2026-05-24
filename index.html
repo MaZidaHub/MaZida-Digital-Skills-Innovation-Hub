@@ -1183,7 +1183,158 @@ footer {
     height: 220px;
   }
     }
-    
+    /* Opportunities Page Styles */
+.opportunities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.opportunity-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray-mid);
+  position: relative;
+  overflow: hidden;
+}
+
+.opportunity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-color: var(--green-10);
+}
+
+.opportunity-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.opportunity-badge.job { background: #e3f2fd; color: #1565c0; }
+.opportunity-badge.internship { background: #e8f5e9; color: #2e7d32; }
+.opportunity-badge.grant { background: #fff3e0; color: #e65100; }
+.opportunity-badge.scholarship { background: #f3e5f5; color: #6a1b9a; }
+.opportunity-badge.remote { background: #e0f7fa; color: #00838f; }
+.opportunity-badge.competition { background: #fce4ec; color: #c2185b; }
+.opportunity-badge.funding { background: #e8eaf6; color: #283593; }
+
+.opportunity-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--navy);
+}
+
+.opportunity-card .company {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.opportunity-card .company .location {
+  color: var(--green);
+  font-weight: 500;
+}
+
+.opportunity-card .description {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.opportunity-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-mid);
+}
+
+.opportunity-footer .deadline {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.opportunity-footer .deadline i {
+  margin-right: 4px;
+}
+
+.btn-apply {
+  background: var(--green);
+  color: var(--navy);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-apply:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+.view-all {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 8px 24px;
+}
+
+.hero-stats {
+  background: rgba(255,255,255,0.05);
+  border-radius: 60px;
+  padding: 20px 40px;
+  display: inline-flex;
+  gap: 50px;
+  backdrop-filter: blur(10px);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--green);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .opportunities-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-stats {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 30px;
+    border-radius: 30px;
+  }
+  .opportunity-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
   </style>
 </head>
 <body>
@@ -2809,8 +2960,344 @@ The platform supports financial inclusion by helping underserved African SMEs an
   </div>
 </div>
   
-  <div id="opportunities-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Opportunities</h1></div></div><div class="section scroll-reveal"><div class="container"><div class="grid-2col"><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-handshake pulse-ring"></i><h3>Startup Media Feature</h3><a class="btn btn-outline" style="margin-top: 16px;">Nominate</a></div><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-briefcase pulse-ring"></i><h3>AI Workspace Pilot</h3><a class="btn btn-primary" style="margin-top: 16px;" data-page="workspace">Apply</a></div></div></div></div></div>
+  <!-- ==================== OPPORTUNITIES PAGE ==================== -->
+<div id="opportunities-page" class="page">
+  <div class="navbar-spacer"></div>
+  
+  <!-- Hero Section -->
+  <div class="product-hero" style="background: linear-gradient(135deg, var(--navy), var(--navy-light));">
+    <div class="container">
+      <h1>Opportunities</h1>
+      <p style="font-size: 1.1rem; max-width: 700px; margin: 20px auto 0;">Your gateway to jobs, funding, learning, and growth opportunities across Africa</p>
+      <div class="hero-stats" style="display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap;">
+        <div class="stat-item"><span class="stat-number">100+</span><span class="stat-label">Active Opportunities</span></div>
+        <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Partner Organizations</span></div>
+        <div class="stat-item"><span class="stat-number">10K+</span><span class="stat-label">Community Members</span></div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Opportunities Categories Grid -->
+  <div class="section section-light scroll-reveal">
+    <div class="container">
+      
+      <!-- Category 1: Jobs -->
+      <div style="margin-bottom: 50px;">
+        <div class="category-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="background: var(--green-10); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-briefcase" style="font-size: 24px; color: var(--green);"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; color: var(--navy); margin: 0;">Jobs</h2>
+          <span style="background: var(--green); color: var(--navy); padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">New</span>
+        </div>
+        <div class="opportunities-grid">
+          <div class="opportunity-card">
+            <div class="opportunity-badge job">Full-time</div>
+            <h3>Digital Marketing Specialist</h3>
+            <p class="company">TechHub Zambia <span class="location">📍 Lusaka</span></p>
+            <p class="description">Seeking experienced digital marketer to lead social media campaigns and content strategy.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: June 30, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge job">Remote</div>
+            <h3>Software Developer</h3>
+            <p class="company">AfriTech Solutions <span class="location">📍 Remote (Africa)</span></p>
+            <p class="description">Looking for full-stack developer with experience in React, Node.js, and cloud technologies.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: July 15, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge job">Internship</div>
+            <h3>Data Analyst Intern</h3>
+            <p class="company">DataLab Africa <span class="location">📍 Nairobi</span></p>
+            <p class="description">Join our data team to analyze trends and support business intelligence initiatives.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: June 20, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#" class="btn-outline view-all">View All Jobs →</a>
+        </div>
+      </div>
+
+      <!-- Category 2: Internships -->
+      <div style="margin-bottom: 50px;">
+        <div class="category-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="background: var(--green-10); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-users" style="font-size: 24px; color: var(--green);"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; color: var(--navy); margin: 0;">Internships</h2>
+        </div>
+        <div class="opportunities-grid">
+          <div class="opportunity-card">
+            <div class="opportunity-badge internship">Paid Internship</div>
+            <h3>Software Engineering Intern</h3>
+            <p class="company">Google Africa <span class="location">📍 Remote</span></p>
+            <p class="description">3-month paid internship program for recent graduates in computer science.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: July 10, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge internship">Paid Internship</div>
+            <h3>Marketing Intern</h3>
+            <p class="company">MaZida Hub <span class="location">📍 Lusaka</span></p>
+            <p class="description">Gain hands-on experience in digital marketing, social media, and content creation.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: June 25, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#" class="btn-outline view-all">View All Internships →</a>
+        </div>
+      </div>
+
+      <!-- Category 3: Grants -->
+      <div style="margin-bottom: 50px;">
+        <div class="category-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="background: var(--green-10); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-hand-holding-usd" style="font-size: 24px; color: var(--green);"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; color: var(--navy); margin: 0;">Grants</h2>
+        </div>
+        <div class="opportunities-grid">
+          <div class="opportunity-card">
+            <div class="opportunity-badge grant">Up to $10,000</div>
+            <h3>Youth Innovation Grant</h3>
+            <p class="company">UNICEF Zambia <span class="location">📍 Nationwide</span></p>
+            <p class="description">Funding for young innovators with tech solutions addressing community challenges.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: August 15, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge grant">Up to $5,000</div>
+            <h3>SME Digital Transformation Grant</h3>
+            <p class="company">UNDP Africa <span class="location">📍 Zambia</span></p>
+            <p class="description">Support for SMEs to adopt digital tools and improve online presence.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: July 30, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#" class="btn-outline view-all">View All Grants →</a>
+        </div>
+      </div>
+
+      <!-- Category 4: Scholarships -->
+      <div style="margin-bottom: 50px;">
+        <div class="category-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="background: var(--green-10); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-graduation-cap" style="font-size: 24px; color: var(--green);"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; color: var(--navy); margin: 0;">Scholarships</h2>
+        </div>
+        <div class="opportunities-grid">
+          <div class="opportunity-card">
+            <div class="opportunity-badge scholarship">Full Scholarship</div>
+            <h3>Mastercard Foundation Scholars Program</h3>
+            <p class="company">University of Edinburgh <span class="location">📍 UK / Online</span></p>
+            <p class="description">Full scholarship for African students pursuing graduate degrees in tech-related fields.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: November 30, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge scholarship">Partial Scholarship</div>
+            <h3>African Women in Tech Scholarship</h3>
+            <p class="company">TechWomen Africa <span class="location">📍 Online</span></p>
+            <p class="description">Scholarship for women pursuing careers in technology and digital skills.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: September 15, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#" class="btn-outline view-all">View All Scholarships →</a>
+        </div>
+      </div>
+
+      <!-- Category 5: Remote Work -->
+      <div style="margin-bottom: 50px;">
+        <div class="category-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="background: var(--green-10); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-laptop-house" style="font-size: 24px; color: var(--green);"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; color: var(--navy); margin: 0;">Remote Work</h2>
+        </div>
+        <div class="opportunities-grid">
+          <div class="opportunity-card">
+            <div class="opportunity-badge remote">Global Remote</div>
+            <h3>Virtual Assistant</h3>
+            <p class="company">Global Talent Co. <span class="location">📍 Remote Worldwide</span></p>
+            <p class="description">Provide administrative support to international clients. Flexible hours.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Rolling Applications</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge remote">Remote (Africa)</div>
+            <h3>Customer Support Specialist</h3>
+            <p class="company">AfriCall Center <span class="location">📍 Remote (Zambia)</span></p>
+            <p class="description">Handle customer inquiries for international tech companies.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Rolling Applications</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge remote">Freelance</div>
+            <h3>Content Writer & Copywriter</h3>
+            <p class="company">Digital Content Africa <span class="location">📍 Remote</span></p>
+            <p class="description">Create engaging content for websites, blogs, and social media.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Rolling Applications</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#" class="btn-outline view-all">View All Remote Jobs →</a>
+        </div>
+      </div>
+
+      <!-- Category 6: Competitions -->
+      <div style="margin-bottom: 50px;">
+        <div class="category-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="background: var(--green-10); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-trophy" style="font-size: 24px; color: var(--green);"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; color: var(--navy); margin: 0;">Competitions</h2>
+        </div>
+        <div class="opportunities-grid">
+          <div class="opportunity-card">
+            <div class="opportunity-badge competition">💰 $10,000 Prize</div>
+            <h3>Africa Startup Challenge</h3>
+            <p class="company">African Innovation Foundation <span class="location">📍 Online</span></p>
+            <p class="description">Pitch your innovative business idea for a chance to win funding and mentorship.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: October 15, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge competition">🏆 Grand Prize</div>
+            <h3>AI for Good Hackathon</h3>
+            <p class="company">Google AI <span class="location">📍 Online</span></p>
+            <p class="description">Build AI solutions addressing health, education, and climate challenges.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: August 30, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#" class="btn-outline view-all">View All Competitions →</a>
+        </div>
+      </div>
+
+      <!-- Category 7: Funding Calls -->
+      <div style="margin-bottom: 50px;">
+        <div class="category-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="background: var(--green-10); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-chart-line" style="font-size: 24px; color: var(--green);"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; color: var(--navy); margin: 0;">Funding Calls</h2>
+        </div>
+        <div class="opportunities-grid">
+          <div class="opportunity-card">
+            <div class="opportunity-badge funding">Seed Funding</div>
+            <h3>Catalyst Fund for Early-Stage Startups</h3>
+            <p class="company">Village Capital <span class="location">📍 Africa-wide</span></p>
+            <p class="description">$50,000 - $100,000 seed funding for tech-enabled startups solving local challenges.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: September 1, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge funding">Venture Capital</div>
+            <h3>Africa Tech Ventures Call</h3>
+            <p class="company">ATV Fund <span class="location">📍 Pan-African</span></p>
+            <p class="description">Open call for Series A-ready startups in fintech, edtech, and healthtech.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: November 15, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+          <div class="opportunity-card">
+            <div class="opportunity-badge funding">Micro-grant</div>
+            <h3>Youth Entrepreneurship Fund</h3>
+            <p class="company">UNDP Youth<span class="location">📍 Zambia</span></p>
+            <p class="description">Grants up to $5,000 for young entrepreneurs with viable business ideas.</p>
+            <div class="opportunity-footer">
+              <span class="deadline"><i class="far fa-calendar-alt"></i> Apply by: July 20, 2025</span>
+              <a href="#" class="btn-apply">Apply Now →</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#" class="btn-outline view-all">View All Funding Calls →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Newsletter Subscription Section -->
+  <div class="section section-soft scroll-reveal">
+    <div class="container">
+      <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white;">
+        <i class="fas fa-envelope-open-text" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
+        <h2 style="color: white;">Don't Miss an Opportunity</h2>
+        <p style="max-width: 600px; margin: 16px auto;">Subscribe to our weekly opportunity newsletter and get the latest jobs, grants, and funding calls delivered to your inbox.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px;">
+          <input type="email" placeholder="Enter your email address" style="padding: 14px 24px; border-radius: 50px; border: none; width: 300px; max-width: 100%;">
+          <button class="btn btn-primary">Subscribe Now →</button>
+        </div>
+        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.7;">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partner CTA -->
+  <div class="section section-light scroll-reveal">
+    <div class="container">
+      <div class="grid-2col">
+        <div class="card text-center">
+          <i class="fas fa-building" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
+          <h3>Post an Opportunity</h3>
+          <p>Are you an employer, organization, or funder? Share your opportunities with our community.</p>
+          <a class="btn btn-outline" style="margin-top: 16px;">Post Opportunity →</a>
+        </div>
+        <div class="card text-center">
+          <i class="fas fa-handshake" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
+          <h3>Partner With Us</h3>
+          <p>Collaborate with MaZida Hub to reach Africa's most talented professionals and entrepreneurs.</p>
+          <a class="btn btn-outline" style="margin-top: 16px;">Become a Partner →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+  
   <div id="learning-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1> Digital Skills Academy</h1></div></div><div class="section scroll-reveal"><div class="container"><div class="academy-grid"><div class="academy-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-robot pulse-ring"></i><h3>AI & Machine Learning</h3><span class="course-badge">4-8 weeks</span></div><div class="academy-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-laptop-code pulse-ring"></i><h3>Web Development</h3><span class="course-badge">8-12 weeks</span></div></div></div></div></div>
 
     <div id="contact-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Contact</h1></div></div><div class="section scroll-reveal"><div class="container"><div class="grid-2col"><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-envelope pulse-ring"></i><h3>Email</h3><p>hello@mazida.com</p></div><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fab fa-whatsapp pulse-ring"></i><h3>WhatsApp</h3><p>+260 97 123 4567</p></div></div></div></div></div>
