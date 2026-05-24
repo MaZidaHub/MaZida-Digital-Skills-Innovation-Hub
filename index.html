@@ -296,7 +296,62 @@
   margin-bottom: 24px;
   max-width: 800px;
 }
-    
+    /* Service Cards with Images */
+.whatwedo-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
+
+.whatwedo-card .service-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.whatwedo-card .service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.whatwedo-card:hover .service-image img {
+  transform: scale(1.05);
+}
+
+.whatwedo-card i {
+  font-size: 32px;
+  color: var(--green);
+  margin-top: 16px;
+}
+
+.whatwedo-card span {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 500;
+  padding: 0 16px 20px 16px;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.whatwedo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.whatwedo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
     /* Impact Metrics */
     .impact-grid {
       display: grid;
@@ -440,140 +495,539 @@
       <p style="font-size: 1rem; line-height: 1.7;">We bridge the gap between learning and real-world opportunity by helping people build skills, create solutions, launch businesses, and generate income through technology and innovation.</p>
     </div>
 
-    <!-- Digital Skills Training (Category as Cardbox Grid) -->
+    <!-- Digital Skills Training (Image 1: d8a8.png) -->
     <div style="margin-bottom: 50px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
         <i class="fas fa-graduation-cap" style="font-size: 28px; color: var(--green);"></i>
         <h3 style="font-size: 1.3rem; color: var(--navy); margin: 0;">Digital Skills Training</h3>
       </div>
       <div class="whatwedo-grid">
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-code pulse-ring"></i><span>Web Development & Website Design</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-paint-brush pulse-ring"></i><span>Graphic Design & Branding</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring"></i><span>Digital Marketing & Social Media</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-robot pulse-ring"></i><span>AI Tools & Automation</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-pen-fancy pulse-ring"></i><span>UI/UX Design</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-video pulse-ring"></i><span>Content Creation & Video Editing</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-rocket pulse-ring"></i><span>Entrepreneurship & Freelancing</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-laptop pulse-ring"></i><span>Computer Literacy & Productivity</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-database pulse-ring"></i><span>Coding & Software Development</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-store pulse-ring"></i><span>E-commerce & Online Business</span></div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="Web Development">
+          </div>
+          <i class="fas fa-code pulse-ring"></i>
+          <span>Web Development & Website Design</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="Graphic Design">
+          </div>
+          <i class="fas fa-paint-brush pulse-ring"></i>
+          <span>Graphic Design & Branding</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="Digital Marketing">
+          </div>
+          <i class="fas fa-chart-line pulse-ring"></i>
+          <span>Digital Marketing & Social Media</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="AI Tools">
+          </div>
+          <i class="fas fa-robot pulse-ring"></i>
+          <span>AI Tools & Automation</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="UI/UX Design">
+          </div>
+          <i class="fas fa-pen-fancy pulse-ring"></i>
+          <span>UI/UX Design</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="Video Editing">
+          </div>
+          <i class="fas fa-video pulse-ring"></i>
+          <span>Content Creation & Video Editing</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="Freelancing">
+          </div>
+          <i class="fas fa-rocket pulse-ring"></i>
+          <span>Entrepreneurship & Freelancing</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="Computer Literacy">
+          </div>
+          <i class="fas fa-laptop pulse-ring"></i>
+          <span>Computer Literacy & Productivity</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="Software Development">
+          </div>
+          <i class="fas fa-database pulse-ring"></i>
+          <span>Coding & Software Development</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d8a8.png" alt="Ecommerce">
+          </div>
+          <i class="fas fa-store pulse-ring"></i>
+          <span>E-commerce & Online Business</span>
+        </div>
       </div>
     </div>
 
-    <!-- AI & Digital Transformation -->
+    <!-- AI & Digital Transformation (Image 2: d410419.png) -->
     <div style="margin-bottom: 50px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
         <i class="fas fa-microchip" style="font-size: 28px; color: var(--green);"></i>
         <h3 style="font-size: 1.3rem; color: var(--navy); margin: 0;">AI & Digital Transformation</h3>
       </div>
       <div class="whatwedo-grid">
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chalkboard-user pulse-ring"></i><span>AI Workshops & Training</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-microchip pulse-ring"></i><span>Business Automation Solutions</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-digital-tiling pulse-ring"></i><span>Digital Business Systems</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-tools pulse-ring"></i><span>AI Productivity Tools</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-globe pulse-ring"></i><span>Website & Online Presence</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-simple pulse-ring"></i><span>Digital Workflow Optimization</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring"></i><span>Social Media & Content Systems</span></div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d410419.png" alt="AI Workshops">
+          </div>
+          <i class="fas fa-chalkboard-user pulse-ring"></i>
+          <span>AI Workshops & Training</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d410419.png" alt="Automation">
+          </div>
+          <i class="fas fa-microchip pulse-ring"></i>
+          <span>Business Automation Solutions</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d410419.png" alt="Digital Systems">
+          </div>
+          <i class="fas fa-digital-tiling pulse-ring"></i>
+          <span>Digital Business Systems</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d410419.png" alt="AI Productivity">
+          </div>
+          <i class="fas fa-tools pulse-ring"></i>
+          <span>AI Productivity Tools</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d410419.png" alt="Online Presence">
+          </div>
+          <i class="fas fa-globe pulse-ring"></i>
+          <span>Website & Online Presence</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d410419.png" alt="Workflow Optimization">
+          </div>
+          <i class="fas fa-chart-simple pulse-ring"></i>
+          <span>Digital Workflow Optimization</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="d410419.png" alt="Social Media Systems">
+          </div>
+          <i class="fas fa-chart-line pulse-ring"></i>
+          <span>Social Media & Content Systems</span>
+        </div>
       </div>
     </div>
 
-    <!-- Website & Digital Solutions -->
+    <!-- Website & Digital Solutions (Image 3: bd064.png) -->
     <div style="margin-bottom: 50px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
         <i class="fas fa-globe" style="font-size: 28px; color: var(--green);"></i>
         <h3 style="font-size: 1.3rem; color: var(--navy); margin: 0;">Website & Digital Solutions</h3>
       </div>
       <div class="whatwedo-grid">
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-code pulse-ring"></i><span>Website Design & Development</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-trademark pulse-ring"></i><span>Business Branding & Identity</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-shopping-cart pulse-ring"></i><span>E-commerce Websites</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-user pulse-ring"></i><span>Portfolio Websites</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-file pulse-ring"></i><span>Landing Pages</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-envelope pulse-ring"></i><span>Business Email Setup</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-cogs pulse-ring"></i><span>Content Management Systems</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring"></i><span>Digital Strategy Support</span></div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="bd064.png" alt="Web Design">
+          </div>
+          <i class="fas fa-code pulse-ring"></i>
+          <span>Website Design & Development</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="bd064.png" alt="Branding">
+          </div>
+          <i class="fas fa-trademark pulse-ring"></i>
+          <span>Business Branding & Identity</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="bd064.png" alt="Ecommerce Websites">
+          </div>
+          <i class="fas fa-shopping-cart pulse-ring"></i>
+          <span>E-commerce Websites</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="bd064.png" alt="Portfolio">
+          </div>
+          <i class="fas fa-user pulse-ring"></i>
+          <span>Portfolio Websites</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="bd064.png" alt="Landing Pages">
+          </div>
+          <i class="fas fa-file pulse-ring"></i>
+          <span>Landing Pages</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="bd064.png" alt="Email Setup">
+          </div>
+          <i class="fas fa-envelope pulse-ring"></i>
+          <span>Business Email Setup</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="bd064.png" alt="CMS">
+          </div>
+          <i class="fas fa-cogs pulse-ring"></i>
+          <span>Content Management Systems</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="bd064.png" alt="Digital Strategy">
+          </div>
+          <i class="fas fa-chart-line pulse-ring"></i>
+          <span>Digital Strategy Support</span>
+        </div>
       </div>
     </div>
 
-    <!-- Innovation & Startup Support -->
+    <!-- Innovation & Startup Support (Image 5: b97.png) -->
     <div style="margin-bottom: 50px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
         <i class="fas fa-rocket" style="font-size: 28px; color: var(--green);"></i>
         <h3 style="font-size: 1.3rem; color: var(--navy); margin: 0;">Innovation & Startup Support</h3>
       </div>
       <div class="whatwedo-grid">
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-users pulse-ring"></i><span>Startup Mentorship</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-lightbulb pulse-ring"></i><span>Innovation Coaching</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring"></i><span>Business Development Guidance</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-cube pulse-ring"></i><span>Product Development Support</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chalkboard pulse-ring"></i><span>Pitch & Presentation Preparation</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-rocket pulse-ring"></i><span>Digital Startup Launch</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-handshake pulse-ring"></i><span>Networking Opportunities</span></div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b97.png" alt="Mentorship">
+          </div>
+          <i class="fas fa-users pulse-ring"></i>
+          <span>Startup Mentorship</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b97.png" alt="Coaching">
+          </div>
+          <i class="fas fa-lightbulb pulse-ring"></i>
+          <span>Innovation Coaching</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b97.png" alt="Business Growth">
+          </div>
+          <i class="fas fa-chart-line pulse-ring"></i>
+          <span>Business Development Guidance</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b97.png" alt="Product Development">
+          </div>
+          <i class="fas fa-cube pulse-ring"></i>
+          <span>Product Development Support</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b97.png" alt="Pitch Preparation">
+          </div>
+          <i class="fas fa-chalkboard pulse-ring"></i>
+          <span>Pitch & Presentation Preparation</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b97.png" alt="Startup Launch">
+          </div>
+          <i class="fas fa-rocket pulse-ring"></i>
+          <span>Digital Startup Launch</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b97.png" alt="Networking">
+          </div>
+          <i class="fas fa-handshake pulse-ring"></i>
+          <span>Networking Opportunities</span>
+        </div>
       </div>
     </div>
 
-    <!-- Skills-to-Income Programs -->
+    <!-- Skills-to-Income Programs (Image 4: b9fae7.png) -->
     <div style="margin-bottom: 50px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
         <i class="fas fa-chart-line" style="font-size: 28px; color: var(--green);"></i>
         <h3 style="font-size: 1.3rem; color: var(--navy); margin: 0;">Skills-to-Income Programs</h3>
       </div>
       <div class="whatwedo-grid">
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-briefcase pulse-ring"></i><span>Start Freelancing Careers</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-user-astronaut pulse-ring"></i><span>Build Personal Brands</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-laptop-house pulse-ring"></i><span>Find Remote Work</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring"></i><span>Create Digital Businesses</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-folder-open pulse-ring"></i><span>Build Client Portfolios</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-globe pulse-ring"></i><span>Monetize Skills Online</span></div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b9fae7.png" alt="Freelancing Careers">
+          </div>
+          <i class="fas fa-briefcase pulse-ring"></i>
+          <span>Start Freelancing Careers</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b9fae7.png" alt="Personal Brand">
+          </div>
+          <i class="fas fa-user-astronaut pulse-ring"></i>
+          <span>Build Personal Brands</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b9fae7.png" alt="Remote Work">
+          </div>
+          <i class="fas fa-laptop-house pulse-ring"></i>
+          <span>Find Remote Work</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b9fae7.png" alt="Digital Businesses">
+          </div>
+          <i class="fas fa-chart-line pulse-ring"></i>
+          <span>Create Digital Businesses</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b9fae7.png" alt="Portfolio Building">
+          </div>
+          <i class="fas fa-folder-open pulse-ring"></i>
+          <span>Build Client Portfolios</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b9fae7.png" alt="Monetize Skills">
+          </div>
+          <i class="fas fa-globe pulse-ring"></i>
+          <span>Monetize Skills Online</span>
+        </div>
       </div>
     </div>
 
-    <!-- Community Digital Empowerment -->
+    <!-- Community Digital Empowerment (Image 6: b8.png) -->
     <div style="margin-bottom: 50px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
         <i class="fas fa-heart" style="font-size: 28px; color: var(--green);"></i>
         <h3 style="font-size: 1.3rem; color: var(--navy); margin: 0;">Community Digital Empowerment</h3>
       </div>
       <div class="whatwedo-grid">
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-graduation-cap pulse-ring"></i><span>Digital Literacy Programs</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-users pulse-ring"></i><span>Youth Empowerment Workshops</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-tree pulse-ring"></i><span>Community Tech Outreach</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-female pulse-ring"></i><span>Women in Digital Programs</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-school pulse-ring"></i><span>School & Campus Programs</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chalkboard pulse-ring"></i><span>Entrepreneurship Awareness</span></div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b8.png" alt="Digital Literacy">
+          </div>
+          <i class="fas fa-graduation-cap pulse-ring"></i>
+          <span>Digital Literacy Programs</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b8.png" alt="Youth Workshops">
+          </div>
+          <i class="fas fa-users pulse-ring"></i>
+          <span>Youth Empowerment Workshops</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b8.png" alt="Community Outreach">
+          </div>
+          <i class="fas fa-tree pulse-ring"></i>
+          <span>Community Tech Outreach</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b8.png" alt="Women in Tech">
+          </div>
+          <i class="fas fa-female pulse-ring"></i>
+          <span>Women in Digital Programs</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b8.png" alt="Campus Programs">
+          </div>
+          <i class="fas fa-school pulse-ring"></i>
+          <span>School & Campus Programs</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="b8.png" alt="Awareness Sessions">
+          </div>
+          <i class="fas fa-chalkboard pulse-ring"></i>
+          <span>Entrepreneurship Awareness</span>
+        </div>
       </div>
     </div>
 
-    <!-- Corporate & Institutional Training -->
+    <!-- Corporate & Institutional Training (Image 7: 4d96.png) -->
     <div style="margin-bottom: 50px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
         <i class="fas fa-building" style="font-size: 28px; color: var(--green);"></i>
         <h3 style="font-size: 1.3rem; color: var(--navy); margin: 0;">Corporate & Institutional Training</h3>
       </div>
       <div class="whatwedo-grid">
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-laptop-code pulse-ring"></i><span>Digital Skills for Staff</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-brain pulse-ring"></i><span>AI Awareness & Adoption</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-clock pulse-ring"></i><span>Digital Productivity</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring"></i><span>Online Branding & Marketing</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-simple pulse-ring"></i><span>Tech for Business Growth</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-lightbulb pulse-ring"></i><span>Innovation & Entrepreneurship</span></div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="4d96.png" alt="Staff Training">
+          </div>
+          <i class="fas fa-laptop-code pulse-ring"></i>
+          <span>Digital Skills for Staff</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="4d96.png" alt="AI Awareness">
+          </div>
+          <i class="fas fa-brain pulse-ring"></i>
+          <span>AI Awareness & Adoption</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="4d96.png" alt="Productivity">
+          </div>
+          <i class="fas fa-clock pulse-ring"></i>
+          <span>Digital Productivity</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="4d96.png" alt="Online Branding">
+          </div>
+          <i class="fas fa-chart-line pulse-ring"></i>
+          <span>Online Branding & Marketing</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="4d96.png" alt="Tech for Business">
+          </div>
+          <i class="fas fa-chart-simple pulse-ring"></i>
+          <span>Tech for Business Growth</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="4d96.png" alt="Innovation Training">
+          </div>
+          <i class="fas fa-lightbulb pulse-ring"></i>
+          <span>Innovation & Entrepreneurship</span>
+        </div>
       </div>
     </div>
 
-    <!-- Events, Workshops & Bootcamps -->
+    <!-- Events, Workshops & Bootcamps (Image 8: 57.png) -->
     <div style="margin-bottom: 50px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
         <i class="fas fa-calendar-alt" style="font-size: 28px; color: var(--green);"></i>
         <h3 style="font-size: 1.3rem; color: var(--navy); margin: 0;">Events, Workshops & Bootcamps</h3>
       </div>
       <div class="whatwedo-grid">
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-laptop-code pulse-ring"></i><span>Tech Workshops</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-trophy pulse-ring"></i><span>Innovation Challenges</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-rocket pulse-ring"></i><span>Bootcamps</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-handshake pulse-ring"></i><span>Networking Events</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chalkboard-user pulse-ring"></i><span>Masterclasses</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-chart-line pulse-ring"></i><span>Startup & Business Sessions</span></div>
-        <div class="whatwedo-card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-microchip pulse-ring"></i><span>AI & Digital Economy Seminars</span></div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="57.png" alt="Tech Workshops">
+          </div>
+          <i class="fas fa-laptop-code pulse-ring"></i>
+          <span>Tech Workshops</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="57.png" alt="Innovation Challenges">
+          </div>
+          <i class="fas fa-trophy pulse-ring"></i>
+          <span>Innovation Challenges</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="57.png" alt="Bootcamps">
+          </div>
+          <i class="fas fa-rocket pulse-ring"></i>
+          <span>Bootcamps</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="57.png" alt="Networking Events">
+          </div>
+          <i class="fas fa-handshake pulse-ring"></i>
+          <span>Networking Events</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="57.png" alt="Masterclasses">
+          </div>
+          <i class="fas fa-chalkboard-user pulse-ring"></i>
+          <span>Masterclasses</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="57.png" alt="Business Sessions">
+          </div>
+          <i class="fas fa-chart-line pulse-ring"></i>
+          <span>Startup & Business Sessions</span>
+        </div>
+        <div class="whatwedo-card magnetic-card glow-gradient">
+          <div class="card-glow"></div>
+          <div class="service-image">
+            <img src="57.png" alt="AI Seminars">
+          </div>
+          <i class="fas fa-microchip pulse-ring"></i>
+          <span>AI & Digital Economy Seminars</span>
+        </div>
       </div>
     </div>
 
