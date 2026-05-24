@@ -3187,7 +3187,26 @@ Strong market opportunity with scalable growth potential.
 
 });
 
-// PAGE SWITCHING
+// On Programs page - highlight the selected service
+(function highlightSelectedService() {
+  const selected = sessionStorage.getItem('selectedWhatWeDo');
+  if (selected && document.getElementById('programs-page')?.classList.contains('active')) {
+    // Find and highlight matching element
+    const matchingElements = document.querySelectorAll('#programs-page .whatwedo-card span');
+    matchingElements.forEach(el => {
+      if (el.innerText === selected) {
+        el.closest('.whatwedo-card')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.closest('.whatwedo-card')?.classList.add('highlight-pulse');
+        setTimeout(() => {
+          el.closest('.whatwedo-card')?.classList.remove('highlight-pulse');
+        }, 2000);
+      }
+    });
+    // Clear after highlighting
+    sessionStorage.removeItem('selectedWhatWeDo');
+  }
+})();
+  // PAGE SWITCHING
 // =========================================================
 const pages = {
   home: document.getElementById('home-page'),
