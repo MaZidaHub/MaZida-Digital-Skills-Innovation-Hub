@@ -664,66 +664,26 @@ footer {
   padding: 0;
 }
 
-/* ===== FIXED IMAGE AREA ===== */
-
 .whatwedo-card .service-image {
   width: 100%;
-
-  /* FIX */
-  height: 240px;
-
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
   background: #0a192f;
-
-  /* FIX */
-  flex-shrink: 0;
 }
 
 .whatwedo-card .service-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  /* FIX */
-  display: block;
-
-  transition: transform 0.3s ease;
-}
-
-.whatwedo-card:hover .service-image img {
-  transform: scale(1.05);
-}
-
-.whatwedo-card i {
-  font-size: 32px;
-  color: var(--green);
-  margin-top: 16px;
-}
-
-.whatwedo-card span {
-  font-size: 0.85rem;
-  color: var(--text);
-  font-weight: 500;
-  padding: 0 16px 20px 16px;
-  margin-top: 8px;
-  line-height: 1.4;
-}
-
-.whatwedo-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    }
-    .whatwedo-grid {
-  align-items: start;
-}
-
-.whatwedo-card {
+  max-width: 100%;
+  max-height: 180px;
+  width: auto;
   height: auto;
-}
-    img {
+  object-fit: contain;
   display: block;
-  }
-    /* ===== WHO WE SERVE ===== */
+  margin: 0 auto;
+    }
+    
+ /* ===== WHO WE SERVE ===== */
 
 .who-we-serve {
   text-align: center;
@@ -1267,7 +1227,7 @@ footer {
       </div>
     </div>    
     
-    <!-- ====== WHAT WE DO SECTION (CLEAN FIX - NO IMAGE DUPLICATION) ====== -->
+    <!-- ====== WHAT WE DO SECTION (FINAL CLEAN VERSION) ====== -->
 <div class="section section-light scroll-reveal"
      style="position: relative; overflow: hidden; background: white; opacity:1; transform:none;">
 
@@ -1275,20 +1235,21 @@ footer {
 
   <div class="container" style="position: relative; z-index: 2;">
 
-    <!-- TITLE -->
+    <!-- SECTION TITLE -->
     <div class="section-title">
       <span>✦ What We Do ✦</span>
       <h2>What We Do</h2>
       <p style="max-width:700px; margin:16px auto 0; color:var(--muted);">
-        Empowering individuals, startups, businesses, and communities with practical digital skills and innovation.
+        Empowering individuals, startups, businesses, and communities with practical digital skills,
+        innovation support, and technology solutions for Africa’s digital economy.
       </p>
     </div>
 
     <!-- ================= CATEGORY 1 ================= -->
-    <div style="margin-bottom:50px;">
+    <div style="margin-bottom:60px;">
 
-      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-        <div style="width:60px; height:60px; border-radius:12px; overflow:hidden;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:70px; height:70px; overflow:hidden; border-radius:14px;">
           <img src="d8a8.png" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <div>
@@ -1300,21 +1261,25 @@ footer {
       <div class="whatwedo-grid">
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="d8a8.png"></div>
           <i class="fas fa-code"></i>
           <span>Web Development & Website Design</span>
         </div>
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="d8a8.png"></div>
           <i class="fas fa-paint-brush"></i>
           <span>Graphic Design & Branding</span>
         </div>
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="d8a8.png"></div>
           <i class="fas fa-chart-line"></i>
           <span>Digital Marketing & Social Media</span>
         </div>
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="d8a8.png"></div>
           <i class="fas fa-robot"></i>
           <span>AI Tools & Automation</span>
         </div>
@@ -1323,10 +1288,10 @@ footer {
     </div>
 
     <!-- ================= CATEGORY 2 ================= -->
-    <div style="margin-bottom:50px;">
+    <div style="margin-bottom:60px;">
 
-      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-        <div style="width:60px; height:60px; border-radius:12px; overflow:hidden;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:70px; height:70px; overflow:hidden; border-radius:14px;">
           <img src="d410419.png" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <div>
@@ -1338,16 +1303,19 @@ footer {
       <div class="whatwedo-grid">
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="d410419.png"></div>
           <i class="fas fa-chalkboard-user"></i>
           <span>AI Workshops & Training</span>
         </div>
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="d410419.png"></div>
           <i class="fas fa-cogs"></i>
           <span>Business Automation Solutions</span>
         </div>
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="d410419.png"></div>
           <i class="fas fa-globe"></i>
           <span>Digital Business Systems</span>
         </div>
@@ -1356,10 +1324,10 @@ footer {
     </div>
 
     <!-- ================= CATEGORY 3 ================= -->
-    <div style="margin-bottom:50px;">
+    <div style="margin-bottom:60px;">
 
-      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-        <div style="width:60px; height:60px; border-radius:12px; overflow:hidden;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:70px; height:70px; overflow:hidden; border-radius:14px;">
           <img src="bd064.png" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <div>
@@ -1371,18 +1339,57 @@ footer {
       <div class="whatwedo-grid">
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="bd064.png"></div>
           <i class="fas fa-code"></i>
           <span>Website Design & Development</span>
         </div>
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="bd064.png"></div>
           <i class="fas fa-shopping-cart"></i>
           <span>E-commerce Websites</span>
         </div>
 
         <div class="whatwedo-card">
+          <div class="service-image"><img src="bd064.png"></div>
           <i class="fas fa-envelope"></i>
           <span>Business Email Setup</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= CATEGORY 4 ================= -->
+    <div style="margin-bottom:60px;">
+
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:70px; height:70px; overflow:hidden; border-radius:14px;">
+          <img src="b97.png" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <i class="fas fa-rocket" style="font-size:26px; color:var(--green);"></i>
+          <h3 style="margin:0;">Innovation & Startup Support</h3>
+        </div>
+      </div>
+
+      <div class="whatwedo-grid">
+
+        <div class="whatwedo-card">
+          <div class="service-image"><img src="b97.png"></div>
+          <i class="fas fa-users"></i>
+          <span>Startup Mentorship</span>
+        </div>
+
+        <div class="whatwedo-card">
+          <div class="service-image"><img src="b97.png"></div>
+          <i class="fas fa-lightbulb"></i>
+          <span>Innovation Coaching</span>
+        </div>
+
+        <div class="whatwedo-card">
+          <div class="service-image"><img src="b97.png"></div>
+          <i class="fas fa-cube"></i>
+          <span>Product Development Support</span>
         </div>
 
       </div>
