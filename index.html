@@ -683,7 +683,43 @@ footer {
   margin: 0 auto;
     }
     
- /* ===== WHO WE SERVE ===== */
+ .highlight-pulse {
+  animation: highlightGlow 0.6s ease-in-out 3;
+  box-shadow: 0 0 0 3px var(--green), 0 0 0 6px rgba(46, 204, 113, 0.3);
+}
+
+@keyframes highlightGlow {
+  0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(46, 204, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+    
+    /* Clickable card styles */
+.whatwedo-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.whatwedo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.whatwedo-card:active {
+  transform: translateY(-2px);
+}
+
+/* Category header clickable */
+.category-header {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-header:hover {
+  opacity: 0.85;
+    }
+    
+    /* ===== WHO WE SERVE ===== */
 
 .who-we-serve {
   text-align: center;
@@ -3750,25 +3786,111 @@ Strong market opportunity with scalable growth potential.
 
 });
 
-// On Programs page - highlight the selected service
-(function highlightSelectedService() {
-  const selected = sessionStorage.getItem('selectedWhatWeDo');
-  if (selected && document.getElementById('programs-page')?.classList.contains('active')) {
-    // Find and highlight matching element
-    const matchingElements = document.querySelectorAll('#programs-page .whatwedo-card span');
-    matchingElements.forEach(el => {
-      if (el.innerText === selected) {
-        el.closest('.whatwedo-card')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        el.closest('.whatwedo-card')?.classList.add('highlight-pulse');
-        setTimeout(() => {
-          el.closest('.whatwedo-card')?.classList.remove('highlight-pulse');
-        }, 2000);
+// =========================================================
+// WHAT WE DO CARDS - REDIRECT TO SERVICES/PROGRAMS PAGE
+// =========================================================
+function initWhatWeDoCards() {
+  // Select all What We Do cards (the individual service cards)
+  const serviceCards = document.querySelectorAll('.whatwedo-card');
+  
+  if (serviceCards.length === 0) return;
+  
+  serviceCards.forEach(card => {
+    // Make cursor pointer to show it's clickable
+    card.style.cursor = 'pointer';
+    
+    // Add click event
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Get the service name for tracking (optional)
+      const serviceName = this.querySelector('span')?.innerText || 'Service';
+      console.log('Redirecting to Programs page from:', serviceName);
+      
+      // Store selected service (optional - for highlighting on programs page)
+      sessionStorage.setItem('selectedService', serviceName);
+      
+      // Redirect to Programs/Services page
+      // Using your existing switchPage function
+      if (typeof switchPage === 'function') {
+        switchPage('programs');
+      } else if (pages && pages.programs) {
+        // Manual page switching
+        Object.values(pages).forEach(p => p?.classList.remove('active'));
+        pages.programs.classList.add('active');
+        window.scrollTo(0, 0);
+      } else {
+        // Fallback: try to find programs page by ID
+        const programsPage = document.getElementById('programs-page');
+        if (programsPage) {
+          document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+          programsPage.classList.add('active');
+          window.scrollTo(0, 0);
+        }
       }
     });
+  });
+}
+
+// Also make category headers clickable (optional)
+function initCategoryHeaders() {
+  const categoryHeaders = document.querySelectorAll('.category-header');
+  
+  categoryHeaders.forEach(header => {
+    header.style.cursor = 'pointer';
+    header.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const categoryName = this.querySelector('h3')?.innerText || 'Category';
+      console.log('Redirecting to Programs page from category:', categoryName);
+      sessionStorage.setItem('selectedCategory', categoryName);
+      
+      if (typeof switchPage === 'function') {
+        switchPage('programs');
+      } else if (pages && pages.programs) {
+        Object.values(pages).forEach(p => p?.classList.remove('active'));
+        pages.programs.classList.add('active');
+        window.scrollTo(0, 0);
+      }
+    });
+  });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  initWhatWeDoCards();
+  initCategoryHeaders();
+});
+  // Highlight selected service on Programs page
+function highlightSelectedService() {
+  const selectedService = sessionStorage.getItem('selectedService');
+  if (selectedService && document.getElementById('programs-page')?.classList.contains('active')) {
+    // Find matching service on programs page
+    const serviceElements = document.querySelectorAll('#programs-page .whatwedo-card span, #programs-page .service-item span, #programs-page .program-card h3');
+    
+    serviceElements.forEach(el => {
+      if (el.innerText === selectedService || el.innerText.includes(selectedService.split(' ')[0])) {
+        el.closest('.whatwedo-card, .service-item, .program-card')?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+        el.closest('.whatwedo-card, .service-item, .program-card')?.classList.add('highlight-pulse');
+        setTimeout(() => {
+          el.closest('.whatwedo-card, .service-item, .program-card')?.classList.remove('highlight-pulse');
+        }, 2500);
+      }
+    });
+    
     // Clear after highlighting
-    sessionStorage.removeItem('selectedWhatWeDo');
+    sessionStorage.removeItem('selectedService');
+    sessionStorage.removeItem('selectedCategory');
   }
-})();
+}
+
+// Call this after page switch or on programs page load
+document.addEventListener('DOMContentLoaded', highlightSelectedService);
   // PAGE SWITCHING
 // =========================================================
 const pages = {
