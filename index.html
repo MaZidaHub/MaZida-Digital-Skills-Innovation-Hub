@@ -1501,6 +1501,63 @@ footer {
     flex-direction: column;
   }
     }
+    /* Dashboard Sidebar */
+.dashboard-container {
+  display: flex;
+  min-height: calc(100vh - 95px);
+}
+
+.dashboard-sidebar {
+  width: 280px;
+  background: var(--navy);
+  color: white;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  background: rgba(46,204,113,0.1);
+  color: var(--green);
+  border-left: 3px solid var(--green);
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  background: var(--soft);
+}
+
+.dashboard-tab {
+  display: none;
+}
+
+.dashboard-tab.active-tab {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    width: 80px;
+  }
+  .sidebar-link span {
+    display: none;
+  }
+  .dashboard-main {
+    padding: 20px;
+  }
+}
   </style>
 </head>
 <body>
@@ -3468,7 +3525,7 @@ The platform supports financial inclusion by helping underserved African SMEs an
 
     <div id="contact-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Contact</h1></div></div><div class="section scroll-reveal"><div class="container"><div class="grid-2col"><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fas fa-envelope pulse-ring"></i><h3>Email</h3><p>hello@mazida.com</p></div><div class="card magnetic-card glow-gradient"><div class="card-glow"></div><i class="fab fa-whatsapp pulse-ring"></i><h3>WhatsApp</h3><p>+260 97 123 4567</p></div></div></div></div></div>
   
-  <!-- ====== MAZIDA AI DETAILED PAGE ======== -->
+  <!-- ==================== MAZIDA AI LANDING PAGE (MARKETING LAYER) ==================== -->
 <div id="mazida-ai-page" class="page">
   <div class="navbar-spacer"></div>
   
@@ -3482,218 +3539,147 @@ The platform supports financial inclusion by helping underserved African SMEs an
       <p style="font-size: 1.2rem; max-width: 700px; margin: 16px auto 0;">AI Workspace for Learning, Business & Opportunity</p>
       <p style="font-size: 1rem; max-width: 700px; margin: 16px auto 0; opacity: 0.85;">Built to unlock Africa's potential through accessible AI-powered tools, digital workspaces, and innovation opportunities.</p>
       <div style="margin-top: 32px;">
-        <a class="btn btn-primary btn-large" style="margin-right: 16px;">Get Early Access →</a>
-        <a class="btn btn-outline btn-large">Explore Features</a>
+        <a class="btn btn-primary btn-large" style="margin-right: 16px;" data-page="mazida-ai-dashboard">🚀 Launch Dashboard →</a>
+        <a class="btn btn-outline btn-large" href="#features">Explore Features</a>
+      </div>
+      <div class="hero-stats" style="display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap;">
+        <div class="stat-item"><span class="stat-number">13+</span><span class="stat-label">AI Tools</span></div>
+        <div class="stat-item"><span class="stat-number">10K+</span><span class="stat-label">Active Users</span></div>
+        <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">Availability</span></div>
+        <div class="stat-item"><span class="stat-number">Free</span><span class="stat-label">To Start</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Platform Overview Section -->
-  <div class="section section-light scroll-reveal">
+  <!-- Who It Helps Section -->
+  <div class="section section-light scroll-reveal" id="features">
     <div class="container">
       <div class="section-title">
-        <span>✦ Platform Overview ✦</span>
-        <h2>Built for Africa. Powered by AI.</h2>
-      </div>
-      <div class="card" style="text-align: center; max-width: 900px; margin: 0 auto;">
-        <p style="font-size: 1.05rem; line-height: 1.7;">MaZida AI is the digital technology and artificial intelligence platform developed under <strong>MaZida Digital Skills & Innovation Hub</strong> and operated by <strong>Basiwel Holistic Ventures Ltd</strong>, built to unlock Africa's potential through accessible AI-powered tools, digital workspaces, and innovation opportunities.</p>
-        <p style="font-size: 1rem; line-height: 1.7; margin-top: 20px;">The platform empowers <strong>students, young professionals, SMEs, startups, employers, and emerging workforces</strong> to learn, build, work, collaborate, access opportunities, and grow digitally through an integrated AI workspace ecosystem designed for Africa.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Built-In Modules Section -->
-  <div class="section section-soft scroll-reveal">
-    <div class="container">
-      <div class="section-title">
-        <span>✦ Built-In Modules ✦</span>
-        <h2>Integrated AI Workspace Ecosystem</h2>
-        <p style="max-width: 700px; margin: 12px auto 0; color: var(--muted);">Seven powerful modules working together as one seamless platform</p>
-      </div>
-      <div class="grid-2col">
-        
-        <!-- Module 1: AI Assistant -->
-        <div class="card magnetic-card glow-gradient">
-          <div class="card-glow"></div>
-          <i class="fas fa-robot pulse-ring" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
-          <h3>🤖 AI Assistant</h3>
-          <p>Smart AI support for productivity, research, guidance, content generation, planning, and digital execution.</p>
-          <div class="whatwedo-tags" style="margin-top: 16px;">
-            <span>Productivity</span>
-            <span>Research</span>
-            <span>Content Generation</span>
-          </div>
-        </div>
-
-        <!-- Module 2: Learning Hub -->
-        <div class="card magnetic-card glow-gradient">
-          <div class="card-glow"></div>
-          <i class="fas fa-graduation-cap pulse-ring" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
-          <h3>📚 Learning Hub</h3>
-          <p>Personalized digital skills training, AI learning pathways, career development, and practical workforce preparation.</p>
-          <div class="whatwedo-tags" style="margin-top: 16px;">
-            <span>Digital Skills</span>
-            <span>Career Paths</span>
-            <span>AI Learning</span>
-          </div>
-        </div>
-
-        <!-- Module 3: Business Toolkit -->
-        <div class="card magnetic-card glow-gradient">
-          <div class="card-glow"></div>
-          <i class="fas fa-chart-line pulse-ring" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
-          <h3>💼 Business Toolkit</h3>
-          <p>AI-powered business planning, proposal generation, investor-readiness support, operations management, and SME growth tools.</p>
-          <div class="whatwedo-tags" style="margin-top: 16px;">
-            <span>Business Planning</span>
-            <span>Proposal Gen</span>
-            <span>Investor Readiness</span>
-          </div>
-        </div>
-
-        <!-- Module 4: Automation Tools -->
-        <div class="card magnetic-card glow-gradient">
-          <div class="card-glow"></div>
-          <i class="fas fa-cogs pulse-ring" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
-          <h3>⚙️ Automation Tools</h3>
-          <p>Workflow automation and intelligent systems that simplify repetitive tasks, improve efficiency, and support digital operations.</p>
-          <div class="whatwedo-tags" style="margin-top: 16px;">
-            <span>Workflow Automation</span>
-            <span>Efficiency</span>
-            <span>Smart Systems</span>
-          </div>
-        </div>
-
-        <!-- Module 5: Workforce Access -->
-        <div class="card magnetic-card glow-gradient">
-          <div class="card-glow"></div>
-          <i class="fas fa-users pulse-ring" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
-          <h3>👥 Workforce Access</h3>
-          <p>Digital workforce and opportunity access connecting talent, freelancers, professionals, startups, and employers.</p>
-          <div class="whatwedo-tags" style="margin-top: 16px;">
-            <span>Talent Connect</span>
-            <span>Freelancing</span>
-            <span>Employer Access</span>
-          </div>
-        </div>
-
-        <!-- Module 6: Opportunity Marketplace -->
-        <div class="card magnetic-card glow-gradient">
-          <div class="card-glow"></div>
-          <i class="fas fa-store pulse-ring" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
-          <h3>🏪 Opportunity Marketplace</h3>
-          <p>Access to innovation programs, projects, partnerships, remote work, funding opportunities, and digital income pathways.</p>
-          <div class="whatwedo-tags" style="margin-top: 16px;">
-            <span>Funding</span>
-            <span>Remote Work</span>
-            <span>Partnerships</span>
-          </div>
-        </div>
-
-        <!-- Module 7: Collaboration Tools -->
-        <div class="card magnetic-card glow-gradient">
-          <div class="card-glow"></div>
-          <i class="fas fa-handshake pulse-ring" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
-          <h3>🤝 Collaboration Tools</h3>
-          <p>Shared digital workspaces for teams, startups, creators, organizations, and communities to collaborate and execute projects effectively.</p>
-          <div class="whatwedo-tags" style="margin-top: 16px;">
-            <span>Team Workspace</span>
-            <span>Project Collaboration</span>
-            <span>Shared Tools</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- How It Works - Flow Diagram -->
-  <div class="section section-light scroll-reveal">
-    <div class="container">
-      <div class="section-title">
-        <span>✦ How It Works ✦</span>
-        <h2>From User to Impact</h2>
-      </div>
-      <div class="flowchart" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px; margin: 40px 0;">
-        <div class="flow-step" style="text-align: center; min-width: 140px;">
-          <div style="background: var(--green-10); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
-            <i class="fas fa-user" style="font-size: 36px; color: var(--green);"></i>
-          </div>
-          <p style="font-weight: 600;">User<br><small style="color: var(--muted);">Student · Pro · Business</small></p>
-        </div>
-        <i class="fas fa-arrow-right" style="font-size: 24px; color: var(--green);"></i>
-        <div class="flow-step" style="text-align: center; min-width: 140px;">
-          <div style="background: var(--green-10); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
-            <i class="fas fa-microchip" style="font-size: 36px; color: var(--green);"></i>
-          </div>
-          <p style="font-weight: 600;">MaZida AI<br><small style="color: var(--muted);">7 Integrated Modules</small></p>
-        </div>
-        <i class="fas fa-arrow-right" style="font-size: 24px; color: var(--green);"></i>
-        <div class="flow-step" style="text-align: center; min-width: 140px;">
-          <div style="background: var(--green-10); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
-            <i class="fas fa-chart-line" style="font-size: 36px; color: var(--green);"></i>
-          </div>
-          <p style="font-weight: 600;">Outcomes<br><small style="color: var(--muted);">Growth · Income · Impact</small></p>
-        </div>
-      </div>
-      <div class="grid-2col" style="margin-top: 20px; text-align: center;">
-        <div class="card"><i class="fas fa-graduation-cap" style="font-size: 32px; color: var(--green);"></i><p style="margin-top: 12px;">Learn & Upskill</p></div>
-        <div class="card"><i class="fas fa-briefcase" style="font-size: 32px; color: var(--green);"></i><p style="margin-top: 12px;">Work & Earn</p></div>
-        <div class="card"><i class="fas fa-chart-pie" style="font-size: 32px; color: var(--green);"></i><p style="margin-top: 12px;">Build & Scale</p></div>
-        <div class="card"><i class="fas fa-handshake" style="font-size: 32px; color: var(--green);"></i><p style="margin-top: 12px;">Collaborate & Grow</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Who Can Benefit -->
-  <div class="section section-soft scroll-reveal">
-    <div class="container">
-      <div class="section-title">
-        <span>✦ Who Can Benefit ✦</span>
+        <span>✦ Who It Helps ✦</span>
         <h2>Designed for Africa's Ecosystem</h2>
       </div>
-      <div class="function-grid">
-        <div class="func-item"><i class="fas fa-user-graduate"></i><h4>Students</h4><p>Learn digital skills & prepare for careers</p></div>
-        <div class="func-item"><i class="fas fa-briefcase"></i><h4>Young Professionals</h4><p>Upskill & access opportunities</p></div>
-        <div class="func-item"><i class="fas fa-building"></i><h4>SMEs</h4><p>Grow with AI-powered tools</p></div>
-        <div class="func-item"><i class="fas fa-rocket"></i><h4>Startups</h4><p>Build & scale faster</p></div>
-        <div class="func-item"><i class="fas fa-handshake"></i><h4>Employers</h4><p>Access vetted talent</p></div>
-        <div class="func-item"><i class="fas fa-users"></i><h4>Emerging Workforce</h4><p>Prepare for future of work</p></div>
+      <div class="grid-2col">
+        <div class="card text-center"><i class="fas fa-user-graduate" style="font-size: 40px; color: var(--green);"></i><h3>Students</h3><p>Learn digital skills & prepare for careers</p></div>
+        <div class="card text-center"><i class="fas fa-briefcase" style="font-size: 40px; color: var(--green);"></i><h3>Young Professionals</h3><p>Upskill & access opportunities</p></div>
+        <div class="card text-center"><i class="fas fa-building" style="font-size: 40px; color: var(--green);"></i><h3>SMEs</h3><p>Grow with AI-powered tools</p></div>
+        <div class="card text-center"><i class="fas fa-rocket" style="font-size: 40px; color: var(--green);"></i><h3>Startups</h3><p>Build & scale faster</p></div>
       </div>
     </div>
   </div>
 
-  <!-- Positioning Statement -->
-  <div class="section section-light scroll-reveal">
-    <div class="container">
-      <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white;">
-        <i class="fas fa-quote-left" style="font-size: 48px; color: var(--green); opacity: 0.5; margin-bottom: 20px;"></i>
-        <h2 style="color: white;">Positioning Statement</h2>
-        <p style="font-size: 1.2rem; max-width: 800px; margin: 20px auto; line-height: 1.7;">MaZida AI is Africa's AI Workspace Platform — empowering people and businesses with intelligent tools for learning, business, work, and opportunity.</p>
-        <div style="margin-top: 30px;">
-          <a class="btn btn-primary btn-large" style="background: var(--green); color: var(--navy);">Join the Waitlist →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Legal & Ecosystem -->
+  <!-- Tools Overview - Showcase what exists -->
   <div class="section section-soft scroll-reveal">
     <div class="container">
+      <div class="section-title">
+        <span>✦ AI Tools Overview ✦</span>
+        <h2>What You Can Do</h2>
+      </div>
+      <div class="tools-showcase-grid">
+        <div class="tool-card-marketing"><i class="fas fa-robot"></i><h3>AI Assistant</h3><p>Your intelligent companion for questions, ideas, and guidance</p></div>
+        <div class="tool-card-marketing"><i class="fas fa-file-alt"></i><h3>Proposal Generator</h3><p>Create professional proposals in minutes</p></div>
+        <div class="tool-card-marketing"><i class="fas fa-file-pdf"></i><h3>CV Builder</h3><p>Build ATS-friendly resumes that get noticed</p></div>
+        <div class="tool-card-marketing"><i class="fas fa-chalkboard"></i><h3>Business Plan Generator</h3><p>Generate comprehensive business plans</p></div>
+        <div class="tool-card-marketing"><i class="fas fa-chalkboard-user"></i><h3>Pitch Deck Assistant</h3><p>Create investor-ready pitch decks</p></div>
+        <div class="tool-card-marketing"><i class="fas fa-graduation-cap"></i><h3>Learning Assistant</h3><p>Personalized learning paths and tutoring</p></div>
+        <div class="tool-card-marketing"><i class="fas fa-search"></i><h3>Research Assistant</h3><p>Faster research with AI-powered tools</p></div>
+        <div class="tool-card-marketing"><i class="fas fa-pen-fancy"></i><h3>Content Generator</h3><p>Generate blogs, social media, marketing copy</p></div>
+      </div>
+      <div style="text-align: center; margin-top: 30px;">
+        <a class="btn btn-primary" data-page="mazida-ai-dashboard">View All Tools →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screenshot / Preview Section -->
+  <div class="section section-light scroll-reveal">
+    <div class="container">
+      <div class="section-title">
+        <span>✦ Preview ✦</span>
+        <h2>See MaZida AI in Action</h2>
+      </div>
+      <div class="card" style="text-align: center; background: var(--navy); padding: 40px; border-radius: 28px;">
+        <div style="background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; text-align: center;">
+          <i class="fas fa-desktop" style="font-size: 64px; color: var(--green); margin-bottom: 20px;"></i>
+          <p style="color: white; margin-bottom: 20px;">Interactive workspace with AI Assistant, Proposal Generator, and collaboration tools</p>
+          <div style="background: var(--navy-light); border-radius: 16px; padding: 20px; margin-top: 20px;">
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+              <span style="background: var(--green-10); color: var(--green); padding: 8px 16px; border-radius: 12px;">🤖 AI Assistant</span>
+              <span style="background: var(--green-10); color: var(--green); padding: 8px 16px; border-radius: 12px;">📄 Proposal Gen</span>
+              <span style="background: var(--green-10); color: var(--green); padding: 8px 16px; border-radius: 12px;">💼 Business Plan</span>
+              <span style="background: var(--green-10); color: var(--green); padding: 8px 16px; border-radius: 12px;">📚 Learning Hub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing / Plans Section -->
+  <div class="section section-soft scroll-reveal">
+    <div class="container">
+      <div class="section-title">
+        <span>✦ Pricing & Plans ✦</span>
+        <h2>Start Free. Scale as You Grow.</h2>
+      </div>
       <div class="grid-2col">
-        <div class="card magnetic-card glow-gradient" style="text-align: center;">
-          <div class="card-glow"></div>
-          <i class="fas fa-building pulse-ring" style="font-size: 48px; color: var(--green);"></i>
-          <h3>Legal Operator</h3>
-          <p><strong>Basiwel Holistic Ventures Ltd</strong><br>A Zambian financial and business solutions company committed to innovation, entrepreneurship, technology, and sustainable economic empowerment.</p>
+        <div class="card text-center" style="border: 2px solid var(--green-10);">
+          <h3>Free</h3>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--navy); margin: 16px 0;">$0</div>
+          <p>Forever free</p>
+          <ul style="list-style: none; margin: 20px 0; text-align: left;">
+            <li style="margin-bottom: 8px;">✓ Up to 5 AI tools</li>
+            <li style="margin-bottom: 8px;">✓ 10 documents/month</li>
+            <li style="margin-bottom: 8px;">✓ Basic AI Assistant</li>
+            <li style="margin-bottom: 8px;">✓ Community support</li>
+          </ul>
+          <a class="btn btn-primary" data-page="mazida-ai-dashboard">Get Started →</a>
         </div>
-        <div class="card magnetic-card glow-gradient" style="text-align: center;">
-          <div class="card-glow"></div>
-          <i class="fas fa-cube pulse-ring" style="font-size: 48px; color: var(--green);"></i>
-          <h3>Part of MaZida Ecosystem</h3>
-          <p>MaZida AI is the flagship AI platform under <strong>MaZida Digital Skills & Innovation Hub</strong>, working alongside MaZida AI Workspace, Startup Media, and Digital Skills Academy.</p>
-          <a class="btn btn-outline" style="margin-top: 16px;" data-page="coreplatforms">Explore Ecosystem →</a>
+        <div class="card text-center" style="border: 2px solid var(--green);">
+          <div style="display: inline-block; background: var(--green); color: var(--navy); padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 12px;">Popular</div>
+          <h3>Pro</h3>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--navy); margin: 16px 0;">$29<span style="font-size: 1rem;">/month</span></div>
+          <p>For professionals and growing teams</p>
+          <ul style="list-style: none; margin: 20px 0; text-align: left;">
+            <li style="margin-bottom: 8px;">✓ All 13+ AI tools</li>
+            <li style="margin-bottom: 8px;">✓ Unlimited documents</li>
+            <li style="margin-bottom: 8px;">✓ Advanced AI Assistant</li>
+            <li style="margin-bottom: 8px;">✓ Priority support</li>
+            <li style="margin-bottom: 8px;">✓ Collaboration tools</li>
+          </ul>
+          <a class="btn btn-primary" data-page="mazida-ai-dashboard">Start Pro Trial →</a>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="section section-light scroll-reveal">
+    <div class="container">
+      <div class="section-title">
+        <span>✦ Frequently Asked Questions ✦</span>
+        <h2>Got Questions?</h2>
+      </div>
+      <div class="grid-2col">
+        <div class="card"><h3>What is MaZida AI?</h3><p>An AI-powered workspace platform for learning, business, and opportunity, built specifically for African users.</p></div>
+        <div class="card"><h3>Is it really free to start?</h3><p>Yes! The free plan includes 5 AI tools and 10 documents per month. No credit card required.</p></div>
+        <div class="card"><h3>Can I use it on mobile?</h3><p>Yes, MaZida AI is fully responsive and works on desktop, tablet, and mobile devices.</p></div>
+        <div class="card"><h3>Is my data secure?</h3><p>Absolutely. We prioritize data security and privacy. Your information is protected.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA -->
+  <div class="section section-soft scroll-reveal">
+    <div class="container">
+      <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white;">
+        <i class="fas fa-rocket" style="font-size: 48px; color: var(--green); margin-bottom: 16px;"></i>
+        <h2 style="color: white;">Ready to Transform Your Workflow?</h2>
+        <p style="max-width: 600px; margin: 16px auto;">Join thousands of African professionals using MaZida AI to work smarter and grow faster.</p>
+        <div style="margin-top: 24px;">
+          <a class="btn btn-primary btn-large" style="margin-right: 16px;" data-page="mazida-ai-dashboard">🚀 Launch Dashboard →</a>
+          <a class="btn btn-outline btn-large" data-page="workspace">Explore AI Workspace</a>
+        </div>
+        <p style="font-size: 0.8rem; margin-top: 24px; opacity: 0.7;">No credit card required. Free forever plan available.</p>
       </div>
     </div>
   </div>
@@ -3994,6 +3980,107 @@ The platform supports financial inclusion by helping underserved African SMEs an
   </div>
 
 </div>
+  <!-- ==================== MAZIDA AI APP DASHBOARD (ACTUAL WORKSPACE) ==================== -->
+<div id="mazida-ai-dashboard-page" class="page">
+  <div class="navbar-spacer"></div>
+  
+  <!-- Dashboard Container -->
+  <div class="dashboard-container" style="display: flex; min-height: calc(100vh - 95px); background: var(--soft);">
+    
+    <!-- Sidebar -->
+    <div class="dashboard-sidebar" style="width: 280px; background: var(--navy); color: white; flex-shrink: 0;">
+      <div class="sidebar-header" style="padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <i class="fas fa-microchip" style="font-size: 28px; color: var(--green);"></i>
+          <div><strong>MaZida AI</strong><br><span style="font-size: 12px; opacity: 0.7;">Workspace</span></div>
+        </div>
+      </div>
+      <div class="sidebar-nav" style="padding: 20px 0;">
+        <a href="#" class="sidebar-link active" data-dashboard-tab="assistant"><i class="fas fa-robot"></i> AI Assistant</a>
+        <a href="#" class="sidebar-link" data-dashboard-tab="workspace"><i class="fas fa-tasks"></i> My Workspace</a>
+        <a href="#" class="sidebar-link" data-dashboard-tab="proposals"><i class="fas fa-file-alt"></i> Proposals</a>
+        <a href="#" class="sidebar-link" data-dashboard-tab="learning"><i class="fas fa-graduation-cap"></i> Learning Hub</a>
+        <a href="#" class="sidebar-link" data-dashboard-tab="automation"><i class="fas fa-cogs"></i> Automation</a>
+        <a href="#" class="sidebar-link" data-dashboard-tab="documents"><i class="fas fa-folder-open"></i> My Documents</a>
+        <a href="#" class="sidebar-link" data-dashboard-tab="settings"><i class="fas fa-cog"></i> Settings</a>
+      </div>
+      <div class="sidebar-footer" style="padding: 24px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: auto;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 40px; height: 40px; background: var(--green-10); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-user" style="color: var(--green);"></i>
+          </div>
+          <div><small>Logged in as</small><br><strong>User Name</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area - Actual Tools -->
+    <div class="dashboard-main" style="flex: 1; padding: 30px; overflow-y: auto;">
+      
+      <!-- Tab: AI Assistant -->
+      <div id="dashboard-assistant" class="dashboard-tab active-tab">
+        <div class="card" style="height: 100%;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+            <h2><i class="fas fa-robot" style="color: var(--green);"></i> AI Assistant</h2>
+            <button class="btn btn-primary" style="padding: 8px 20px;">New Chat →</button>
+          </div>
+          <div class="chat-container" style="background: var(--soft); border-radius: 20px; padding: 20px; min-height: 500px;">
+            <div class="chat-messages" id="dashboardChatMessages" style="height: 400px; overflow-y: auto; margin-bottom: 20px;">
+              <div class="message bot" style="background: var(--navy); color: white; padding: 12px 16px; border-radius: 18px; margin-bottom: 12px; max-width: 85%;">
+                <i class="fas fa-robot"></i> Hello! I'm your AI Assistant. How can I help you today?
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <input type="text" id="dashboardChatInput" placeholder="Ask me anything..." style="flex: 1; padding: 14px; border-radius: 40px; border: 1px solid var(--gray-mid);">
+              <button id="dashboardSendBtn" class="btn btn-primary">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: My Workspace -->
+      <div id="dashboard-workspace" class="dashboard-tab">
+        <div class="grid-2col">
+          <div class="card"><h3><i class="fas fa-tasks"></i> My Tasks</h3><div id="dashboardTaskList"></div><div style="display: flex; gap: 10px; margin-top: 16px;"><input type="text" id="dashboardNewTask" placeholder="Add a task..." style="flex:1; padding: 10px; border-radius: 40px;"><button id="dashboardAddTaskBtn" class="btn btn-primary">+ Add</button></div></div>
+          <div class="card"><h3><i class="fas fa-sticky-note"></i> Quick Notes</h3><textarea id="dashboardNotes" rows="8" style="width:100%; padding: 12px; border-radius: 12px;"></textarea><button id="dashboardSaveNotesBtn" class="btn btn-outline" style="margin-top: 12px;">Save Notes</button></div>
+        </div>
+      </div>
+
+      <!-- Tab: Proposals -->
+      <div id="dashboard-proposals" class="dashboard-tab">
+        <div class="card"><h2><i class="fas fa-file-alt"></i> Proposal Generator</h2><div class="form-group"><label>Client Name</label><input type="text" id="propClient" style="width:100%; padding: 12px; border-radius: 12px;"></div><div class="form-group"><label>Project Description</label><textarea id="propDesc" rows="3" style="width:100%; padding: 12px; border-radius: 12px;"></textarea></div><button id="generateProposalDashboardBtn" class="btn btn-primary">Generate Proposal →</button><div id="propOutput" style="margin-top:20px; display:none;"><div id="propContent" style="background:var(--soft); padding:20px; border-radius:16px;"></div></div></div>
+      </div>
+
+      <!-- Tab: Learning Hub -->
+      <div id="dashboard-learning" class="dashboard-tab">
+        <div class="grid-2col">
+          <div class="card"><i class="fas fa-robot" style="font-size: 40px; color: var(--green);"></i><h3>AI Literacy</h3><p>Learn how to use AI effectively</p><a href="#" class="btn btn-outline" style="margin-top: 12px;">Start Course →</a></div>
+          <div class="card"><i class="fas fa-code" style="font-size: 40px; color: var(--green);"></i><h3>Web Development</h3><p>Build websites from scratch</p><a href="#" class="btn btn-outline" style="margin-top: 12px;">Start Course →</a></div>
+          <div class="card"><i class="fas fa-chart-line" style="font-size: 40px; color: var(--green);"></i><h3>Digital Marketing</h3><p>Master SEO, social media, and ads</p><a href="#" class="btn btn-outline" style="margin-top: 12px;">Start Course →</a></div>
+          <div class="card"><i class="fas fa-chart-pie" style="font-size: 40px; color: var(--green);"></i><h3>Data Analytics</h3><p>Excel, Power BI, Tableau</p><a href="#" class="btn btn-outline" style="margin-top: 12px;">Start Course →</a></div>
+        </div>
+      </div>
+
+      <!-- Tab: Automation -->
+      <div id="dashboard-automation" class="dashboard-tab">
+        <div class="card"><h2><i class="fas fa-cogs"></i> Automation Rules</h2><p>Set up automated workflows to save time.</p><div class="automation-rule" style="background:var(--soft); padding:16px; border-radius:16px; margin-top:16px;"><i class="fas fa-check-circle" style="color:var(--green);"></i> When proposal is generated → Create follow-up task</div><div class="automation-rule" style="background:var(--soft); padding:16px; border-radius:16px; margin-top:12px;"><i class="fas fa-check-circle" style="color:var(--green);"></i> When business plan is created → Notify team</div><button class="btn btn-outline" style="margin-top: 20px;">+ Add Automation Rule</button></div>
+      </div>
+
+      <!-- Tab: Documents -->
+      <div id="dashboard-documents" class="dashboard-tab">
+        <div class="card"><h2><i class="fas fa-folder-open"></i> My Documents</h2><div id="dashboardDocumentsList"><p>No documents yet. Generate a proposal or business plan to see it here.</p></div></div>
+      </div>
+
+      <!-- Tab: Settings -->
+      <div id="dashboard-settings" class="dashboard-tab">
+        <div class="card"><h2><i class="fas fa-cog"></i> Settings</h2><div class="form-group"><label>Display Name</label><input type="text" placeholder="Your name" style="width:100%; padding:12px; border-radius:12px;"></div><div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" style="width:100%; padding:12px; border-radius:12px;"></div><div class="form-group"><label>Notification Preferences</label><select style="width:100%; padding:12px; border-radius:12px;"><option>Email notifications on</option><option>Email notifications off</option></select></div><button class="btn btn-primary">Save Settings</button></div>
+      </div>
+
+    </div>
+  </div>
+                                                                                                                                                                               
+</div>
+  
   <!-- ==================== CORE PLATFORMS PAGE ==================== -->
   <div id="coreplatforms-page" class="page">
     <div class="navbar-spacer"></div>
@@ -4041,7 +4128,8 @@ The platform supports financial inclusion by helping underserved African SMEs an
       </div>
     </div>
   </div>
-</div> <!-- END page-container -->
+</div> 
+  <!-- END page-container -->
 
 <footer>
   <div class="container">© 2025 MaZida Digital Skills & Innovation Hub — Operated by Basiwel Holistic Ventures Ltd. <strong>⭐ First Product: MaZida AI Workspace | 📚 Digital Skills Academy: Building Africa's Workforce</strong></div>
@@ -4990,7 +5078,76 @@ function highlightSelectedService() {
 
 // Call this after page switch or on programs page load
 document.addEventListener('DOMContentLoaded', highlightSelectedService);
-  // PAGE SWITCHING
+  // Dashboard Tab Switching
+document.querySelectorAll('.sidebar-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const tabId = link.getAttribute('data-dashboard-tab');
+    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    document.querySelectorAll('.dashboard-tab').forEach(tab => tab.classList.remove('active-tab'));
+    document.getElementById(`dashboard-${tabId}`).classList.add('active-tab');
+  });
+});
+
+// Dashboard Chat
+document.getElementById('dashboardSendBtn')?.addEventListener('click', () => {
+  const input = document.getElementById('dashboardChatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  const chatDiv = document.getElementById('dashboardChatMessages');
+  const userMsg = document.createElement('div');
+  userMsg.className = 'message user';
+  userMsg.style.cssText = 'background: var(--green); color: white; padding: 12px 16px; border-radius: 18px; margin-bottom: 12px; margin-left: auto; max-width: 85%; text-align: right;';
+  userMsg.innerHTML = `<i class="fas fa-user"></i> ${msg}`;
+  chatDiv.appendChild(userMsg);
+  input.value = '';
+  setTimeout(() => {
+    const botMsg = document.createElement('div');
+    botMsg.className = 'message bot';
+    botMsg.style.cssText = 'background: var(--navy); color: white; padding: 12px 16px; border-radius: 18px; margin-bottom: 12px; max-width: 85%;';
+    botMsg.innerHTML = `<i class="fas fa-robot"></i> I'm here to help! I can assist with proposals, business plans, research, and more.`;
+    chatDiv.appendChild(botMsg);
+    chatDiv.scrollTop = chatDiv.scrollHeight;
+  }, 500);
+  chatDiv.scrollTop = chatDiv.scrollHeight;
+});
+
+// Proposal Generator
+document.getElementById('generateProposalDashboardBtn')?.addEventListener('click', () => {
+  const client = document.getElementById('propClient').value || "Valued Client";
+  const desc = document.getElementById('propDesc').value || "Our proposed solution";
+  const proposal = `# PROPOSAL FOR ${client}\n\n## Executive Summary\n${desc}\n\n## Scope of Work\nDetailed deliverables and timeline.\n\n## Investment\nTo be discussed based on scope.\n\n## Next Steps\nPlease review and let's schedule a call.`;
+  document.getElementById('propContent').innerHTML = proposal;
+  document.getElementById('propOutput').style.display = 'block';
+});
+
+// Task Management
+let dashboardTasks = JSON.parse(localStorage.getItem('dashboardTasks')) || [];
+function renderDashboardTasks() {
+  const container = document.getElementById('dashboardTaskList');
+  if (!container) return;
+  if (dashboardTasks.length === 0) { container.innerHTML = '<p>No tasks yet. Add one above.</p>'; return; }
+  container.innerHTML = dashboardTasks.map((t, i) => `<div style="display:flex; align-items:center; gap:12px; padding:8px 0; border-bottom:1px solid var(--gray-mid);"><input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleDashboardTask(${i})"><span style="${t.done ? 'text-decoration:line-through;opacity:0.6' : ''}">${t.text}</span><button onclick="deleteDashboardTask(${i})" style="margin-left:auto; background:none; border:none; color:#e74c3c; cursor:pointer;">🗑️</button></div>`).join('');
+}
+document.getElementById('dashboardAddTaskBtn')?.addEventListener('click', () => {
+  const input = document.getElementById('dashboardNewTask');
+  if (input.value.trim()) { dashboardTasks.push({ text: input.value, done: false }); localStorage.setItem('dashboardTasks', JSON.stringify(dashboardTasks)); renderDashboardTasks(); input.value = ''; }
+});
+window.toggleDashboardTask = (i) => { dashboardTasks[i].done = !dashboardTasks[i].done; localStorage.setItem('dashboardTasks', JSON.stringify(dashboardTasks)); renderDashboardTasks(); };
+window.deleteDashboardTask = (i) => { dashboardTasks.splice(i, 1); localStorage.setItem('dashboardTasks', JSON.stringify(dashboardTasks)); renderDashboardTasks(); };
+renderDashboardTasks();
+
+// Notes
+document.getElementById('dashboardSaveNotesBtn')?.addEventListener('click', () => {
+  const notes = document.getElementById('dashboardNotes').value;
+  localStorage.setItem('dashboardNotes', notes);
+  alert('Notes saved!');
+});
+const savedNotes = localStorage.getItem('dashboardNotes');
+if (savedNotes && document.getElementById('dashboardNotes')) document.getElementById('dashboardNotes').value = savedNotes;
+
+// PAGE SWITCHING
 // =========================================================
 const pages = {
   home: document.getElementById('home-page'),
@@ -5002,8 +5159,9 @@ const pages = {
   learning: document.getElementById('learning-page'),
   contact: document.getElementById('contact-page'),
   'ai-tools': document.getElementById('ai-tools-page'),
-  'mazida-ai': document.getElementById('mazida-ai-page')
-}
+  'mazida-ai': document.getElementById('mazida-ai-page'),
+  'mazida-ai-dashboard': document.getElementById('mazida-ai-dashboard-page')
+};
 const allTriggers = document.querySelectorAll('[data-page]');
 const navItems = document.querySelectorAll('.nav-item');
 const navLinks = document.querySelectorAll('.nav-links a');
