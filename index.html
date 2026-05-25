@@ -5680,25 +5680,7 @@ function highlightSelectedService() {
 
 // Call this after page switch or on programs page load
 document.addEventListener('DOMContentLoaded', highlightSelectedService);
-  // Menu Toggle Functionality
-const sidebar = document.getElementById('dashboardSidebar');
-const menuToggleBtn = document.getElementById('menuToggleBtn');
-
-if (menuToggleBtn) {
-  menuToggleBtn.addEventListener('click', function() {
-    sidebar.classList.toggle('collapsed');
-    // Save state
-    localStorage.setItem('dashboardSidebarCollapsed', sidebar.classList.contains('collapsed'));
-  });
   
-  // Load saved state
-  const savedState = localStorage.getItem('dashboardSidebarCollapsed');
-  if (savedState === 'true') {
-    sidebar.classList.add('collapsed');
-  } else if (savedState === 'false') {
-    sidebar.classList.remove('collapsed');
-  }
-  }
 // =========================================================
 // DASHBOARD TAB SWITCHING
 // =========================================================
