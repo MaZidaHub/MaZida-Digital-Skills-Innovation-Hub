@@ -2510,6 +2510,34 @@ input:checked + .slider:before {
     left: 20px;
   }
 }
+    /* Pre-Footer Styles */
+.pre-footer a {
+  transition: all 0.3s ease;
+}
+
+.pre-footer a:hover {
+  color: var(--green) !important;
+  transform: translateX(3px);
+}
+
+.social-links a:hover {
+  background: var(--green) !important;
+  transform: translateY(-3px);
+}
+
+.social-links a:hover i {
+  color: var(--navy);
+}
+
+.pre-footer .newsletter-signup input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.pre-footer .newsletter-signup button:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
   </style>
 </head>
 <body>
@@ -2858,7 +2886,7 @@ input:checked + .slider:before {
         <div class="impact-number">100+</div>
         <div class="impact-label">AI Workshops</div>
         <div class="impact-detail">Across Zambia & Africa</div>
-        <div class="impact-timeline">🎯 Target: 2026</div>
+        <div class="impact-timeline">🎯 Target: 2027</div>
         <div class="impact-progress">
           <div class="progress-track">
             <div class="progress-bar-impact" style="width: 0%;"></div>
@@ -5485,10 +5513,113 @@ The platform supports financial inclusion by helping underserved African SMEs an
   </div>
 </div> 
   <!-- END page-container -->
+<div class="page-container">
+  <!-- ALL YOUR PAGE CONTENTS (home, about, programs, etc.) -->
+</div>
 
+<!-- ==================== PRE-FOOTER SECTION (Shows on ALL Pages) ==================== -->
+<div class="pre-footer" style="background: var(--navy-dark); border-top: 1px solid rgba(46,204,113,0.15); padding: 60px 0 40px;">
+  <div class="container">
+    
+    <div class="pre-footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
+      
+      <!-- Social Media & Brand Column -->
+      <div class="footer-brand-col">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <i class="fas fa-microchip" style="font-size: 32px; color: var(--green);"></i>
+          <span style="font-size: 1.2rem; font-weight: 700; color: white;">MaZida Hub</span>
+        </div>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.6; margin-bottom: 24px;">
+          Empowering Africa through AI, digital skills, innovation, and income opportunities.
+        </p>
+        <div class="social-links" style="display: flex; gap: 16px;">
+          <a href="https://facebook.com/mazidahub" target="_blank" style="background: rgba(255,255,255,0.08); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: white; text-decoration: none;">
+            <i class="fab fa-facebook-f" style="font-size: 18px;"></i>
+          </a>
+          <a href="https://linkedin.com/company/mazidahub" target="_blank" style="background: rgba(255,255,255,0.08); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: white; text-decoration: none;">
+            <i class="fab fa-linkedin-in" style="font-size: 18px;"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Company Column -->
+      <div>
+        <h4 style="color: var(--green); font-size: 1rem; margin-bottom: 20px; font-weight: 600;">Company</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 12px;"><a href="#" data-page="about" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">About</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Our Work</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Industries</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" data-page="programs" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Our Services</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Research</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Get Involved</a></li>
+        </ul>
+      </div>
+      
+      <!-- Products Column -->
+      <div>
+        <h4 style="color: var(--green); font-size: 1rem; margin-bottom: 20px; font-weight: 600;">Products</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 12px;"><a href="#" data-page="ai-tools" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">AI Tools</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" data-page="workspace" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">AI Workspace</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">AI Audit</a></li>
+        </ul>
+      </div>
+      
+      <!-- Resources Column -->
+      <div>
+        <h4 style="color: var(--green); font-size: 1rem; margin-bottom: 20px; font-weight: 600;">Resources</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Media</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Videos</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Research</a></li>
+        </ul>
+      </div>
+      
+      <!-- Legal & Contact Column -->
+      <div>
+        <h4 style="color: var(--green); font-size: 1rem; margin-bottom: 20px; font-weight: 600;">Legal</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; margin-bottom: 24px;">
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Privacy Policy</a></li>
+          <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;">Terms of Service</a></li>
+        </ul>
+        
+        <h4 style="color: var(--green); font-size: 1rem; margin-bottom: 16px; font-weight: 600;">Contact</h4>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+          <i class="fas fa-envelope" style="color: var(--green); font-size: 14px;"></i>
+          <a href="mailto:customerservice@mazidahub.com" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.8rem;">customerservice@mazidahub.com</a>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Divider -->
+    <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(46,204,113,0.3), transparent); margin: 40px 0 30px;"></div>
+    
+    <!-- Bottom Row -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <span style="color: rgba(255,255,255,0.4); font-size: 0.7rem;">© 2025 MaZida Hub</span>
+        <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.7rem;">Privacy</a>
+        <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.7rem;">Terms</a>
+        <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.7rem;">Cookies</a>
+      </div>
+      <div class="newsletter-signup" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <span style="color: rgba(255,255,255,0.5); font-size: 0.75rem;">Subscribe for updates</span>
+        <div style="display: flex; gap: 8px;">
+          <input type="email" placeholder="Your email address" style="padding: 8px 16px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: white; font-size: 0.75rem; width: 200px;">
+          <button style="background: var(--green); border: none; padding: 8px 20px; border-radius: 40px; color: var(--navy); font-weight: 600; font-size: 0.7rem; cursor: pointer;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="container">© 2025 MaZida Digital Skills & Innovation Hub — Operated by Basiwel Holistic Ventures Ltd. <strong>⭐ First Product: MaZida AI Workspace | 📚 Digital Skills Academy: Building Africa's Workforce</strong></div>
 </footer>
+
 
 <div class="floating-bottom-nav">
   <a class="nav-item" data-page="home"><i class="fas fa-home"></i><span>Home</span></a>
