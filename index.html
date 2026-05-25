@@ -4515,61 +4515,55 @@ The platform supports financial inclusion by helping underserved African SMEs an
   <div class="navbar-spacer"></div>
   
   <!-- Dashboard Container -->
-  <div class="dashboard-container">
+<div class="dashboard-container">
+  
+  <!-- Collapsible Sidebar -->
+  <div class="dashboard-sidebar collapsed" id="dashboardSidebar">
+    <!-- Menu Toggle Button - VISIBLE INSIDE DASHBOARD -->
+    <div class="sidebar-toggle">
+      <button class="menu-toggle-btn" id="menuToggleBtn">
+        <i class="fas fa-bars"></i>
+        <span class="toggle-text">Menu</span>
+      </button>
+    </div>
     
-    <!-- Collapsible Sidebar -->
-    <div class="dashboard-sidebar collapsed" id="dashboardSidebar">
-      <div class="sidebar-toggle">
-        <button class="menu-toggle-btn" id="menuToggleBtn">
-          <i class="fas fa-bars"></i>
-          <span class="toggle-text">Menu</span>
+    <div class="sidebar-menu-wrapper" id="sidebarMenuWrapper">
+      <div class="sidebar-header">
+        <div class="logo-area">
+          <i class="fas fa-microchip"></i>
+          <span>MaZida AI</span>
+        </div>
+        <button class="new-chat-btn" id="newChatBtn">
+          <i class="fas fa-plus"></i> New chat
         </button>
       </div>
       
-      <div class="sidebar-menu-wrapper" id="sidebarMenuWrapper">
-        <div class="sidebar-header">
-          <div class="logo-area">
-            <i class="fas fa-microchip" style="font-size: 22px; color: var(--green);"></i>
-            <span>MaZida AI</span>
-          </div>
-          <button class="new-chat-btn" id="newChatBtn">
-            <i class="fas fa-plus"></i> New chat
-          </button>
-        </div>
-        
-        <div class="sidebar-menu">
-          <a href="#" class="menu-item active" data-dashboard-tab="dashboard">
-            <i class="fas fa-home"></i> Dashboard
-          </a>
-          <a href="#" class="menu-item" data-dashboard-tab="assistant">
-            <i class="fas fa-robot"></i> Assistant
-          </a>
-          <a href="#" class="menu-item" data-dashboard-tab="workspace">
-            <i class="fas fa-tasks"></i> Workspace
-          </a>
-          <a href="#" class="menu-item" data-dashboard-tab="documents">
-            <i class="fas fa-folder-open"></i> Documents
-          </a>
-          <a href="#" class="menu-item" data-dashboard-tab="automation">
-            <i class="fas fa-cogs"></i> Automation
-          </a>
-          <a href="#" class="menu-item" data-dashboard-tab="learning">
-            <i class="fas fa-graduation-cap"></i> Learning Hub
-          </a>
-        </div>
-        
-        <div class="sidebar-footer">
-          <div class="user-info">
-            <div class="user-avatar"><i class="fas fa-user"></i></div>
-            <div class="user-details">
-              <span class="user-name">Guest User</span>
-              <span class="user-plan">Free Plan</span>
-            </div>
+      <div class="sidebar-menu">
+        <a href="#" class="menu-item active" data-dashboard-tab="dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="#" class="menu-item" data-dashboard-tab="assistant"><i class="fas fa-robot"></i> Assistant</a>
+        <a href="#" class="menu-item" data-dashboard-tab="workspace"><i class="fas fa-tasks"></i> Workspace</a>
+        <a href="#" class="menu-item" data-dashboard-tab="documents"><i class="fas fa-folder-open"></i> Documents</a>
+        <a href="#" class="menu-item" data-dashboard-tab="automation"><i class="fas fa-cogs"></i> Automation</a>
+        <a href="#" class="menu-item" data-dashboard-tab="learning"><i class="fas fa-graduation-cap"></i> Learning Hub</a>
+      </div>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar"><i class="fas fa-user"></i></div>
+          <div class="user-details">
+            <span class="user-name">Guest User</span>
+            <span class="user-plan">Free Plan</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
+  <!-- Main Content Area -->
+  <div class="dashboard-main-content">
+    <!-- Your existing tab content here -->
+  </div>
+</div>
     <!-- Main Content Area -->
     <div class="dashboard-main-content">
       
@@ -5686,27 +5680,25 @@ function highlightSelectedService() {
 
 // Call this after page switch or on programs page load
 document.addEventListener('DOMContentLoaded', highlightSelectedService);
-  // =========================================================
-// COLLAPSIBLE SIDEBAR - MENU TOGGLE
-// =========================================================
+  // Menu Toggle Functionality
 const sidebar = document.getElementById('dashboardSidebar');
 const menuToggleBtn = document.getElementById('menuToggleBtn');
 
 if (menuToggleBtn) {
   menuToggleBtn.addEventListener('click', function() {
     sidebar.classList.toggle('collapsed');
-    // Store state in localStorage
-    const isCollapsed = sidebar.classList.contains('collapsed');
-    localStorage.setItem('dashboardSidebarCollapsed', isCollapsed);
+    // Save state
+    localStorage.setItem('dashboardSidebarCollapsed', sidebar.classList.contains('collapsed'));
   });
   
   // Load saved state
   const savedState = localStorage.getItem('dashboardSidebarCollapsed');
   if (savedState === 'true') {
     sidebar.classList.add('collapsed');
+  } else if (savedState === 'false') {
+    sidebar.classList.remove('collapsed');
   }
-}
-
+  }
 // =========================================================
 // DASHBOARD TAB SWITCHING
 // =========================================================
